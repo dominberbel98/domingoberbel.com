@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-07T12:00:52.714965+00:00",
+  "updatedAt": "2026-09-07T17:44:13.400758+00:00",
   "season": "2026",
   "matchday": 6,
   "seasonStart": "2026-08-16",
@@ -435,6 +435,22 @@
     }
   ],
   "results": [
+    {
+      "id": 564665,
+      "utcDate": "2026-09-07T17:00:00Z",
+      "status": "IN_PLAY",
+      "matchday": 4,
+      "homeId": 82,
+      "homeName": "Getafe",
+      "homeCrest": "https://sportsrc.org/img/score/82.png",
+      "awayId": 558,
+      "awayName": "Celta",
+      "awayCrest": "https://sportsrc.org/img/score/558.png",
+      "homeGoals": 1,
+      "awayGoals": 0,
+      "winner": "HOME_TEAM",
+      "live": true
+    },
     {
       "id": 564661,
       "utcDate": "2026-09-06T19:00:00Z",
