@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-07T21:20:34.425519+00:00",
+  "updatedAt": "2026-09-07T23:42:39.356580+00:00",
   "season": "2026",
   "matchday": 6,
   "seasonStart": "2026-08-16",
@@ -189,8 +189,8 @@
       "draw": 1,
       "lost": 2,
       "points": 7,
-      "goalsFor": 5,
-      "goalsAgainst": 7,
+      "goalsFor": 6,
+      "goalsAgainst": 8,
       "goalDifference": -2,
       "teamId": 92,
       "teamName": "Real Sociedad de Fútbol",
@@ -399,8 +399,8 @@
       "draw": 1,
       "lost": 3,
       "points": 1,
-      "goalsFor": 4,
-      "goalsAgainst": 11,
+      "goalsFor": 5,
+      "goalsAgainst": 12,
       "goalDifference": -7,
       "teamId": 285,
       "teamName": "Elche CF",
@@ -1093,13 +1093,6 @@
     }
   ],
   "fixtures": [
-    {
-      "id": "elche-vs-real-sociedad-2506208",
-      "homeName": "Elche",
-      "awayName": "Real Sociedad",
-      "kickoff": 1788809400000,
-      "title": "Elche vs Real Sociedad"
-    },
     {
       "id": "ppv-sevilla-vs-valencia",
       "homeName": "Sevilla FC",
