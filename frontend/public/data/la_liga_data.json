@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-07T23:42:39.356580+00:00",
+  "updatedAt": "2026-09-08T03:50:24.037004+00:00",
   "season": "2026",
   "matchday": 6,
   "seasonStart": "2026-08-16",
@@ -184,7 +184,7 @@
     {
       "position": 9,
       "playedGames": 5,
-      "form": "DWLL",
+      "form": "WDWLL",
       "won": 2,
       "draw": 1,
       "lost": 2,
@@ -310,7 +310,7 @@
     {
       "position": 15,
       "playedGames": 4,
-      "form": "LWL",
+      "form": "DLWL",
       "won": 1,
       "draw": 1,
       "lost": 2,
@@ -331,7 +331,7 @@
     {
       "position": 16,
       "playedGames": 5,
-      "form": "DLLD",
+      "form": "DDLLD",
       "won": 0,
       "draw": 3,
       "lost": 2,
@@ -394,7 +394,7 @@
     {
       "position": 19,
       "playedGames": 4,
-      "form": "LLD",
+      "form": "LLLD",
       "won": 0,
       "draw": 1,
       "lost": 3,
@@ -438,7 +438,7 @@
     {
       "id": 564658,
       "utcDate": "2026-09-07T19:30:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": 4,
       "homeId": 285,
       "homeName": "Elche",
@@ -447,14 +447,14 @@
       "awayName": "Real Sociedad",
       "awayCrest": "https://sportsrc.org/img/score/92.png",
       "homeGoals": 2,
-      "awayGoals": 2,
-      "winner": "DRAW",
-      "live": true
+      "awayGoals": 3,
+      "winner": "AWAY_TEAM",
+      "live": false
     },
     {
       "id": 564665,
       "utcDate": "2026-09-07T17:00:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": 4,
       "homeId": 82,
       "homeName": "Getafe",
@@ -463,9 +463,9 @@
       "awayName": "Celta",
       "awayCrest": "https://sportsrc.org/img/score/558.png",
       "homeGoals": 1,
-      "awayGoals": 0,
-      "winner": "HOME_TEAM",
-      "live": true
+      "awayGoals": 1,
+      "winner": "DRAW",
+      "live": false
     },
     {
       "id": 564661,
