@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-09T23:56:19.243644+00:00",
+  "updatedAt": "2026-09-10T03:54:34.930349+00:00",
   "season": "2026",
   "matchday": 6,
   "seasonStart": "2026-08-16",
@@ -1094,11 +1094,11 @@
   ],
   "fixtures": [
     {
-      "id": "ppv-sevilla-vs-valencia",
+      "id": "sevilla-vs-valencia-2506211",
       "homeName": "Sevilla FC",
       "awayName": "Valencia",
       "kickoff": 1789153200000,
-      "title": "Sevilla vs. Valencia"
+      "title": "Sevilla vs Valencia"
     },
     {
       "id": "ppv-racing-santander-vs-alav-s",
