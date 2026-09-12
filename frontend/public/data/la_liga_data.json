@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-12T19:36:04.071213+00:00",
+  "updatedAt": "2026-09-12T22:03:23.449314+00:00",
   "season": "2026",
   "matchday": 6,
   "seasonStart": "2026-08-16",
@@ -42,9 +42,9 @@
       "draw": 0,
       "lost": 1,
       "points": 12,
-      "goalsFor": 11,
-      "goalsAgainst": 3,
-      "goalDifference": 8,
+      "goalsFor": 14,
+      "goalsAgainst": 4,
+      "goalDifference": 10,
       "teamId": 86,
       "teamName": "Real Madrid CF",
       "teamShortName": "Real Madrid",
@@ -315,9 +315,9 @@
       "draw": 1,
       "lost": 3,
       "points": 4,
-      "goalsFor": 7,
-      "goalsAgainst": 11,
-      "goalDifference": -4,
+      "goalsFor": 8,
+      "goalsAgainst": 14,
+      "goalDifference": -6,
       "teamId": 87,
       "teamName": "Rayo Vallecano de Madrid",
       "teamShortName": "Rayo Vallecano",
@@ -1125,13 +1125,6 @@
     }
   ],
   "fixtures": [
-    {
-      "id": "real-madrid-vs-rayo-vallecano-2506214",
-      "homeName": "Real Madrid",
-      "awayName": "Rayo Vallecano",
-      "kickoff": 1789239600000,
-      "title": "Real Madrid vs Rayo Vallecano"
-    },
     {
       "id": "celta-vigo-vs-m-laga-2506212",
       "homeName": "Celta",
