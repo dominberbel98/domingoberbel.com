@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-12T11:09:36.650181+00:00",
+  "updatedAt": "2026-09-12T14:19:19.904315+00:00",
   "season": "2026",
   "matchday": 6,
   "seasonStart": "2026-08-16",
@@ -1109,13 +1109,6 @@
     }
   ],
   "fixtures": [
-    {
-      "id": "racing-santander-vs-alaves-football-1570378",
-      "homeName": "Santander",
-      "awayName": "Alavés",
-      "kickoff": 1789214400000,
-      "title": "Racing Santander vs Alaves"
-    },
     {
       "id": "racing-de-santander-vs-deportivo-alav-s-2506218",
       "homeName": "Santander",
