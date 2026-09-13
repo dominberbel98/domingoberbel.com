@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-13T14:52:20.372298+00:00",
+  "updatedAt": "2026-09-13T18:00:57.385842+00:00",
   "season": "2026",
   "matchday": 6,
   "seasonStart": "2026-08-16",
@@ -17,21 +17,21 @@
       "position": 1,
       "playedGames": 5,
       "form": "WWWW",
-      "won": 4,
-      "draw": 1,
+      "won": 5,
+      "draw": 0,
       "lost": 0,
-      "points": 13,
-      "goalsFor": 17,
+      "points": 15,
+      "goalsFor": 20,
       "goalsAgainst": 2,
-      "goalDifference": 15,
+      "goalDifference": 18,
       "teamId": 81,
       "teamName": "FC Barcelona",
       "teamShortName": "Barça",
       "teamCrest": "https://sportsrc.org/img/score/81.png",
       "apiPosition": 1,
       "zone": "champions",
-      "winRate": 80.0,
-      "drawRate": 20.0,
+      "winRate": 100.0,
+      "drawRate": 0.0,
       "lossRate": 0.0
     },
     {
@@ -270,12 +270,12 @@
       "playedGames": 5,
       "form": "DWDL",
       "won": 1,
-      "draw": 3,
-      "lost": 1,
-      "points": 6,
+      "draw": 2,
+      "lost": 2,
+      "points": 5,
       "goalsFor": 5,
-      "goalsAgainst": 5,
-      "goalDifference": 0,
+      "goalsAgainst": 8,
+      "goalDifference": -3,
       "teamId": 88,
       "teamName": "Levante UD",
       "teamShortName": "Levante",
@@ -283,8 +283,8 @@
       "apiPosition": 13,
       "zone": "mid",
       "winRate": 20.0,
-      "drawRate": 60.0,
-      "lossRate": 20.0
+      "drawRate": 40.0,
+      "lossRate": 40.0
     },
     {
       "position": 14,
@@ -1173,13 +1173,6 @@
     }
   ],
   "fixtures": [
-    {
-      "id": "levante-vs-barcelona-2506213",
-      "homeName": "Levante",
-      "awayName": "Barça",
-      "kickoff": 1789308900000,
-      "title": "Levante vs Barcelona"
-    },
     {
       "id": "getafe-vs-deportivo-de-a-coru-a-2506215",
       "homeName": "Getafe",
