@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-12T22:03:23.449314+00:00",
+  "updatedAt": "2026-09-13T00:10:29.868073+00:00",
   "season": "2026",
   "matchday": 6,
   "seasonStart": "2026-08-16",
@@ -37,7 +37,7 @@
     {
       "position": 2,
       "playedGames": 5,
-      "form": "LWWW",
+      "form": "WLWWW",
       "won": 4,
       "draw": 0,
       "lost": 1,
@@ -58,7 +58,7 @@
     {
       "position": 3,
       "playedGames": 5,
-      "form": "WWDW",
+      "form": "LWWDW",
       "won": 3,
       "draw": 1,
       "lost": 1,
@@ -142,7 +142,7 @@
     {
       "position": 7,
       "playedGames": 5,
-      "form": "DLLW",
+      "form": "WDLLW",
       "won": 2,
       "draw": 1,
       "lost": 2,
@@ -163,7 +163,7 @@
     {
       "position": 8,
       "playedGames": 5,
-      "form": "WWLL",
+      "form": "DWWLL",
       "won": 2,
       "draw": 1,
       "lost": 2,
@@ -205,7 +205,7 @@
     {
       "position": 10,
       "playedGames": 5,
-      "form": "LWLD",
+      "form": "WLWLD",
       "won": 2,
       "draw": 1,
       "lost": 2,
@@ -247,7 +247,7 @@
     {
       "position": 12,
       "playedGames": 5,
-      "form": "LWWD",
+      "form": "LLWWD",
       "won": 2,
       "draw": 1,
       "lost": 2,
@@ -310,7 +310,7 @@
     {
       "position": 15,
       "playedGames": 5,
-      "form": "WLDL",
+      "form": "LWLDL",
       "won": 1,
       "draw": 1,
       "lost": 3,
@@ -394,7 +394,7 @@
     {
       "position": 19,
       "playedGames": 5,
-      "form": "LLLD",
+      "form": "DLLLD",
       "won": 0,
       "draw": 2,
       "lost": 3,
@@ -438,7 +438,7 @@
     {
       "id": 564677,
       "utcDate": "2026-09-12T19:00:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": 5,
       "homeId": 86,
       "homeName": "Real Madrid",
@@ -446,10 +446,58 @@
       "awayId": 87,
       "awayName": "Rayo Vallecano",
       "awayCrest": "https://sportsrc.org/img/score/87.png",
-      "homeGoals": 2,
-      "awayGoals": 0,
+      "homeGoals": 4,
+      "awayGoals": 1,
       "winner": "HOME_TEAM",
-      "live": true
+      "live": false
+    },
+    {
+      "id": 564676,
+      "utcDate": "2026-09-12T16:30:00Z",
+      "status": "FINISHED",
+      "matchday": 5,
+      "homeId": 77,
+      "homeName": "Athletic",
+      "homeCrest": "https://sportsrc.org/img/score/77.png",
+      "awayId": 285,
+      "awayName": "Elche",
+      "awayCrest": "https://sportsrc.org/img/score/285.png",
+      "homeGoals": 1,
+      "awayGoals": 1,
+      "winner": "DRAW",
+      "live": false
+    },
+    {
+      "id": 564673,
+      "utcDate": "2026-09-12T14:15:00Z",
+      "status": "FINISHED",
+      "matchday": 5,
+      "homeId": 79,
+      "homeName": "Osasuna",
+      "homeCrest": "https://sportsrc.org/img/score/79.png",
+      "awayId": 80,
+      "awayName": "Espanyol",
+      "awayCrest": "https://sportsrc.org/img/score/80.png",
+      "homeGoals": 0,
+      "awayGoals": 2,
+      "winner": "AWAY_TEAM",
+      "live": false
+    },
+    {
+      "id": 564670,
+      "utcDate": "2026-09-12T12:00:00Z",
+      "status": "FINISHED",
+      "matchday": 5,
+      "homeId": 5335,
+      "homeName": "Santander",
+      "homeCrest": "https://sportsrc.org/img/score/5335.png",
+      "awayId": 263,
+      "awayName": "Alavés",
+      "awayCrest": "https://sportsrc.org/img/score/263.png",
+      "homeGoals": 2,
+      "awayGoals": 1,
+      "winner": "HOME_TEAM",
+      "live": false
     },
     {
       "id": 564669,
@@ -1154,11 +1202,11 @@
       "title": "Real Sociedad vs Atlético Madrid"
     },
     {
-      "id": "ppv-villarreal-vs-real-betis",
+      "id": "villarreal-vs-real-betis-2506210",
       "homeName": "Villarreal",
       "awayName": "Real Betis",
       "kickoff": 1789412400000,
-      "title": "Villarreal vs. Real Betis"
+      "title": "Villarreal vs Real Betis"
     }
   ]
 }
