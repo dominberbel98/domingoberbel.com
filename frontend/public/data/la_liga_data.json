@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-14T06:52:59.795145+00:00",
+  "updatedAt": "2026-09-14T13:53:41.901406+00:00",
   "season": "2026",
   "matchday": 6,
   "seasonStart": "2026-08-16",
@@ -1273,13 +1273,6 @@
       "title": "Elche vs Real Madrid"
     },
     {
-      "id": "ppv-atl-tico-madrid-vs-osasuna",
-      "homeName": "Atleti",
-      "awayName": "Osasuna",
-      "kickoff": 1789578000000,
-      "title": "Atlético Madrid vs. Osasuna"
-    },
-    {
       "id": "ppv-deportivo-vs-sevilla",
       "homeName": "Deportivo",
       "awayName": "Sevilla FC",
@@ -1287,11 +1280,11 @@
       "title": "Deportivo vs. Sevilla"
     },
     {
-      "id": "ppv-levante-vs-athletic-club",
-      "homeName": "Levante",
-      "awayName": "Athletic",
-      "kickoff": 1789587000000,
-      "title": "Levante vs. Athletic Club"
+      "id": "ppv-atl-tico-madrid-vs-osasuna",
+      "homeName": "Atleti",
+      "awayName": "Osasuna",
+      "kickoff": 1789578000000,
+      "title": "Atlético Madrid vs. Osasuna"
     },
     {
       "id": "ppv-barcelona-vs-racing-santander",
@@ -1299,6 +1292,13 @@
       "awayName": "Santander",
       "kickoff": 1789587000000,
       "title": "Barcelona vs. Racing Santander"
+    },
+    {
+      "id": "ppv-levante-vs-athletic-club",
+      "homeName": "Levante",
+      "awayName": "Athletic",
+      "kickoff": 1789587000000,
+      "title": "Levante vs. Athletic Club"
     },
     {
       "id": "ppv-real-betis-vs-getafe",
