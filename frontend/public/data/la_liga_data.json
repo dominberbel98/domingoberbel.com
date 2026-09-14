@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-14T19:07:57.640711+00:00",
+  "updatedAt": "2026-09-14T22:41:04.544599+00:00",
   "season": "2026",
   "matchday": 6,
   "seasonStart": "2026-08-16",
@@ -58,6 +58,27 @@
     {
       "position": 3,
       "playedGames": 5,
+      "form": "WLWW",
+      "won": 4,
+      "draw": 0,
+      "lost": 1,
+      "points": 12,
+      "goalsFor": 7,
+      "goalsAgainst": 6,
+      "goalDifference": 1,
+      "teamId": 90,
+      "teamName": "Real Betis Balompié",
+      "teamShortName": "Real Betis",
+      "teamCrest": "https://sportsrc.org/img/score/90.png",
+      "apiPosition": 3,
+      "zone": "champions",
+      "winRate": 80.0,
+      "drawRate": 0.0,
+      "lossRate": 20.0
+    },
+    {
+      "position": 4,
+      "playedGames": 5,
       "form": "LWWDW",
       "won": 3,
       "draw": 1,
@@ -70,14 +91,14 @@
       "teamName": "Deportivo Alavés",
       "teamShortName": "Alavés",
       "teamCrest": "https://sportsrc.org/img/score/263.png",
-      "apiPosition": 3,
+      "apiPosition": 4,
       "zone": "champions",
       "winRate": 60.0,
       "drawRate": 20.0,
       "lossRate": 20.0
     },
     {
-      "position": 4,
+      "position": 5,
       "playedGames": 5,
       "form": "WLWDW",
       "won": 3,
@@ -91,14 +112,14 @@
       "teamName": "Club Atlético de Madrid",
       "teamShortName": "Atleti",
       "teamCrest": "https://sportsrc.org/img/score/78.png",
-      "apiPosition": 4,
-      "zone": "champions",
+      "apiPosition": 5,
+      "zone": "europa",
       "winRate": 60.0,
       "drawRate": 20.0,
       "lossRate": 20.0
     },
     {
-      "position": 5,
+      "position": 6,
       "playedGames": 5,
       "form": "WDLWW",
       "won": 3,
@@ -112,27 +133,6 @@
       "teamName": "Sevilla FC",
       "teamShortName": "Sevilla FC",
       "teamCrest": "https://sportsrc.org/img/score/559.png",
-      "apiPosition": 5,
-      "zone": "europa",
-      "winRate": 60.0,
-      "drawRate": 20.0,
-      "lossRate": 20.0
-    },
-    {
-      "position": 6,
-      "playedGames": 5,
-      "form": "WLWW",
-      "won": 3,
-      "draw": 1,
-      "lost": 1,
-      "points": 10,
-      "goalsFor": 5,
-      "goalsAgainst": 5,
-      "goalDifference": 0,
-      "teamId": 90,
-      "teamName": "Real Betis Balompié",
-      "teamShortName": "Real Betis",
-      "teamCrest": "https://sportsrc.org/img/score/90.png",
       "apiPosition": 6,
       "zone": "europa",
       "winRate": 60.0,
@@ -352,27 +352,6 @@
     {
       "position": 17,
       "playedGames": 5,
-      "form": "LLDD",
-      "won": 0,
-      "draw": 3,
-      "lost": 2,
-      "points": 3,
-      "goalsFor": 6,
-      "goalsAgainst": 8,
-      "goalDifference": -2,
-      "teamId": 94,
-      "teamName": "Villarreal CF",
-      "teamShortName": "Villarreal",
-      "teamCrest": "https://sportsrc.org/img/score/94.png",
-      "apiPosition": 17,
-      "zone": "mid",
-      "winRate": 0.0,
-      "drawRate": 60.0,
-      "lossRate": 40.0
-    },
-    {
-      "position": 18,
-      "playedGames": 5,
       "form": "DDLDL",
       "won": 0,
       "draw": 3,
@@ -385,11 +364,32 @@
       "teamName": "Málaga CF",
       "teamShortName": "Málaga",
       "teamCrest": "https://sportsrc.org/img/score/84.png",
-      "apiPosition": 18,
-      "zone": "relegation",
+      "apiPosition": 17,
+      "zone": "mid",
       "winRate": 0.0,
       "drawRate": 60.0,
       "lossRate": 40.0
+    },
+    {
+      "position": 18,
+      "playedGames": 5,
+      "form": "LLDD",
+      "won": 0,
+      "draw": 2,
+      "lost": 3,
+      "points": 2,
+      "goalsFor": 7,
+      "goalsAgainst": 10,
+      "goalDifference": -3,
+      "teamId": 94,
+      "teamName": "Villarreal CF",
+      "teamShortName": "Villarreal",
+      "teamCrest": "https://sportsrc.org/img/score/94.png",
+      "apiPosition": 18,
+      "zone": "relegation",
+      "winRate": 0.0,
+      "drawRate": 40.0,
+      "lossRate": 60.0
     },
     {
       "position": 19,
@@ -1273,18 +1273,18 @@
       "title": "Elche vs Real Madrid"
     },
     {
-      "id": "ppv-atl-tico-madrid-vs-osasuna",
-      "homeName": "Atleti",
-      "awayName": "Osasuna",
-      "kickoff": 1789578000000,
-      "title": "Atlético Madrid vs. Osasuna"
-    },
-    {
       "id": "ppv-deportivo-vs-sevilla",
       "homeName": "Deportivo",
       "awayName": "Sevilla FC",
       "kickoff": 1789578000000,
       "title": "Deportivo vs. Sevilla"
+    },
+    {
+      "id": "ppv-atl-tico-madrid-vs-osasuna",
+      "homeName": "Atleti",
+      "awayName": "Osasuna",
+      "kickoff": 1789578000000,
+      "title": "Atlético Madrid vs. Osasuna"
     },
     {
       "id": "ppv-barcelona-vs-racing-santander",
@@ -1364,18 +1364,18 @@
       "title": "Atlético Madrid vs. Real Madrid"
     },
     {
-      "id": "ppv-deportivo-vs-real-betis",
-      "homeName": "Deportivo",
-      "awayName": "Real Betis",
-      "kickoff": 1789921800000,
-      "title": "Deportivo vs. Real Betis"
-    },
-    {
       "id": "ppv-villarreal-vs-levante",
       "homeName": "Villarreal",
       "awayName": "Levante",
       "kickoff": 1789921800000,
       "title": "Villarreal vs. Levante"
+    },
+    {
+      "id": "ppv-deportivo-vs-real-betis",
+      "homeName": "Deportivo",
+      "awayName": "Real Betis",
+      "kickoff": 1789921800000,
+      "title": "Deportivo vs. Real Betis"
     },
     {
       "id": "ppv-valencia-vs-real-sociedad",
