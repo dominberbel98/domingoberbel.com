@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-13T23:01:48.324975+00:00",
+  "updatedAt": "2026-09-14T01:26:59.944624+00:00",
   "season": "2026",
   "matchday": 6,
   "seasonStart": "2026-08-16",
@@ -16,7 +16,7 @@
     {
       "position": 1,
       "playedGames": 5,
-      "form": "WWWW",
+      "form": "WWWWW",
       "won": 5,
       "draw": 0,
       "lost": 0,
@@ -79,7 +79,7 @@
     {
       "position": 4,
       "playedGames": 5,
-      "form": "LWDW",
+      "form": "WLWDW",
       "won": 3,
       "draw": 1,
       "lost": 1,
@@ -121,7 +121,7 @@
     {
       "position": 6,
       "playedGames": 5,
-      "form": "WWDD",
+      "form": "DWWDD",
       "won": 2,
       "draw": 3,
       "lost": 0,
@@ -247,7 +247,7 @@
     {
       "position": 12,
       "playedGames": 6,
-      "form": "WDWLL",
+      "form": "LWDWL",
       "won": 2,
       "draw": 1,
       "lost": 3,
@@ -268,7 +268,7 @@
     {
       "position": 13,
       "playedGames": 5,
-      "form": "DWDL",
+      "form": "LDWDL",
       "won": 1,
       "draw": 2,
       "lost": 2,
@@ -289,7 +289,7 @@
     {
       "position": 14,
       "playedGames": 5,
-      "form": "DLWL",
+      "form": "DDLWL",
       "won": 1,
       "draw": 2,
       "lost": 2,
@@ -310,7 +310,7 @@
     {
       "position": 15,
       "playedGames": 6,
-      "form": "DDLLD",
+      "form": "DDDLL",
       "won": 0,
       "draw": 4,
       "lost": 2,
@@ -352,7 +352,7 @@
     {
       "position": 17,
       "playedGames": 5,
-      "form": "DLDL",
+      "form": "DDLDL",
       "won": 0,
       "draw": 3,
       "lost": 2,
@@ -438,7 +438,7 @@
     {
       "id": 564674,
       "utcDate": "2026-09-13T19:00:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": 5,
       "homeId": 92,
       "homeName": "Real Sociedad",
@@ -447,9 +447,57 @@
       "awayName": "Atleti",
       "awayCrest": "https://sportsrc.org/img/score/78.png",
       "homeGoals": 0,
-      "awayGoals": 0,
+      "awayGoals": 3,
+      "winner": "AWAY_TEAM",
+      "live": false
+    },
+    {
+      "id": 564668,
+      "utcDate": "2026-09-13T16:30:00Z",
+      "status": "FINISHED",
+      "matchday": 5,
+      "homeId": 82,
+      "homeName": "Getafe",
+      "homeCrest": "https://sportsrc.org/img/score/82.png",
+      "awayId": 560,
+      "awayName": "Deportivo",
+      "awayCrest": "https://sportsrc.org/img/score/560.png",
+      "homeGoals": 1,
+      "awayGoals": 1,
       "winner": "DRAW",
-      "live": true
+      "live": false
+    },
+    {
+      "id": 564675,
+      "utcDate": "2026-09-13T14:15:00Z",
+      "status": "FINISHED",
+      "matchday": 5,
+      "homeId": 88,
+      "homeName": "Levante",
+      "homeCrest": "https://sportsrc.org/img/score/88.png",
+      "awayId": 81,
+      "awayName": "Barça",
+      "awayCrest": "https://sportsrc.org/img/score/81.png",
+      "homeGoals": 2,
+      "awayGoals": 4,
+      "winner": "AWAY_TEAM",
+      "live": false
+    },
+    {
+      "id": 564672,
+      "utcDate": "2026-09-13T12:00:00Z",
+      "status": "FINISHED",
+      "matchday": 5,
+      "homeId": 558,
+      "homeName": "Celta",
+      "homeCrest": "https://sportsrc.org/img/score/558.png",
+      "awayId": 84,
+      "awayName": "Málaga",
+      "awayCrest": "https://sportsrc.org/img/score/84.png",
+      "homeGoals": 1,
+      "awayGoals": 1,
+      "winner": "DRAW",
+      "live": false
     },
     {
       "id": 564677,
@@ -1195,6 +1243,27 @@
       "awayName": "Real Betis",
       "kickoff": 1789412400000,
       "title": "Villarreal vs Real Betis"
+    },
+    {
+      "id": "rayo-vallecano-vs-espanyol-2506227",
+      "homeName": "Rayo Vallecano",
+      "awayName": "Espanyol",
+      "kickoff": 1789491600000,
+      "title": "Rayo Vallecano vs Espanyol"
+    },
+    {
+      "id": "alaves-vs-valencia-football-1570383",
+      "homeName": "Alavés",
+      "awayName": "Valencia",
+      "kickoff": 1789495200000,
+      "title": "Alaves vs Valencia"
+    },
+    {
+      "id": "elche-vs-real-madrid-2506228",
+      "homeName": "Elche",
+      "awayName": "Real Madrid",
+      "kickoff": 1789500600000,
+      "title": "Elche vs Real Madrid"
     }
   ]
 }
