@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-14T22:41:04.544599+00:00",
+  "updatedAt": "2026-09-15T01:20:25.013278+00:00",
   "season": "2026",
   "matchday": 6,
   "seasonStart": "2026-08-16",
@@ -58,7 +58,7 @@
     {
       "position": 3,
       "playedGames": 5,
-      "form": "WLWW",
+      "form": "WWLWW",
       "won": 4,
       "draw": 0,
       "lost": 1,
@@ -373,7 +373,7 @@
     {
       "position": 18,
       "playedGames": 5,
-      "form": "LLDD",
+      "form": "LLLDD",
       "won": 0,
       "draw": 2,
       "lost": 3,
@@ -435,6 +435,22 @@
     }
   ],
   "results": [
+    {
+      "id": 564671,
+      "utcDate": "2026-09-14T19:00:00Z",
+      "status": "FINISHED",
+      "matchday": 5,
+      "homeId": 94,
+      "homeName": "Villarreal",
+      "homeCrest": "https://sportsrc.org/img/score/94.png",
+      "awayId": 90,
+      "awayName": "Real Betis",
+      "awayCrest": "https://sportsrc.org/img/score/90.png",
+      "homeGoals": 1,
+      "awayGoals": 2,
+      "winner": "AWAY_TEAM",
+      "live": false
+    },
     {
       "id": 564674,
       "utcDate": "2026-09-13T19:00:00Z",
@@ -1273,32 +1289,39 @@
       "title": "Elche vs Real Madrid"
     },
     {
-      "id": "ppv-deportivo-vs-sevilla",
-      "homeName": "Deportivo",
-      "awayName": "Sevilla FC",
-      "kickoff": 1789578000000,
-      "title": "Deportivo vs. Sevilla"
-    },
-    {
-      "id": "ppv-atl-tico-madrid-vs-osasuna",
+      "id": "atletico-madrid-vs-osasuna-football-1570384",
       "homeName": "Atleti",
       "awayName": "Osasuna",
       "kickoff": 1789578000000,
-      "title": "Atlético Madrid vs. Osasuna"
+      "title": "Atletico Madrid vs Osasuna"
     },
     {
-      "id": "ppv-barcelona-vs-racing-santander",
-      "homeName": "Barça",
-      "awayName": "Santander",
-      "kickoff": 1789587000000,
-      "title": "Barcelona vs. Racing Santander"
+      "id": "deportivo-de-a-coru-a-vs-sevilla-2506225",
+      "homeName": "Deportivo",
+      "awayName": "Sevilla FC",
+      "kickoff": 1789578000000,
+      "title": "Deportivo de A Coruña vs Sevilla"
     },
     {
-      "id": "ppv-levante-vs-athletic-club",
+      "id": "atl-tico-madrid-vs-osasuna-2506220",
+      "homeName": "Atleti",
+      "awayName": "Osasuna",
+      "kickoff": 1789578000000,
+      "title": "Atlético Madrid vs Osasuna"
+    },
+    {
+      "id": "levante-vs-athletic-bilbao-2506222",
       "homeName": "Levante",
       "awayName": "Athletic",
       "kickoff": 1789587000000,
-      "title": "Levante vs. Athletic Club"
+      "title": "Levante vs Athletic Bilbao"
+    },
+    {
+      "id": "barcelona-vs-racing-de-santander-2506219",
+      "homeName": "Barça",
+      "awayName": "Santander",
+      "kickoff": 1789587000000,
+      "title": "Barcelona vs Racing de Santander"
     },
     {
       "id": "ppv-real-betis-vs-getafe",
@@ -1364,18 +1387,18 @@
       "title": "Atlético Madrid vs. Real Madrid"
     },
     {
-      "id": "ppv-villarreal-vs-levante",
-      "homeName": "Villarreal",
-      "awayName": "Levante",
-      "kickoff": 1789921800000,
-      "title": "Villarreal vs. Levante"
-    },
-    {
       "id": "ppv-deportivo-vs-real-betis",
       "homeName": "Deportivo",
       "awayName": "Real Betis",
       "kickoff": 1789921800000,
       "title": "Deportivo vs. Real Betis"
+    },
+    {
+      "id": "ppv-villarreal-vs-levante",
+      "homeName": "Villarreal",
+      "awayName": "Levante",
+      "kickoff": 1789921800000,
+      "title": "Villarreal vs. Levante"
     },
     {
       "id": "ppv-valencia-vs-real-sociedad",
