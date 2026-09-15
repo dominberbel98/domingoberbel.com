@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-15T21:02:44.222411+00:00",
+  "updatedAt": "2026-09-15T23:37:23.885156+00:00",
   "season": "2026",
   "matchday": 6,
   "seasonStart": "2026-08-16",
@@ -42,9 +42,9 @@
       "draw": 0,
       "lost": 1,
       "points": 15,
-      "goalsFor": 16,
-      "goalsAgainst": 4,
-      "goalDifference": 12,
+      "goalsFor": 17,
+      "goalsAgainst": 6,
+      "goalDifference": 11,
       "teamId": 86,
       "teamName": "Real Madrid CF",
       "teamShortName": "Real Madrid",
@@ -420,9 +420,9 @@
       "draw": 2,
       "lost": 4,
       "points": 2,
-      "goalsFor": 6,
-      "goalsAgainst": 15,
-      "goalDifference": -9,
+      "goalsFor": 8,
+      "goalsAgainst": 16,
+      "goalDifference": -8,
       "teamId": 285,
       "teamName": "Elche CF",
       "teamShortName": "Elche",
@@ -1375,18 +1375,18 @@
       "title": "Atlético Madrid vs. Real Madrid"
     },
     {
-      "id": "ppv-villarreal-vs-levante",
-      "homeName": "Villarreal",
-      "awayName": "Levante",
-      "kickoff": 1789921800000,
-      "title": "Villarreal vs. Levante"
-    },
-    {
       "id": "ppv-deportivo-vs-real-betis",
       "homeName": "Deportivo",
       "awayName": "Real Betis",
       "kickoff": 1789921800000,
       "title": "Deportivo vs. Real Betis"
+    },
+    {
+      "id": "ppv-villarreal-vs-levante",
+      "homeName": "Villarreal",
+      "awayName": "Levante",
+      "kickoff": 1789921800000,
+      "title": "Villarreal vs. Levante"
     },
     {
       "id": "ppv-valencia-vs-real-sociedad",
