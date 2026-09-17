@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-16T21:34:52.150623+00:00",
+  "updatedAt": "2026-09-17T00:14:20.863035+00:00",
   "season": "2026",
   "matchday": 6,
   "seasonStart": "2026-08-16",
@@ -58,7 +58,7 @@
     {
       "position": 3,
       "playedGames": 6,
-      "form": "WLWDW",
+      "form": "WWLWD",
       "won": 4,
       "draw": 1,
       "lost": 1,
@@ -79,7 +79,7 @@
     {
       "position": 4,
       "playedGames": 6,
-      "form": "WDLWW",
+      "form": "WWDLW",
       "won": 4,
       "draw": 1,
       "lost": 1,
@@ -142,7 +142,7 @@
     {
       "position": 7,
       "playedGames": 6,
-      "form": "DWWDD",
+      "form": "LDWWD",
       "won": 2,
       "draw": 3,
       "lost": 1,
@@ -205,7 +205,7 @@
     {
       "position": 10,
       "playedGames": 6,
-      "form": "WLWLD",
+      "form": "LWLWL",
       "won": 2,
       "draw": 1,
       "lost": 3,
@@ -268,7 +268,7 @@
     {
       "position": 13,
       "playedGames": 6,
-      "form": "LLWWD",
+      "form": "LLLWW",
       "won": 2,
       "draw": 1,
       "lost": 3,
@@ -454,7 +454,7 @@
     {
       "id": 564687,
       "utcDate": "2026-09-16T19:30:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": 6,
       "homeId": 81,
       "homeName": "Barça",
@@ -462,15 +462,15 @@
       "awayId": 5335,
       "awayName": "Santander",
       "awayCrest": "https://sportsrc.org/img/score/5335.png",
-      "homeGoals": 6,
+      "homeGoals": 7,
       "awayGoals": 2,
       "winner": "HOME_TEAM",
-      "live": true
+      "live": false
     },
     {
       "id": 564679,
       "utcDate": "2026-09-16T17:00:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": 6,
       "homeId": 560,
       "homeName": "Deportivo",
@@ -481,12 +481,12 @@
       "homeGoals": 0,
       "awayGoals": 1,
       "winner": "AWAY_TEAM",
-      "live": true
+      "live": false
     },
     {
       "id": 564684,
       "utcDate": "2026-09-16T17:00:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": 6,
       "homeId": 78,
       "homeName": "Atleti",
@@ -494,10 +494,10 @@
       "awayId": 79,
       "awayName": "Osasuna",
       "awayCrest": "https://sportsrc.org/img/score/79.png",
-      "homeGoals": 1,
+      "homeGoals": 4,
       "awayGoals": 0,
       "winner": "HOME_TEAM",
-      "live": true
+      "live": false
     },
     {
       "id": 564681,
@@ -1366,20 +1366,6 @@
   ],
   "fixtures": [
     {
-      "id": "levante-vs-athletic-bilbao-2506222",
-      "homeName": "Levante",
-      "awayName": "Athletic",
-      "kickoff": 1789587000000,
-      "title": "Levante vs Athletic Bilbao"
-    },
-    {
-      "id": "barcelona-vs-racing-de-santander-2506219",
-      "homeName": "Barça",
-      "awayName": "Santander",
-      "kickoff": 1789587000000,
-      "title": "Barcelona vs Racing de Santander"
-    },
-    {
       "id": "real-betis-vs-getafe-2506224",
       "homeName": "Real Betis",
       "awayName": "Getafe",
@@ -1401,11 +1387,11 @@
       "title": "Málaga vs Villarreal"
     },
     {
-      "id": "ppv-espanyol-vs-elche",
+      "id": "espanyol-vs-elche-2506235",
       "homeName": "Espanyol",
       "awayName": "Elche",
       "kickoff": 1789758000000,
-      "title": "Espanyol vs. Elche"
+      "title": "Espanyol vs Elche"
     },
     {
       "id": "ppv-osasuna-vs-rayo-vallecano",
