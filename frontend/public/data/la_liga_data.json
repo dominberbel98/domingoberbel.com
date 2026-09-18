@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-18T21:09:45.003046+00:00",
+  "updatedAt": "2026-09-18T23:31:25.957352+00:00",
   "season": "2026",
   "matchday": 7,
   "seasonStart": "2026-08-16",
@@ -189,8 +189,8 @@
       "draw": 1,
       "lost": 4,
       "points": 7,
-      "goalsFor": 9,
-      "goalsAgainst": 9,
+      "goalsFor": 10,
+      "goalsAgainst": 10,
       "goalDifference": 0,
       "teamId": 80,
       "teamName": "RCD Espanyol de Barcelona",
@@ -357,8 +357,8 @@
       "draw": 2,
       "lost": 4,
       "points": 5,
-      "goalsFor": 10,
-      "goalsAgainst": 16,
+      "goalsFor": 11,
+      "goalsAgainst": 17,
       "goalDifference": -6,
       "teamId": 285,
       "teamName": "Elche CF",
@@ -1414,13 +1414,6 @@
   ],
   "fixtures": [
     {
-      "id": "espanyol-vs-elche-2506235",
-      "homeName": "Espanyol",
-      "awayName": "Elche",
-      "kickoff": 1789758000000,
-      "title": "Espanyol vs Elche"
-    },
-    {
       "id": "osasuna-vs-rayo-vallecano-2506238",
       "homeName": "Osasuna",
       "awayName": "Rayo Vallecano",
@@ -1456,18 +1449,18 @@
       "title": "Atlético Madrid vs. Real Madrid"
     },
     {
-      "id": "ppv-deportivo-vs-real-betis",
-      "homeName": "Deportivo",
-      "awayName": "Real Betis",
-      "kickoff": 1789921800000,
-      "title": "Deportivo vs. Real Betis"
-    },
-    {
       "id": "ppv-villarreal-vs-levante",
       "homeName": "Villarreal",
       "awayName": "Levante",
       "kickoff": 1789921800000,
       "title": "Villarreal vs. Levante"
+    },
+    {
+      "id": "ppv-deportivo-vs-real-betis",
+      "homeName": "Deportivo",
+      "awayName": "Real Betis",
+      "kickoff": 1789921800000,
+      "title": "Deportivo vs. Real Betis"
     },
     {
       "id": "ppv-valencia-vs-real-sociedad",
