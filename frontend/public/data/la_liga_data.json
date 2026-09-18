@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-17T22:23:26.472773+00:00",
+  "updatedAt": "2026-09-18T00:41:45.607382+00:00",
   "season": "2026",
   "matchday": 7,
   "seasonStart": "2026-08-16",
@@ -58,7 +58,7 @@
     {
       "position": 3,
       "playedGames": 6,
-      "form": "WWLWW",
+      "form": "WWWLW",
       "won": 5,
       "draw": 0,
       "lost": 1,
@@ -289,14 +289,14 @@
     {
       "position": 14,
       "playedGames": 6,
-      "form": "LLLDD",
+      "form": "WLLLD",
       "won": 1,
       "draw": 2,
       "lost": 3,
       "points": 5,
-      "goalsFor": 9,
+      "goalsFor": 10,
       "goalsAgainst": 11,
-      "goalDifference": -2,
+      "goalDifference": -1,
       "teamId": 94,
       "teamName": "Villarreal CF",
       "teamShortName": "Villarreal",
@@ -331,7 +331,7 @@
     {
       "position": 16,
       "playedGames": 6,
-      "form": "DDLWL",
+      "form": "LDDLW",
       "won": 1,
       "draw": 2,
       "lost": 3,
@@ -394,14 +394,14 @@
     {
       "position": 19,
       "playedGames": 6,
-      "form": "DDLDL",
+      "form": "LDDLD",
       "won": 0,
       "draw": 3,
       "lost": 3,
       "points": 3,
       "goalsFor": 3,
-      "goalsAgainst": 10,
-      "goalDifference": -7,
+      "goalsAgainst": 11,
+      "goalDifference": -8,
       "teamId": 84,
       "teamName": "Málaga CF",
       "teamShortName": "Málaga",
@@ -435,6 +435,38 @@
     }
   ],
   "results": [
+    {
+      "id": 564683,
+      "utcDate": "2026-09-17T19:30:00Z",
+      "status": "FINISHED",
+      "matchday": 6,
+      "homeId": 84,
+      "homeName": "Málaga",
+      "homeCrest": "https://sportsrc.org/img/score/84.png",
+      "awayId": 94,
+      "awayName": "Villarreal",
+      "awayCrest": "https://sportsrc.org/img/score/94.png",
+      "homeGoals": 1,
+      "awayGoals": 3,
+      "winner": "AWAY_TEAM",
+      "live": false
+    },
+    {
+      "id": 564686,
+      "utcDate": "2026-09-17T17:00:00Z",
+      "status": "FINISHED",
+      "matchday": 6,
+      "homeId": 90,
+      "homeName": "Real Betis",
+      "homeCrest": "https://sportsrc.org/img/score/90.png",
+      "awayId": 82,
+      "awayName": "Getafe",
+      "awayCrest": "https://sportsrc.org/img/score/82.png",
+      "homeGoals": 1,
+      "awayGoals": 0,
+      "winner": "HOME_TEAM",
+      "live": false
+    },
     {
       "id": 564685,
       "utcDate": "2026-09-16T19:30:00Z",
@@ -1366,13 +1398,6 @@
   ],
   "fixtures": [
     {
-      "id": "m-laga-vs-villarreal-2506221",
-      "homeName": "Málaga",
-      "awayName": "Villarreal",
-      "kickoff": 1789673400000,
-      "title": "Málaga vs Villarreal"
-    },
-    {
       "id": "espanyol-vs-elche-2506235",
       "homeName": "Espanyol",
       "awayName": "Elche",
@@ -1380,32 +1405,25 @@
       "title": "Espanyol vs Elche"
     },
     {
-      "id": "ppv-osasuna-vs-rayo-vallecano",
+      "id": "osasuna-vs-rayo-vallecano-2506238",
       "homeName": "Osasuna",
       "awayName": "Rayo Vallecano",
       "kickoff": 1789819200000,
-      "title": "Osasuna vs. Rayo Vallecano"
+      "title": "Osasuna vs Rayo Vallecano"
     },
     {
-      "id": "ppv-athletic-club-vs-alav-s",
-      "homeName": "Athletic",
-      "awayName": "Alavés",
-      "kickoff": 1789827300000,
-      "title": "Athletic Club vs. Alavés"
-    },
-    {
-      "id": "ppv-celta-vigo-vs-racing-santander",
+      "id": "celta-vigo-vs-racing-de-santander-2506234",
       "homeName": "Celta",
       "awayName": "Santander",
       "kickoff": 1789835400000,
-      "title": "Celta Vigo vs. Racing Santander"
+      "title": "Celta Vigo vs Racing de Santander"
     },
     {
-      "id": "ppv-sevilla-vs-barcelona",
+      "id": "sevilla-vs-barcelona-2506233",
       "homeName": "Sevilla FC",
       "awayName": "Barça",
       "kickoff": 1789844400000,
-      "title": "Sevilla vs. Barcelona"
+      "title": "Sevilla vs Barcelona"
     },
     {
       "id": "ppv-getafe-vs-m-laga",
@@ -1422,18 +1440,18 @@
       "title": "Atlético Madrid vs. Real Madrid"
     },
     {
-      "id": "ppv-villarreal-vs-levante",
-      "homeName": "Villarreal",
-      "awayName": "Levante",
-      "kickoff": 1789921800000,
-      "title": "Villarreal vs. Levante"
-    },
-    {
       "id": "ppv-deportivo-vs-real-betis",
       "homeName": "Deportivo",
       "awayName": "Real Betis",
       "kickoff": 1789921800000,
       "title": "Deportivo vs. Real Betis"
+    },
+    {
+      "id": "ppv-villarreal-vs-levante",
+      "homeName": "Villarreal",
+      "awayName": "Levante",
+      "kickoff": 1789921800000,
+      "title": "Villarreal vs. Levante"
     },
     {
       "id": "ppv-valencia-vs-real-sociedad",
