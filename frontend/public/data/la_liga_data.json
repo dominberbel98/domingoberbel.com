@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-18T23:31:25.957352+00:00",
+  "updatedAt": "2026-09-19T01:32:27.016043+00:00",
   "season": "2026",
   "matchday": 7,
   "seasonStart": "2026-08-16",
@@ -184,7 +184,7 @@
     {
       "position": 9,
       "playedGames": 7,
-      "form": "LWDLL",
+      "form": "LLWDL",
       "won": 2,
       "draw": 1,
       "lost": 4,
@@ -352,7 +352,7 @@
     {
       "position": 17,
       "playedGames": 7,
-      "form": "LDLLL",
+      "form": "WLDLL",
       "won": 1,
       "draw": 2,
       "lost": 4,
@@ -438,7 +438,7 @@
     {
       "id": 564692,
       "utcDate": "2026-09-18T19:00:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": 7,
       "homeId": 80,
       "homeName": "Espanyol",
@@ -449,7 +449,7 @@
       "homeGoals": 1,
       "awayGoals": 3,
       "winner": "AWAY_TEAM",
-      "live": true
+      "live": false
     },
     {
       "id": 564683,
@@ -1435,39 +1435,46 @@
       "title": "Sevilla vs Barcelona"
     },
     {
-      "id": "ppv-getafe-vs-m-laga",
+      "id": "getafe-vs-m-laga-2506237",
       "homeName": "Getafe",
       "awayName": "Málaga",
       "kickoff": 1789905600000,
-      "title": "Getafe vs. Málaga"
+      "title": "Getafe vs Málaga"
     },
     {
-      "id": "ppv-atl-tico-madrid-vs-real-madrid",
+      "id": "atletico-madrid-vs-real-madrid-football-1570394",
       "homeName": "Atleti",
       "awayName": "Real Madrid",
       "kickoff": 1789913700000,
-      "title": "Atlético Madrid vs. Real Madrid"
+      "title": "Atletico Madrid vs Real Madrid"
     },
     {
-      "id": "ppv-villarreal-vs-levante",
-      "homeName": "Villarreal",
-      "awayName": "Levante",
-      "kickoff": 1789921800000,
-      "title": "Villarreal vs. Levante"
+      "id": "atl-tico-madrid-vs-real-madrid-2506229",
+      "homeName": "Atleti",
+      "awayName": "Real Madrid",
+      "kickoff": 1789913700000,
+      "title": "Atlético Madrid vs Real Madrid"
     },
     {
-      "id": "ppv-deportivo-vs-real-betis",
+      "id": "deportivo-de-a-coru-a-vs-real-betis-2506236",
       "homeName": "Deportivo",
       "awayName": "Real Betis",
       "kickoff": 1789921800000,
-      "title": "Deportivo vs. Real Betis"
+      "title": "Deportivo de A Coruña vs Real Betis"
     },
     {
-      "id": "ppv-valencia-vs-real-sociedad",
+      "id": "villarreal-vs-levante-2506232",
+      "homeName": "Villarreal",
+      "awayName": "Levante",
+      "kickoff": 1789921800000,
+      "title": "Villarreal vs Levante"
+    },
+    {
+      "id": "valencia-vs-real-sociedad-2506231",
       "homeName": "Valencia",
       "awayName": "Real Sociedad",
       "kickoff": 1789930800000,
-      "title": "Valencia vs. Real Sociedad"
+      "title": "Valencia vs Real Sociedad"
     }
   ]
 }
