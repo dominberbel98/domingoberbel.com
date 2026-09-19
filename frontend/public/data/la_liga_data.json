@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-19T18:46:13.169717+00:00",
+  "updatedAt": "2026-09-19T21:22:17.469947+00:00",
   "season": "2026",
   "matchday": 7,
   "seasonStart": "2026-08-16",
@@ -1429,13 +1429,6 @@
     }
   ],
   "fixtures": [
-    {
-      "id": "celta-vigo-vs-racing-de-santander-2506234",
-      "homeName": "Celta",
-      "awayName": "Santander",
-      "kickoff": 1789835400000,
-      "title": "Celta Vigo vs Racing de Santander"
-    },
     {
       "id": "sevilla-vs-barcelona-2506233",
       "homeName": "Sevilla FC",
