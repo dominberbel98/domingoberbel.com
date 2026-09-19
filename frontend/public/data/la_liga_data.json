@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-19T01:32:27.016043+00:00",
+  "updatedAt": "2026-09-19T07:11:15.420143+00:00",
   "season": "2026",
   "matchday": 7,
   "seasonStart": "2026-08-16",
@@ -1419,6 +1419,13 @@
       "awayName": "Rayo Vallecano",
       "kickoff": 1789819200000,
       "title": "Osasuna vs Rayo Vallecano"
+    },
+    {
+      "id": "athletic-bilbao-vs-deportivo-alav-s-2506230",
+      "homeName": "Athletic",
+      "awayName": "Alavés",
+      "kickoff": 1789827300000,
+      "title": "Athletic Bilbao vs Deportivo Alavés"
     },
     {
       "id": "celta-vigo-vs-racing-de-santander-2506234",
