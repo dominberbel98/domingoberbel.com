@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-20T01:28:45.791644+00:00",
+  "updatedAt": "2026-09-20T06:53:08.891528+00:00",
   "season": "2026",
   "matchday": 7,
   "seasonStart": "2026-08-16",
@@ -1477,13 +1477,6 @@
     }
   ],
   "fixtures": [
-    {
-      "id": "sevilla-vs-barcelona-2506233",
-      "homeName": "Sevilla FC",
-      "awayName": "Barça",
-      "kickoff": 1789844400000,
-      "title": "Sevilla vs Barcelona"
-    },
     {
       "id": "getafe-vs-m-laga-2506237",
       "homeName": "Getafe",
