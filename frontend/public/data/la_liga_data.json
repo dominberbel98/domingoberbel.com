@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-20T23:26:39.250526+00:00",
+  "updatedAt": "2026-09-21T01:26:48.576026+00:00",
   "season": "2026",
   "matchday": 7,
   "seasonStart": "2026-08-16",
@@ -37,7 +37,7 @@
     {
       "position": 2,
       "playedGames": 7,
-      "form": "WWLWD",
+      "form": "WWWLW",
       "won": 5,
       "draw": 1,
       "lost": 1,
@@ -58,7 +58,7 @@
     {
       "position": 3,
       "playedGames": 7,
-      "form": "WWWLW",
+      "form": "DWWWL",
       "won": 5,
       "draw": 1,
       "lost": 1,
@@ -79,7 +79,7 @@
     {
       "position": 4,
       "playedGames": 7,
-      "form": "WWLWW",
+      "form": "LWWLW",
       "won": 5,
       "draw": 0,
       "lost": 2,
@@ -142,7 +142,7 @@
     {
       "position": 7,
       "playedGames": 7,
-      "form": "LDWWD",
+      "form": "DLDWW",
       "won": 2,
       "draw": 4,
       "lost": 1,
@@ -163,7 +163,7 @@
     {
       "position": 8,
       "playedGames": 7,
-      "form": "LWDWL",
+      "form": "WLWDW",
       "won": 3,
       "draw": 1,
       "lost": 3,
@@ -184,7 +184,7 @@
     {
       "position": 9,
       "playedGames": 7,
-      "form": "WLLLD",
+      "form": "WWLLL",
       "won": 2,
       "draw": 2,
       "lost": 3,
@@ -226,7 +226,7 @@
     {
       "position": 11,
       "playedGames": 7,
-      "form": "LDDLW",
+      "form": "WLDDL",
       "won": 2,
       "draw": 2,
       "lost": 3,
@@ -352,7 +352,7 @@
     {
       "position": 17,
       "playedGames": 6,
-      "form": "LDWDL",
+      "form": "LLDWD",
       "won": 1,
       "draw": 2,
       "lost": 3,
@@ -394,7 +394,7 @@
     {
       "position": 19,
       "playedGames": 7,
-      "form": "WLLLL",
+      "form": "LWLLL",
       "won": 1,
       "draw": 1,
       "lost": 5,
@@ -415,7 +415,7 @@
     {
       "position": 20,
       "playedGames": 7,
-      "form": "LDDLD",
+      "form": "LLDDL",
       "won": 0,
       "draw": 3,
       "lost": 4,
@@ -435,6 +435,86 @@
     }
   ],
   "results": [
+    {
+      "id": 564689,
+      "utcDate": "2026-09-20T19:00:00Z",
+      "status": "FINISHED",
+      "matchday": 7,
+      "homeId": 95,
+      "homeName": "Valencia",
+      "homeCrest": "https://sportsrc.org/img/score/95.png",
+      "awayId": 92,
+      "awayName": "Real Sociedad",
+      "awayCrest": "https://sportsrc.org/img/score/92.png",
+      "homeGoals": 2,
+      "awayGoals": 3,
+      "winner": "AWAY_TEAM",
+      "live": false
+    },
+    {
+      "id": 564695,
+      "utcDate": "2026-09-20T16:30:00Z",
+      "status": "FINISHED",
+      "matchday": 7,
+      "homeId": 560,
+      "homeName": "Deportivo",
+      "homeCrest": "https://sportsrc.org/img/score/560.png",
+      "awayId": 90,
+      "awayName": "Real Betis",
+      "awayCrest": "https://sportsrc.org/img/score/90.png",
+      "homeGoals": 1,
+      "awayGoals": 1,
+      "winner": "DRAW",
+      "live": false
+    },
+    {
+      "id": 564696,
+      "utcDate": "2026-09-20T16:30:00Z",
+      "status": "FINISHED",
+      "matchday": 7,
+      "homeId": 94,
+      "homeName": "Villarreal",
+      "homeCrest": "https://sportsrc.org/img/score/94.png",
+      "awayId": 88,
+      "awayName": "Levante",
+      "awayCrest": "https://sportsrc.org/img/score/88.png",
+      "homeGoals": 3,
+      "awayGoals": 1,
+      "winner": "HOME_TEAM",
+      "live": false
+    },
+    {
+      "id": 564688,
+      "utcDate": "2026-09-20T14:15:00Z",
+      "status": "FINISHED",
+      "matchday": 7,
+      "homeId": 78,
+      "homeName": "Atleti",
+      "homeCrest": "https://sportsrc.org/img/score/78.png",
+      "awayId": 86,
+      "awayName": "Real Madrid",
+      "awayCrest": "https://sportsrc.org/img/score/86.png",
+      "homeGoals": 2,
+      "awayGoals": 1,
+      "winner": "HOME_TEAM",
+      "live": false
+    },
+    {
+      "id": 564697,
+      "utcDate": "2026-09-20T12:00:00Z",
+      "status": "FINISHED",
+      "matchday": 7,
+      "homeId": 82,
+      "homeName": "Getafe",
+      "homeCrest": "https://sportsrc.org/img/score/82.png",
+      "awayId": 84,
+      "awayName": "Málaga",
+      "awayCrest": "https://sportsrc.org/img/score/84.png",
+      "homeGoals": 1,
+      "awayGoals": 0,
+      "winner": "HOME_TEAM",
+      "live": false
+    },
     {
       "id": 564690,
       "utcDate": "2026-09-19T19:00:00Z",
