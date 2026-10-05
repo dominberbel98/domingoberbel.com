@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-05T01:11:05.460213+00:00",
+  "updatedAt": "2026-10-05T07:33:12.925707+00:00",
   "season": "2026",
   "matchday": 8,
   "seasonStart": "2026-08-16",
@@ -1556,5 +1556,76 @@
       "live": false
     }
   ],
-  "fixtures": []
+  "fixtures": [
+    {
+      "id": "ppv-m-laga-vs-espanyol",
+      "homeName": "Málaga",
+      "awayName": "Espanyol",
+      "kickoff": 1791572400000,
+      "title": "Málaga vs. Espanyol"
+    },
+    {
+      "id": "ppv-rayo-vallecano-vs-athletic-club",
+      "homeName": "Rayo Vallecano",
+      "awayName": "Athletic",
+      "kickoff": 1791633600000,
+      "title": "Rayo Vallecano vs. Athletic Club"
+    },
+    {
+      "id": "ppv-alav-s-vs-atl-tico-madrid",
+      "homeName": "Alavés",
+      "awayName": "Atleti",
+      "kickoff": 1791641700000,
+      "title": "Alavés vs. Atlético Madrid"
+    },
+    {
+      "id": "ppv-barcelona-vs-getafe",
+      "homeName": "Barça",
+      "awayName": "Getafe",
+      "kickoff": 1791649800000,
+      "title": "Barcelona vs. Getafe"
+    },
+    {
+      "id": "ppv-real-madrid-vs-villarreal",
+      "homeName": "Real Madrid",
+      "awayName": "Villarreal",
+      "kickoff": 1791658800000,
+      "title": "Real Madrid vs. Villarreal"
+    },
+    {
+      "id": "ppv-elche-vs-celta-vigo",
+      "homeName": "Elche",
+      "awayName": "Celta",
+      "kickoff": 1791720000000,
+      "title": "Elche vs. Celta Vigo"
+    },
+    {
+      "id": "ppv-real-sociedad-vs-deportivo",
+      "homeName": "Real Sociedad",
+      "awayName": "Deportivo",
+      "kickoff": 1791728100000,
+      "title": "Real Sociedad vs. Deportivo"
+    },
+    {
+      "id": "ppv-real-betis-vs-osasuna",
+      "homeName": "Real Betis",
+      "awayName": "Osasuna",
+      "kickoff": 1791736200000,
+      "title": "Real Betis vs. Osasuna"
+    },
+    {
+      "id": "ppv-racing-santander-vs-valencia",
+      "homeName": "Santander",
+      "awayName": "Valencia",
+      "kickoff": 1791745200000,
+      "title": "Racing Santander vs. Valencia"
+    },
+    {
+      "id": "ppv-levante-vs-sevilla",
+      "homeName": "Levante",
+      "awayName": "Sevilla FC",
+      "kickoff": 1791831600000,
+      "title": "Levante vs. Sevilla"
+    }
+  ]
 }
