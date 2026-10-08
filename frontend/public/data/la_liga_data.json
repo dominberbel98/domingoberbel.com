@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-07T20:45:14.613163+00:00",
+  "updatedAt": "2026-10-08T00:51:10.378509+00:00",
   "season": "2026",
   "matchday": 8,
   "seasonStart": "2026-08-16",
@@ -1558,11 +1558,11 @@
   ],
   "fixtures": [
     {
-      "id": "ppv-m-laga-vs-espanyol",
+      "id": "m-laga-vs-espanyol-2506240",
       "homeName": "Málaga",
       "awayName": "Espanyol",
       "kickoff": 1791572400000,
-      "title": "Málaga vs. Espanyol"
+      "title": "Málaga vs Espanyol"
     },
     {
       "id": "ppv-rayo-vallecano-vs-athletic-club",
