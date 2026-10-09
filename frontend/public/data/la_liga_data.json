@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-08T20:35:14.556415+00:00",
+  "updatedAt": "2026-10-09T01:06:10.163478+00:00",
   "season": "2026",
   "matchday": 8,
   "seasonStart": "2026-08-16",
@@ -1565,32 +1565,32 @@
       "title": "Málaga vs Espanyol"
     },
     {
-      "id": "ppv-rayo-vallecano-vs-athletic-club",
+      "id": "rayo-vallecano-vs-athletic-bilbao-2506246",
       "homeName": "Rayo Vallecano",
       "awayName": "Athletic",
       "kickoff": 1791633600000,
-      "title": "Rayo Vallecano vs. Athletic Club"
+      "title": "Rayo Vallecano vs Athletic Bilbao"
     },
     {
-      "id": "ppv-alav-s-vs-atl-tico-madrid",
+      "id": "deportivo-alav-s-vs-atl-tico-madrid-2506243",
       "homeName": "Alavés",
       "awayName": "Atleti",
       "kickoff": 1791641700000,
-      "title": "Alavés vs. Atlético Madrid"
+      "title": "Deportivo Alavés vs Atlético Madrid"
     },
     {
-      "id": "ppv-barcelona-vs-getafe",
+      "id": "barcelona-vs-getafe-2506239",
       "homeName": "Barça",
       "awayName": "Getafe",
       "kickoff": 1791649800000,
-      "title": "Barcelona vs. Getafe"
+      "title": "Barcelona vs Getafe"
     },
     {
-      "id": "ppv-real-madrid-vs-villarreal",
+      "id": "real-madrid-vs-villarreal-2506242",
       "homeName": "Real Madrid",
       "awayName": "Villarreal",
       "kickoff": 1791658800000,
-      "title": "Real Madrid vs. Villarreal"
+      "title": "Real Madrid vs Villarreal"
     },
     {
       "id": "ppv-elche-vs-celta-vigo",
