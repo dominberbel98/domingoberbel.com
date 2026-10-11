@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-10T21:22:59.805285+00:00",
+  "updatedAt": "2026-10-11T00:23:02.170624+00:00",
   "season": "2026",
   "matchday": 8,
   "seasonStart": "2026-08-16",
@@ -1609,11 +1609,11 @@
       "title": "Racing de Santander vs Valencia"
     },
     {
-      "id": "ppv-levante-vs-sevilla",
+      "id": "levante-vs-sevilla-2506241",
       "homeName": "Levante",
       "awayName": "Sevilla FC",
       "kickoff": 1791831600000,
-      "title": "Levante vs. Sevilla"
+      "title": "Levante vs Sevilla"
     }
   ]
 }
