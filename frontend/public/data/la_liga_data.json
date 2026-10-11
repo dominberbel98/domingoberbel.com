@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-11T13:20:07.676180+00:00",
+  "updatedAt": "2026-10-11T18:21:38.849935+00:00",
   "season": "2026",
   "matchday": 8,
   "seasonStart": "2026-08-16",
@@ -7,7 +7,7 @@
   "state": {
     "phase": "in_progress",
     "matchday": 8,
-    "matchesPlayed": 74,
+    "matchesPlayed": 75,
     "maxGamesPlayed": 8,
     "totalMatchdays": 38,
     "lowConfidence": false
@@ -121,6 +121,27 @@
     {
       "position": 6,
       "playedGames": 8,
+      "form": "WLWDW",
+      "won": 4,
+      "draw": 1,
+      "lost": 3,
+      "points": 13,
+      "goalsFor": 10,
+      "goalsAgainst": 13,
+      "goalDifference": -3,
+      "teamId": 92,
+      "teamName": "Real Sociedad de Fútbol",
+      "teamShortName": "Real Sociedad",
+      "teamCrest": "https://sportsrc.org/img/score/92.png",
+      "apiPosition": 6,
+      "zone": "europa",
+      "winRate": 50.0,
+      "drawRate": 12.5,
+      "lossRate": 37.5
+    },
+    {
+      "position": 7,
+      "playedGames": 8,
       "form": "LDLLW",
       "won": 3,
       "draw": 2,
@@ -133,53 +154,32 @@
       "teamName": "Deportivo Alavés",
       "teamShortName": "Alavés",
       "teamCrest": "https://sportsrc.org/img/score/263.png",
-      "apiPosition": 6,
-      "zone": "europa",
+      "apiPosition": 7,
+      "zone": "conference",
       "winRate": 37.5,
       "drawRate": 25.0,
       "lossRate": 37.5
     },
     {
-      "position": 7,
-      "playedGames": 7,
+      "position": 8,
+      "playedGames": 8,
       "form": "DLDWW",
       "won": 2,
       "draw": 4,
-      "lost": 1,
+      "lost": 2,
       "points": 10,
       "goalsFor": 10,
-      "goalsAgainst": 8,
-      "goalDifference": 2,
+      "goalsAgainst": 9,
+      "goalDifference": 1,
       "teamId": 560,
       "teamName": "RC Deportivo La Coruña",
       "teamShortName": "Deportivo",
       "teamCrest": "https://sportsrc.org/img/score/560.png",
-      "apiPosition": 7,
-      "zone": "conference",
-      "winRate": 28.6,
-      "drawRate": 57.1,
-      "lossRate": 14.3
-    },
-    {
-      "position": 8,
-      "playedGames": 7,
-      "form": "WLWDW",
-      "won": 3,
-      "draw": 1,
-      "lost": 3,
-      "points": 10,
-      "goalsFor": 9,
-      "goalsAgainst": 13,
-      "goalDifference": -4,
-      "teamId": 92,
-      "teamName": "Real Sociedad de Fútbol",
-      "teamShortName": "Real Sociedad",
-      "teamCrest": "https://sportsrc.org/img/score/92.png",
       "apiPosition": 8,
       "zone": "mid",
-      "winRate": 42.9,
-      "drawRate": 14.3,
-      "lossRate": 42.9
+      "winRate": 25.0,
+      "drawRate": 50.0,
+      "lossRate": 25.0
     },
     {
       "position": 9,
@@ -1621,20 +1621,6 @@
     }
   ],
   "fixtures": [
-    {
-      "id": "elche-vs-celta-vigo-2506247",
-      "homeName": "Elche",
-      "awayName": "Celta",
-      "kickoff": 1791720000000,
-      "title": "Elche vs Celta Vigo"
-    },
-    {
-      "id": "real-sociedad-vs-deportivo-de-a-coru-a-2506245",
-      "homeName": "Real Sociedad",
-      "awayName": "Deportivo",
-      "kickoff": 1791728100000,
-      "title": "Real Sociedad vs Deportivo de A Coruña"
-    },
     {
       "id": "real-betis-vs-osasuna-2506244",
       "homeName": "Real Betis",
