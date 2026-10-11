@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-11T00:23:02.170624+00:00",
+  "updatedAt": "2026-10-11T06:15:22.623300+00:00",
   "season": "2026",
   "matchday": 8,
   "seasonStart": "2026-08-16",
@@ -37,7 +37,7 @@
     {
       "position": 2,
       "playedGames": 8,
-      "form": "WWWLW",
+      "form": "WWWWL",
       "won": 6,
       "draw": 1,
       "lost": 1,
@@ -58,7 +58,7 @@
     {
       "position": 3,
       "playedGames": 8,
-      "form": "LWWLW",
+      "form": "WLWWL",
       "won": 6,
       "draw": 0,
       "lost": 2,
@@ -121,7 +121,7 @@
     {
       "position": 6,
       "playedGames": 8,
-      "form": "DLLWW",
+      "form": "LDLLW",
       "won": 3,
       "draw": 2,
       "lost": 3,
@@ -205,7 +205,7 @@
     {
       "position": 10,
       "playedGames": 8,
-      "form": "WWLLL",
+      "form": "LWWLL",
       "won": 2,
       "draw": 2,
       "lost": 4,
@@ -268,7 +268,7 @@
     {
       "position": 13,
       "playedGames": 8,
-      "form": "WLDDL",
+      "form": "LWLDD",
       "won": 2,
       "draw": 2,
       "lost": 4,
@@ -435,6 +435,54 @@
     }
   ],
   "results": [
+    {
+      "id": 564702,
+      "utcDate": "2026-10-10T19:00:00Z",
+      "status": "FINISHED",
+      "matchday": 8,
+      "homeId": 86,
+      "homeName": "Real Madrid",
+      "homeCrest": "https://sportsrc.org/img/score/86.png",
+      "awayId": 94,
+      "awayName": "Villarreal",
+      "awayCrest": "https://sportsrc.org/img/score/94.png",
+      "homeGoals": 1,
+      "awayGoals": 0,
+      "winner": "HOME_TEAM",
+      "live": false
+    },
+    {
+      "id": 564700,
+      "utcDate": "2026-10-10T16:30:00Z",
+      "status": "FINISHED",
+      "matchday": 8,
+      "homeId": 81,
+      "homeName": "Barça",
+      "homeCrest": "https://sportsrc.org/img/score/81.png",
+      "awayId": 82,
+      "awayName": "Getafe",
+      "awayCrest": "https://sportsrc.org/img/score/82.png",
+      "homeGoals": 3,
+      "awayGoals": 0,
+      "winner": "HOME_TEAM",
+      "live": false
+    },
+    {
+      "id": 564699,
+      "utcDate": "2026-10-10T14:15:00Z",
+      "status": "FINISHED",
+      "matchday": 8,
+      "homeId": 263,
+      "homeName": "Alavés",
+      "homeCrest": "https://sportsrc.org/img/score/263.png",
+      "awayId": 78,
+      "awayName": "Atleti",
+      "awayCrest": "https://sportsrc.org/img/score/78.png",
+      "homeGoals": 1,
+      "awayGoals": 2,
+      "winner": "AWAY_TEAM",
+      "live": false
+    },
     {
       "id": 564706,
       "utcDate": "2026-10-09T19:00:00Z",
@@ -1573,13 +1621,6 @@
     }
   ],
   "fixtures": [
-    {
-      "id": "real-madrid-vs-villarreal-2506242",
-      "homeName": "Real Madrid",
-      "awayName": "Villarreal",
-      "kickoff": 1791658800000,
-      "title": "Real Madrid vs Villarreal"
-    },
     {
       "id": "elche-vs-celta-vigo-2506247",
       "homeName": "Elche",
