@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-14T23:47:41.132870+00:00",
+  "updatedAt": "2026-10-15T03:55:43.726275+00:00",
   "season": "2026",
   "matchday": 8,
   "seasonStart": "2026-08-16",
@@ -1702,11 +1702,11 @@
   ],
   "fixtures": [
     {
-      "id": "ppv-deportivo-vs-levante",
+      "id": "deportivo-de-a-coru-a-vs-levante-2506256",
       "homeName": "Deportivo",
       "awayName": "Levante",
       "kickoff": 1792177200000,
-      "title": "Deportivo vs. Levante"
+      "title": "Deportivo de A Coruña vs Levante"
     },
     {
       "id": "ppv-espanyol-vs-atl-tico-madrid",
