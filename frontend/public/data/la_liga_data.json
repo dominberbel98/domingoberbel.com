@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-17T21:39:22.012666+00:00",
+  "updatedAt": "2026-10-17T23:53:34.002067+00:00",
   "season": "2026",
   "matchday": 9,
   "seasonStart": "2026-08-16",
@@ -1749,13 +1749,6 @@
     }
   ],
   "fixtures": [
-    {
-      "id": "valencia-vs-athletic-bilbao-2506249",
-      "homeName": "Valencia",
-      "awayName": "Athletic",
-      "kickoff": 1792263600000,
-      "title": "Valencia vs Athletic Bilbao"
-    },
     {
       "id": "osasuna-vs-racing-de-santander-2506258",
       "homeName": "Osasuna",
