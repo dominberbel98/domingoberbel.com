@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-16T21:59:56.375597+00:00",
+  "updatedAt": "2026-10-17T00:20:07.580945+00:00",
   "season": "2026",
   "matchday": 9,
   "seasonStart": "2026-08-16",
@@ -163,7 +163,7 @@
     {
       "position": 8,
       "playedGames": 9,
-      "form": "LDLDW",
+      "form": "DLDLD",
       "won": 2,
       "draw": 5,
       "lost": 2,
@@ -352,7 +352,7 @@
     {
       "position": 17,
       "playedGames": 8,
-      "form": "DLLDW",
+      "form": "DDLLD",
       "won": 1,
       "draw": 4,
       "lost": 3,
@@ -435,6 +435,22 @@
     }
   ],
   "results": [
+    {
+      "id": 564716,
+      "utcDate": "2026-10-16T19:00:00Z",
+      "status": "FINISHED",
+      "matchday": 9,
+      "homeId": 560,
+      "homeName": "Deportivo",
+      "homeCrest": "https://sportsrc.org/img/score/560.png",
+      "awayId": 88,
+      "awayName": "Levante",
+      "awayCrest": "https://sportsrc.org/img/score/88.png",
+      "homeGoals": 1,
+      "awayGoals": 1,
+      "winner": "DRAW",
+      "live": false
+    },
     {
       "id": 564704,
       "utcDate": "2026-10-12T19:00:00Z",
@@ -1730,32 +1746,32 @@
       "title": "Valencia vs Athletic Bilbao"
     },
     {
-      "id": "ppv-osasuna-vs-racing-santander",
+      "id": "osasuna-vs-racing-de-santander-2506258",
       "homeName": "Osasuna",
       "awayName": "Santander",
       "kickoff": 1792324800000,
-      "title": "Osasuna vs. Racing Santander"
+      "title": "Osasuna vs Racing de Santander"
     },
     {
-      "id": "ppv-celta-vigo-vs-alav-s",
+      "id": "celta-vigo-vs-deportivo-alav-s-2506252",
       "homeName": "Celta",
       "awayName": "Alavés",
       "kickoff": 1792332900000,
-      "title": "Celta Vigo vs. Alavés"
+      "title": "Celta Vigo vs Deportivo Alavés"
     },
     {
-      "id": "ppv-m-laga-vs-real-sociedad",
+      "id": "m-laga-vs-real-sociedad-2506251",
       "homeName": "Málaga",
       "awayName": "Real Sociedad",
       "kickoff": 1792341000000,
-      "title": "Málaga vs. Real Sociedad"
+      "title": "Málaga vs Real Sociedad"
     },
     {
-      "id": "ppv-real-madrid-vs-sevilla",
+      "id": "real-madrid-vs-sevilla-2506254",
       "homeName": "Real Madrid",
       "awayName": "Sevilla FC",
       "kickoff": 1792350000000,
-      "title": "Real Madrid vs. Sevilla"
+      "title": "Real Madrid vs Sevilla"
     },
     {
       "id": "ppv-getafe-vs-rayo-vallecano",
