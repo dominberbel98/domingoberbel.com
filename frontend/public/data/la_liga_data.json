@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-17T16:36:49.981274+00:00",
+  "updatedAt": "2026-10-17T19:07:11.036580+00:00",
   "season": "2026",
   "matchday": 9,
   "seasonStart": "2026-08-16",
@@ -17,21 +17,21 @@
       "position": 1,
       "playedGames": 9,
       "form": "WWWWW",
-      "won": 8,
-      "draw": 1,
+      "won": 9,
+      "draw": 0,
       "lost": 0,
-      "points": 25,
-      "goalsFor": 34,
-      "goalsAgainst": 7,
-      "goalDifference": 27,
+      "points": 27,
+      "goalsFor": 39,
+      "goalsAgainst": 9,
+      "goalDifference": 30,
       "teamId": 81,
       "teamName": "FC Barcelona",
       "teamShortName": "Barça",
       "teamCrest": "https://sportsrc.org/img/score/81.png",
       "apiPosition": 1,
       "zone": "champions",
-      "winRate": 88.9,
-      "drawRate": 11.1,
+      "winRate": 100.0,
+      "drawRate": 0.0,
       "lossRate": 0.0
     },
     {
@@ -60,12 +60,12 @@
       "playedGames": 9,
       "form": "WDWWW",
       "won": 6,
-      "draw": 2,
-      "lost": 1,
-      "points": 20,
-      "goalsFor": 14,
-      "goalsAgainst": 9,
-      "goalDifference": 5,
+      "draw": 1,
+      "lost": 2,
+      "points": 19,
+      "goalsFor": 16,
+      "goalsAgainst": 14,
+      "goalDifference": 2,
       "teamId": 90,
       "teamName": "Real Betis Balompié",
       "teamShortName": "Real Betis",
@@ -73,8 +73,8 @@
       "apiPosition": 3,
       "zone": "champions",
       "winRate": 66.7,
-      "drawRate": 22.2,
-      "lossRate": 11.1
+      "drawRate": 11.1,
+      "lossRate": 22.2
     },
     {
       "position": 4,
@@ -1749,13 +1749,6 @@
     }
   ],
   "fixtures": [
-    {
-      "id": "villarreal-vs-elche-2506250",
-      "homeName": "Villarreal",
-      "awayName": "Elche",
-      "kickoff": 1792246500000,
-      "title": "Villarreal vs Elche"
-    },
     {
       "id": "real-betis-vs-barcelona-2506255",
       "homeName": "Real Betis",
