@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-18T16:45:04.469591+00:00",
+  "updatedAt": "2026-10-18T19:19:48.264254+00:00",
   "season": "2026",
   "matchday": 9,
   "seasonStart": "2026-08-16",
@@ -7,7 +7,7 @@
   "state": {
     "phase": "in_progress",
     "matchday": 9,
-    "matchesPlayed": 85,
+    "matchesPlayed": 86,
     "maxGamesPlayed": 9,
     "totalMatchdays": 38,
     "lowConfidence": false
@@ -99,6 +99,27 @@
     },
     {
       "position": 5,
+      "playedGames": 9,
+      "form": "WWLWD",
+      "won": 5,
+      "draw": 1,
+      "lost": 3,
+      "points": 16,
+      "goalsFor": 17,
+      "goalsAgainst": 17,
+      "goalDifference": 0,
+      "teamId": 92,
+      "teamName": "Real Sociedad de Fútbol",
+      "teamShortName": "Real Sociedad",
+      "teamCrest": "https://sportsrc.org/img/score/92.png",
+      "apiPosition": 5,
+      "zone": "europa",
+      "winRate": 55.6,
+      "drawRate": 11.1,
+      "lossRate": 33.3
+    },
+    {
+      "position": 6,
       "playedGames": 8,
       "form": "DLWWD",
       "won": 4,
@@ -112,32 +133,11 @@
       "teamName": "Sevilla FC",
       "teamShortName": "Sevilla FC",
       "teamCrest": "https://sportsrc.org/img/score/559.png",
-      "apiPosition": 5,
+      "apiPosition": 6,
       "zone": "europa",
       "winRate": 50.0,
       "drawRate": 25.0,
       "lossRate": 25.0
-    },
-    {
-      "position": 6,
-      "playedGames": 8,
-      "form": "WWLWD",
-      "won": 4,
-      "draw": 1,
-      "lost": 3,
-      "points": 13,
-      "goalsFor": 12,
-      "goalsAgainst": 15,
-      "goalDifference": -3,
-      "teamId": 92,
-      "teamName": "Real Sociedad de Fútbol",
-      "teamShortName": "Real Sociedad",
-      "teamCrest": "https://sportsrc.org/img/score/92.png",
-      "apiPosition": 6,
-      "zone": "europa",
-      "winRate": 50.0,
-      "drawRate": 12.5,
-      "lossRate": 37.5
     },
     {
       "position": 7,
@@ -414,15 +414,15 @@
     },
     {
       "position": 20,
-      "playedGames": 8,
+      "playedGames": 9,
       "form": "DLLDD",
       "won": 0,
       "draw": 4,
-      "lost": 4,
+      "lost": 5,
       "points": 4,
-      "goalsFor": 4,
-      "goalsAgainst": 13,
-      "goalDifference": -9,
+      "goalsFor": 6,
+      "goalsAgainst": 18,
+      "goalDifference": -12,
       "teamId": 84,
       "teamName": "Málaga CF",
       "teamShortName": "Málaga",
@@ -430,11 +430,27 @@
       "apiPosition": 20,
       "zone": "relegation",
       "winRate": 0.0,
-      "drawRate": 50.0,
-      "lossRate": 50.0
+      "drawRate": 44.4,
+      "lossRate": 55.6
     }
   ],
   "results": [
+    {
+      "id": 564709,
+      "utcDate": "2026-10-18T19:00:00Z",
+      "status": "IN_PLAY",
+      "matchday": 9,
+      "homeId": 86,
+      "homeName": "Real Madrid",
+      "homeCrest": "https://sportsrc.org/img/score/86.png",
+      "awayId": 559,
+      "awayName": "Sevilla FC",
+      "awayCrest": "https://sportsrc.org/img/score/559.png",
+      "homeGoals": 0,
+      "awayGoals": 0,
+      "winner": "DRAW",
+      "live": true
+    },
     {
       "id": 564714,
       "utcDate": "2026-10-18T16:30:00Z",
@@ -1813,20 +1829,6 @@
     }
   ],
   "fixtures": [
-    {
-      "id": "celta-vigo-vs-deportivo-alav-s-2506252",
-      "homeName": "Celta",
-      "awayName": "Alavés",
-      "kickoff": 1792332900000,
-      "title": "Celta Vigo vs Deportivo Alavés"
-    },
-    {
-      "id": "m-laga-vs-real-sociedad-2506251",
-      "homeName": "Málaga",
-      "awayName": "Real Sociedad",
-      "kickoff": 1792341000000,
-      "title": "Málaga vs Real Sociedad"
-    },
     {
       "id": "real-madrid-vs-sevilla-2506254",
       "homeName": "Real Madrid",
