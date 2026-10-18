@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-17T23:53:34.002067+00:00",
+  "updatedAt": "2026-10-18T03:48:15.136237+00:00",
   "season": "2026",
   "matchday": 9,
   "seasonStart": "2026-08-16",
@@ -37,7 +37,7 @@
     {
       "position": 2,
       "playedGames": 9,
-      "form": "WWWWL",
+      "form": "WWWWW",
       "won": 7,
       "draw": 1,
       "lost": 1,
@@ -58,7 +58,7 @@
     {
       "position": 3,
       "playedGames": 9,
-      "form": "WDWWW",
+      "form": "LWDWW",
       "won": 6,
       "draw": 1,
       "lost": 2,
@@ -184,7 +184,7 @@
     {
       "position": 9,
       "playedGames": 7,
-      "form": "DDWWL",
+      "form": "DDDWW",
       "won": 2,
       "draw": 3,
       "lost": 2,
@@ -205,7 +205,7 @@
     {
       "position": 10,
       "playedGames": 9,
-      "form": "LWWLL",
+      "form": "DLWWL",
       "won": 2,
       "draw": 3,
       "lost": 4,
@@ -247,7 +247,7 @@
     {
       "position": 12,
       "playedGames": 9,
-      "form": "DLLWD",
+      "form": "LDLLW",
       "won": 2,
       "draw": 2,
       "lost": 5,
@@ -373,7 +373,7 @@
     {
       "position": 18,
       "playedGames": 9,
-      "form": "DWLDL",
+      "form": "DDWLD",
       "won": 1,
       "draw": 4,
       "lost": 4,
@@ -394,7 +394,7 @@
     {
       "position": 19,
       "playedGames": 9,
-      "form": "DLWLL",
+      "form": "DDLWL",
       "won": 1,
       "draw": 3,
       "lost": 5,
@@ -436,9 +436,25 @@
   ],
   "results": [
     {
+      "id": 564711,
+      "utcDate": "2026-10-17T19:00:00Z",
+      "status": "FINISHED",
+      "matchday": 9,
+      "homeId": 95,
+      "homeName": "Valencia",
+      "homeCrest": "https://sportsrc.org/img/score/95.png",
+      "awayId": 77,
+      "awayName": "Athletic",
+      "awayCrest": "https://sportsrc.org/img/score/77.png",
+      "homeGoals": 0,
+      "awayGoals": 0,
+      "winner": "DRAW",
+      "live": false
+    },
+    {
       "id": 564713,
       "utcDate": "2026-10-17T16:30:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": 9,
       "homeId": 90,
       "homeName": "Real Betis",
@@ -446,15 +462,31 @@
       "awayId": 81,
       "awayName": "Barça",
       "awayCrest": "https://sportsrc.org/img/score/81.png",
+      "homeGoals": 2,
+      "awayGoals": 5,
+      "winner": "AWAY_TEAM",
+      "live": false
+    },
+    {
+      "id": 564708,
+      "utcDate": "2026-10-17T14:15:00Z",
+      "status": "FINISHED",
+      "matchday": 9,
+      "homeId": 94,
+      "homeName": "Villarreal",
+      "homeCrest": "https://sportsrc.org/img/score/94.png",
+      "awayId": 285,
+      "awayName": "Elche",
+      "awayCrest": "https://sportsrc.org/img/score/285.png",
       "homeGoals": 0,
       "awayGoals": 0,
       "winner": "DRAW",
-      "live": true
+      "live": false
     },
     {
       "id": 564710,
       "utcDate": "2026-10-17T12:00:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": 9,
       "homeId": 80,
       "homeName": "Espanyol",
@@ -463,9 +495,9 @@
       "awayName": "Atleti",
       "awayCrest": "https://sportsrc.org/img/score/78.png",
       "homeGoals": 0,
-      "awayGoals": 0,
-      "winner": "DRAW",
-      "live": true
+      "awayGoals": 1,
+      "winner": "AWAY_TEAM",
+      "live": false
     },
     {
       "id": 564716,
@@ -1778,11 +1810,11 @@
       "title": "Real Madrid vs Sevilla"
     },
     {
-      "id": "ppv-getafe-vs-rayo-vallecano",
+      "id": "getafe-vs-rayo-vallecano-2506257",
       "homeName": "Getafe",
       "awayName": "Rayo Vallecano",
       "kickoff": 1792436400000,
-      "title": "Getafe vs. Rayo Vallecano"
+      "title": "Getafe vs Rayo Vallecano"
     }
   ]
 }
