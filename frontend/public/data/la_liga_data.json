@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-19T00:01:06.875102+00:00",
+  "updatedAt": "2026-10-19T04:30:00.743069+00:00",
   "season": "2026",
   "matchday": 9,
   "seasonStart": "2026-08-16",
@@ -58,7 +58,7 @@
     {
       "position": 3,
       "playedGames": 9,
-      "form": "WLWWL",
+      "form": "WWLWW",
       "won": 7,
       "draw": 0,
       "lost": 2,
@@ -100,7 +100,7 @@
     {
       "position": 5,
       "playedGames": 9,
-      "form": "WWLWD",
+      "form": "WWWLW",
       "won": 5,
       "draw": 1,
       "lost": 3,
@@ -121,7 +121,7 @@
     {
       "position": 6,
       "playedGames": 9,
-      "form": "DLWWD",
+      "form": "LDLWW",
       "won": 4,
       "draw": 2,
       "lost": 3,
@@ -142,7 +142,7 @@
     {
       "position": 7,
       "playedGames": 9,
-      "form": "LDLLW",
+      "form": "LLDLL",
       "won": 3,
       "draw": 2,
       "lost": 4,
@@ -163,7 +163,7 @@
     {
       "position": 8,
       "playedGames": 9,
-      "form": "DWDDD",
+      "form": "WDWDD",
       "won": 2,
       "draw": 5,
       "lost": 2,
@@ -205,7 +205,7 @@
     {
       "position": 10,
       "playedGames": 9,
-      "form": "LDLLL",
+      "form": "WLDLL",
       "won": 3,
       "draw": 2,
       "lost": 4,
@@ -331,7 +331,7 @@
     {
       "position": 16,
       "playedGames": 9,
-      "form": "DLLWL",
+      "form": "LDLLW",
       "won": 2,
       "draw": 2,
       "lost": 5,
@@ -415,7 +415,7 @@
     {
       "position": 20,
       "playedGames": 9,
-      "form": "DLLDD",
+      "form": "LDLLD",
       "won": 0,
       "draw": 4,
       "lost": 5,
@@ -438,7 +438,7 @@
     {
       "id": 564709,
       "utcDate": "2026-10-18T19:00:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": 9,
       "homeId": 86,
       "homeName": "Real Madrid",
@@ -446,15 +446,15 @@
       "awayId": 559,
       "awayName": "Sevilla FC",
       "awayCrest": "https://sportsrc.org/img/score/559.png",
-      "homeGoals": 0,
-      "awayGoals": 0,
-      "winner": "DRAW",
-      "live": true
+      "homeGoals": 4,
+      "awayGoals": 1,
+      "winner": "HOME_TEAM",
+      "live": false
     },
     {
       "id": 564714,
       "utcDate": "2026-10-18T16:30:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": 9,
       "homeId": 84,
       "homeName": "Málaga",
@@ -462,15 +462,31 @@
       "awayId": 92,
       "awayName": "Real Sociedad",
       "awayCrest": "https://sportsrc.org/img/score/92.png",
-      "homeGoals": 0,
-      "awayGoals": 1,
+      "homeGoals": 2,
+      "awayGoals": 5,
       "winner": "AWAY_TEAM",
-      "live": true
+      "live": false
+    },
+    {
+      "id": 564712,
+      "utcDate": "2026-10-18T14:15:00Z",
+      "status": "FINISHED",
+      "matchday": 9,
+      "homeId": 558,
+      "homeName": "Celta",
+      "homeCrest": "https://sportsrc.org/img/score/558.png",
+      "awayId": 263,
+      "awayName": "Alavés",
+      "awayCrest": "https://sportsrc.org/img/score/263.png",
+      "homeGoals": 2,
+      "awayGoals": 1,
+      "winner": "HOME_TEAM",
+      "live": false
     },
     {
       "id": 564715,
       "utcDate": "2026-10-18T12:00:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": 9,
       "homeId": 79,
       "homeName": "Osasuna",
@@ -478,10 +494,10 @@
       "awayId": 5335,
       "awayName": "Santander",
       "awayCrest": "https://sportsrc.org/img/score/5335.png",
-      "homeGoals": 1,
+      "homeGoals": 2,
       "awayGoals": 0,
       "winner": "HOME_TEAM",
-      "live": true
+      "live": false
     },
     {
       "id": 564711,
@@ -1835,6 +1851,83 @@
       "awayName": "Rayo Vallecano",
       "kickoff": 1792436400000,
       "title": "Getafe vs Rayo Vallecano"
+    },
+    {
+      "id": "ppv-levante-vs-athletic-club",
+      "homeName": "Levante",
+      "awayName": "Athletic",
+      "kickoff": 1792605600000,
+      "title": "Levante vs. Athletic Club"
+    },
+    {
+      "id": "ppv-alav-s-vs-m-laga",
+      "homeName": "Alavés",
+      "awayName": "Málaga",
+      "kickoff": 1792782000000,
+      "title": "Alavés vs. Málaga"
+    },
+    {
+      "id": "ppv-rayo-vallecano-vs-elche",
+      "homeName": "Rayo Vallecano",
+      "awayName": "Elche",
+      "kickoff": 1792843200000,
+      "title": "Rayo Vallecano vs. Elche"
+    },
+    {
+      "id": "ppv-racing-santander-vs-espanyol",
+      "homeName": "Santander",
+      "awayName": "Espanyol",
+      "kickoff": 1792851300000,
+      "title": "Racing Santander vs. Espanyol"
+    },
+    {
+      "id": "ppv-valencia-vs-villarreal",
+      "homeName": "Valencia",
+      "awayName": "Villarreal",
+      "kickoff": 1792859400000,
+      "title": "Valencia vs. Villarreal"
+    },
+    {
+      "id": "ppv-atl-tico-madrid-vs-deportivo",
+      "homeName": "Atleti",
+      "awayName": "Deportivo",
+      "kickoff": 1792868400000,
+      "title": "Atlético Madrid vs. Deportivo"
+    },
+    {
+      "id": "ppv-athletic-club-vs-getafe",
+      "homeName": "Athletic",
+      "awayName": "Getafe",
+      "kickoff": 1792933200000,
+      "title": "Athletic Club vs. Getafe"
+    },
+    {
+      "id": "ppv-celta-vigo-vs-real-betis",
+      "homeName": "Celta",
+      "awayName": "Real Betis",
+      "kickoff": 1792941300000,
+      "title": "Celta Vigo vs. Real Betis"
+    },
+    {
+      "id": "ppv-real-sociedad-vs-levante",
+      "homeName": "Real Sociedad",
+      "awayName": "Levante",
+      "kickoff": 1792949400000,
+      "title": "Real Sociedad vs. Levante"
+    },
+    {
+      "id": "ppv-barcelona-vs-real-madrid",
+      "homeName": "Barça",
+      "awayName": "Real Madrid",
+      "kickoff": 1792958400000,
+      "title": "Barcelona vs. Real Madrid"
+    },
+    {
+      "id": "ppv-sevilla-vs-osasuna",
+      "homeName": "Sevilla FC",
+      "awayName": "Osasuna",
+      "kickoff": 1793044800000,
+      "title": "Sevilla vs. Osasuna"
     }
   ]
 }
