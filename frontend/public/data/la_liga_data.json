@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-18T21:44:22.514694+00:00",
+  "updatedAt": "2026-10-19T00:01:06.875102+00:00",
   "season": "2026",
   "matchday": 9,
   "seasonStart": "2026-08-16",
@@ -1829,13 +1829,6 @@
     }
   ],
   "fixtures": [
-    {
-      "id": "real-madrid-vs-sevilla-2506254",
-      "homeName": "Real Madrid",
-      "awayName": "Sevilla FC",
-      "kickoff": 1792350000000,
-      "title": "Real Madrid vs Sevilla"
-    },
     {
       "id": "getafe-vs-rayo-vallecano-2506257",
       "homeName": "Getafe",
