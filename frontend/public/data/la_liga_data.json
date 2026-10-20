@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-19T21:42:28.479972+00:00",
+  "updatedAt": "2026-10-20T00:58:59.364008+00:00",
   "season": "2026",
   "matchday": 9,
   "seasonStart": "2026-08-16",
@@ -268,7 +268,7 @@
     {
       "position": 13,
       "playedGames": 8,
-      "form": "DWLWL",
+      "form": "DDWLW",
       "won": 2,
       "draw": 3,
       "lost": 3,
@@ -289,7 +289,7 @@
     {
       "position": 14,
       "playedGames": 9,
-      "form": "LWLDD",
+      "form": "DLWLD",
       "won": 2,
       "draw": 3,
       "lost": 4,
@@ -435,6 +435,22 @@
     }
   ],
   "results": [
+    {
+      "id": 564717,
+      "utcDate": "2026-10-19T19:00:00Z",
+      "status": "FINISHED",
+      "matchday": 9,
+      "homeId": 82,
+      "homeName": "Getafe",
+      "homeCrest": "https://sportsrc.org/img/score/82.png",
+      "awayId": 87,
+      "awayName": "Rayo Vallecano",
+      "awayCrest": "https://sportsrc.org/img/score/87.png",
+      "homeGoals": 1,
+      "awayGoals": 1,
+      "winner": "DRAW",
+      "live": false
+    },
     {
       "id": 564709,
       "utcDate": "2026-10-18T19:00:00Z",
@@ -1846,18 +1862,11 @@
   ],
   "fixtures": [
     {
-      "id": "getafe-vs-rayo-vallecano-2506257",
-      "homeName": "Getafe",
-      "awayName": "Rayo Vallecano",
-      "kickoff": 1792436400000,
-      "title": "Getafe vs Rayo Vallecano"
-    },
-    {
-      "id": "ppv-levante-vs-athletic-club",
+      "id": "levante-vs-athletic-bilbao-2506222",
       "homeName": "Levante",
       "awayName": "Athletic",
       "kickoff": 1792605600000,
-      "title": "Levante vs. Athletic Club"
+      "title": "Levante vs Athletic Bilbao"
     },
     {
       "id": "ppv-alav-s-vs-m-laga",
