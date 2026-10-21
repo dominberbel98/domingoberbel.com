@@ -249,3 +249,27 @@ def test_a_sentence_opener_glued_to_a_name_is_judged_on_the_name():
     """'Creating ETL connections' read as the entity 'Creating ETL'."""
     answer = "He works at Data Equity. Creating ETL connections is part of it."
     assert check_answer(answer, CONTEXT + ["ETL connections"], VOCAB).ok
+
+
+def test_a_translated_list_item_keeps_its_multiword_name_whole():
+    """Production, 2026-10-21: stripping the opener before the translation rule
+    turned '- Estadística Avanzada' into a lone 'Avanzada' and dropped the line."""
+    answer = (
+        "Domingo estudió:\n\n"
+        "- **Máster Oficial en Gestión Estratégica**, Universidad de Sevilla.\n"
+        "  - Estadística Avanzada: **10/10**, Matrícula de Honor\n"
+        "  - Python Avanzado: 10\n"
+    )
+    result = check_answer(answer, SPANISH_CONTEXT, VOCAB, language="es")
+    assert result.ok, result.unsupported
+
+
+def test_a_capitalised_spanish_word_is_not_an_entity():
+    answer = "Trabajó en comercio Internacional y formación Avanzada con Python."
+    assert check_answer(answer, SPANISH_CONTEXT, VOCAB, language="es").ok
+
+
+def test_spanish_morphology_does_not_excuse_a_product_name():
+    for product in ("MongoDB", "Kafka", "Vertica", "Kubernetes"):
+        answer = f"Domingo utiliza {product} a diario."
+        assert not check_answer(answer, SPANISH_CONTEXT, VOCAB, language="es").ok, product

@@ -108,6 +108,14 @@ _DENIAL = re.compile(
 # "APIs", "KPIs", "LLMs": an acronym's plural is supported when the acronym is.
 _ACRONYM_PLURAL = re.compile(r"^[A-Z0-9]{2,}s$")
 
+# Spanish morphology on accent-folded text. In a Spanish answer the model
+# sometimes capitalises an ordinary word mid-sentence ("comercio Internacional"),
+# which read as an entity and cost the sentence. Product names do not take these
+# endings; the ambiguous ones (-ica, -a: Vertica, Kafka) are deliberately left out.
+_SPANISH_WORD = re.compile(
+    r"^[a-z]{3,}(?:al|ales|cion|ciones|ado|ada|ados|adas|ivo|iva|ivos|ivas|mente|idad|idades|encia|ancia)$"
+)
+
 
 def _fold(text: str) -> str:
     stripped = unicodedata.normalize("NFKD", text.lower())
@@ -219,6 +227,16 @@ def check_answer(
         if supported(term):
             continue
 
+        # In a translated answer, a multiword capitalised phrase is almost always
+        # a rendering of English corpus text rather than an invention. Product
+        # names, the class that matters, survive translation as single tokens.
+        # Judged before the opener is stripped below, or "- Estadística Avanzada"
+        # loses its first word and "Avanzada" is flagged on its own.
+        if translated and " " in term:
+            continue
+        if translated and _SPANISH_WORD.match(_fold(term)):
+            continue
+
         # "Creating ETL": the opener of a sentence was glued to the name after
         # it. Judge the name alone.
         first, _, rest = term.partition(" ")
@@ -229,12 +247,6 @@ def check_answer(
 
         folded = _fold(term)
         if asked and folded in asked and _only_denied(term, answer):
-            continue
-
-        # In a translated answer, a multiword capitalised phrase is almost always
-        # a rendering of English corpus text rather than an invention. Product
-        # names, the class that matters, survive translation as single tokens.
-        if translated and " " in term:
             continue
 
         # A compound whose every part is individually accounted for is a

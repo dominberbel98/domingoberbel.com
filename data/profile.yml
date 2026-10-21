@@ -191,8 +191,9 @@ education:
         Ranked 2,907 of more than 18,000 participants in DataDriven's
         international "Pump it Up: Data Mining the Water Table" competition.
     notes: >-
-      Covers data analysis and statistics, machine learning, deep learning and
-      distributed processing with Spark on Databricks.
+      Covers data analysis and statistics, machine learning, deep learning,
+      distributed processing with Spark on Databricks, and data visualisation with
+      Tableau.
 
   - id: master-us-international-business
     institution: Universidad de Sevilla
