@@ -1,7 +1,7 @@
 {
   "meta": {
     "name": "Domingo Berbel",
-    "headline": "Data Scientist — applied AI and generative AI with a business focus",
+    "headline": "Data Scientist | Data Engineering | Machine Learning & Generative AI",
     "location": "Madrid, Spain",
     "linkedin": "https://www.linkedin.com/in/domingo-berbel",
     "github": "https://github.com/dominberbel98"
@@ -26,7 +26,7 @@
       "title": "Databricks Fundamentals Accreditation",
       "issuer": "Databricks Academy",
       "date": "Nov 2025",
-      "expires": null,
+      "expires": "Nov 2027",
       "image": "/certs/databricks-fundamentals.png",
       "skills": [
         "Databricks",
@@ -60,14 +60,14 @@
         "SQL",
         "Window Functions",
         "CTEs",
-        "Analytics"
+        "Google BigQuery"
       ]
     },
     {
       "id": "ibm-data-analysis-python",
       "title": "Data Analysis Using Python",
       "issuer": "IBM Skills Network",
-      "date": "2025",
+      "date": "Aug 2025",
       "expires": null,
       "image": "/certs/ibm-data-analysis-python.png",
       "skills": [
@@ -112,7 +112,6 @@
       "Data Warehousing",
       "Window Functions",
       "CTEs",
-      "Analytics",
       "SQLite"
     ],
     "cloud": [
@@ -129,7 +128,6 @@
     ],
     "ml": [
       "scikit-learn",
-      "TensorFlow",
       "XGBoost",
       "deep learning",
       "neural networks",
@@ -139,11 +137,13 @@
       "GenAI",
       "Prompt Engineering",
       "embeddings",
-      "FAISS",
+      "vector databases",
       "BM25",
       "TF-IDF",
       "OCR",
       "AI agents",
+      "Claude Code",
+      "Claude Agent SDK",
       "OpenAI API",
       "Google Gemini"
     ],
@@ -152,7 +152,8 @@
       "DAX",
       "Data Modeling",
       "Dashboards",
-      "data visualisation"
+      "data visualisation",
+      "Tableau"
     ],
     "web": [
       "FastAPI",

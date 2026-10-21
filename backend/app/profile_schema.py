@@ -51,7 +51,7 @@ def _stringify_year(value: Any) -> Any:
 
 YearMonth = Annotated[str, BeforeValidator(_stringify_year), Field(pattern=_DATE_RE)]
 
-NARRATIVE_KEYS = ("adaptability", "resilience", "teamwork", "career_change")
+NARRATIVE_KEYS = ("adaptability", "resilience", "teamwork", "career_change", "approach")
 
 
 class ProfileError(Exception):
@@ -169,6 +169,7 @@ class Narrative(_Strict):
     resilience: str
     teamwork: str
     career_change: str
+    approach: str
 
     def items(self) -> list[tuple[str, str]]:
         return [(k, getattr(self, k)) for k in NARRATIVE_KEYS]

@@ -130,7 +130,7 @@ def test_semantic_question_retrieves_the_right_entity(live_index, embedder, ques
 
 def test_the_live_index_uses_the_configured_embedding_model(live_index):
     assert live_index.model == "gemini-embedding-2"
-    assert len(live_index) == 32
+    assert len(live_index) == 33
 
 
 # --- language detection over the real questions ------------------------------

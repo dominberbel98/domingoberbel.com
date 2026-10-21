@@ -86,6 +86,7 @@ _MINIMAL = {
         "resilience": "Changed career into data science deliberately.",
         "teamwork": "Co-built the master's final project with other engineers.",
         "career_change": "Moved from sales and marketing into data science.",
+        "approach": "Diagnoses what is broken in the data before modelling anything.",
     },
 }
 

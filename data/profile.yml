@@ -17,7 +17,7 @@
 
 meta:
   name: Domingo Berbel
-  headline: Data Scientist — applied AI and generative AI with a business focus
+  headline: Data Scientist | Data Engineering | Machine Learning & Generative AI
   location: Madrid, Spain
   emails:
     - info@domingoberbel.com
@@ -36,31 +36,25 @@ roles:
     start: 2025-10
     end: null
     summary: >-
-      Builds and ships data science for international clients, spanning strategic
-      BI, customer scoring models and generative AI. Works across the full
-      lifecycle rather than handing models over a wall: ingestion, modelling,
-      deployment and the conversation with the business that decides what gets
-      built.
+      Full-time, hybrid role at Data Equity, a company that delivers data and AI
+      projects — BI, machine learning and generative AI — for international
+      clients.
     achievements:
-      - Develops strategic Power BI dashboards for international pharmaceutical
-        companies, covering the ETL connections as well as the visual layer.
-      - Builds customer scoring models with machine learning to target and
-        optimise digital marketing campaigns.
-      - Leads the implementation of generative AI solutions for the tourism
-        sector, including a RAG system for TUI that turns corporate knowledge
-        into answers the business can act on.
-      - Works on the orchestration and execution of AI agents for companies, and
-        on productionising models of all kinds.
+      - "International pharmaceutical company: data cleaning and preparation,
+        then development of the client's Power BI dashboards."
+      - "International pharmaceutical company with UK and Nordic affiliates:
+        data cleaning and preparation, ETL connections, and building and
+        maintaining Power BI dashboards with DAX."
+      - "AI training for companies: a 10-hour FUNDAE-funded course delivered
+        with SDS Training on Claude Code, the Claude Agent SDK and the
+        automation of office tasks."
     stack:
       - Python
       - SQL
       - PySpark
       - Power BI
       - DAX
-      - scikit-learn
       - Azure
-      - RAG
-      - LLMs
 
   - id: suministros-medina
     company: Suministros Medina
@@ -69,48 +63,43 @@ roles:
     start: 2024-05
     end: 2025-09
     summary: >-
-      The role that consolidated a hybrid data-and-business profile. Ran
-      international sales, pricing, KPIs and the commercial pipeline for a leading
-      company in the beef sector, while independently driving several data science
-      projects that were not in the job description.
+      Full-time, on-site sales role at Suministros Medina (ECMedina), a company in
+      the beef sector, where he independently started his first data projects
+      alongside the commercial work. Each data project has its own entry.
     achievements:
-      - Built an automatic delivery-note classifier with OCR that extracts number
-        and date and files documents in seconds.
-      - Created Python and R visualisations to analyse the global meat market.
-      - Wrote a Python notebook to extract and clean export data — freezing
-        dates, batch numbers, slaughter dates — improving traceability and
-        regulatory compliance.
-      - Produced export sales documentation — traceability reports, CMR, sales
-        delivery notes, Intrastat — and handled customs procedures.
-      - Ran trade marketing activity including pricing actions and import
-        management with foreign suppliers.
-      - Coordinated international distributor relationships and managed the CRM
-        and sales pipeline end to end.
-      - Handled accounting and administration in the A3 Wolters Kluwer ERP, and
-        coordinated stock with the production team against sales needs.
+      - Built an automatic delivery-note classifier with OCR in Python that
+        extracts the number and date and files each document in seconds instead
+        of by hand.
+      - Wrote a pandas notebook that extracts, cleans and deduplicates export
+        data from several Excel sources and produces traceability reports for
+        health-authority requirements.
+      - Created Python and R visualisations of the global meat market, used as
+        the basis of market research for pricing and export targets.
+      - "International sales: overseas distributors, pricing, CRM and sales
+        pipeline, KPI tracking, export documentation (CMR, Intrastat), customs
+        and the A3 ERP."
     stack:
       - Python
       - R
-      - SQL
       - pandas
       - OCR
 
   - id: myes-sevilla
-    company: My English School Sevilla
-    title: Commercial and Academic Consultant
+    company: My English School
+    title: Commercial Didactic Consultant
     location: Seville, Spain
     start: 2023-05
     end: 2024-05
     summary: >-
-      Managed service quality and customer success at a leading English-language
-      school, and ran B2C and B2B commercial activity, marketing and market
-      analysis to drive growth.
+      Full-time, on-site role at the Seville school of My English School, an
+      English-language academy. Covered customer service quality and customer
+      success, marketing and social media, market analysis, and B2C and B2B
+      commercial activity to drive growth.
     achievements:
       - Together with the team, generated more than 50% of the school's total
-        revenue since MyES Sevilla opened its doors — achieved within this
-        single tenure.
+        revenue since it opened, in its first 11 months.
       - Managed customer service quality and customer success.
-      - Ran marketing actions and social media, and carried out market analysis.
+      - Led marketing actions and social media, and carried out market analysis.
     stack: []
 
   - id: lijar-council
@@ -120,8 +109,8 @@ roles:
     start: 2022-07
     end: 2022-09
     summary: >-
-      Institutional work on rural development and depopulation risk, running
-      awareness campaigns and building local economic partnerships.
+      Part-time, hybrid role on rural development and depopulation risk,
+      running awareness campaigns and building local economic partnerships.
     achievements:
       - Ran and directed social media awareness campaigns promoting local
         attachment, belonging and civic participation.
@@ -132,7 +121,7 @@ roles:
 
   - id: camara-comercio-almeria
     company: Almería Chamber of Commerce
-    title: International Marketing Technician (internship)
+    title: Junior International Marketing Technician (internship)
     location: Almería, Spain
     start: 2022-04
     end: 2022-06
@@ -183,8 +172,8 @@ education:
     institution: Universidad Complutense de Madrid
     degree: Master's in Data Science, Big Data & Business Analytics
     location: Madrid, Spain
-    start: 2024
-    end: 2025
+    start: 2024-09
+    end: 2025-09
     grades:
       - subject: Advanced Python
         score: 10.0
@@ -192,50 +181,48 @@ education:
         score: 9.75
       - subject: Statistics
         score: 9.5
-      - subject: Apache Spark
+      - subject: Apache Spark (Databricks)
         score: 9.2
     honours:
-      - Top possible grade on the master's thesis, a neural-network tourism
-        recommender with generative AI support.
-      - Third place in the university's scholarship competition with that thesis.
+      - Top grade for the master's thesis, built with TUI (see the thesis project
+        entry).
+      - Third place in the master's scholarship competition with that thesis.
       - >-
         Ranked 2,907 of more than 18,000 participants in DataDriven's
         international "Pump it Up: Data Mining the Water Table" competition.
     notes: >-
-      A demanding conversion master's taken as a deliberate career change into
-      data science, covering statistics, machine learning, deep learning and
-      distributed processing.
+      Covers data analysis and statistics, machine learning, deep learning and
+      distributed processing with Spark on Databricks.
 
   - id: master-us-international-business
     institution: Universidad de Sevilla
     degree: Official Master's in Strategic Management and International Business
     location: Seville, Spain
-    start: 2022
-    end: 2023
+    start: 2022-10
+    end: 2023-05
     grades: []
     honours: []
     notes: >-
-      Strategic and international business grounding that underpins the business
-      orientation he brings to data work.
+      Business management and international business.
 
   - id: erasmus-comenius
     institution: Comenius University Bratislava
-    degree: Erasmus exchange year
+    degree: Erasmus exchange year in Marketing and Market Research
     location: Bratislava, Slovakia
-    start: 2020
-    end: 2021
+    start: 2020-09
+    end: 2021-06
     grades: []
     honours: []
     notes: >-
-      A full academic year abroad during the undergraduate degree, and a
-      formative period for both his English and his adaptability.
+      A full academic year abroad during the undergraduate degree, studying
+      marketing, market research and business economics.
 
   - id: degree-ual-marketing
     institution: Universidad de Almería
     degree: Bachelor's in Marketing and Market Research
     location: Almería, Spain
-    start: 2016
-    end: 2021
+    start: 2016-09
+    end: 2021-06
     grades:
       - subject: Advanced Statistics
         score: 10.0
@@ -245,34 +232,31 @@ education:
         distinction: Matrícula de Honor (highest distinction)
       - subject: Statistics
         score: 9.2
-    honours:
-      - Matrícula de Honor in Advanced Statistics — the highest distinction
-        awarded in the Spanish system.
-      - Matrícula de Honor in Market Research.
+    honours: []
     notes: >-
-      The statistical foundation of the profile. The two highest distinctions
-      were both in quantitative subjects, which is what made the later move into
-      data science a continuation rather than a leap.
+      The statistical foundation of the profile: both of his Matrícula de Honor
+      distinctions — the highest awarded in the Spanish system — were in
+      quantitative subjects.
 
   - id: foreign-trade-training
-    institution: Almería Chamber of Commerce
-    degree: Foreign trade training programme
+    institution: Universidad de Almería
+    degree: Foreign trade training course
     location: Almería, Spain
-    start: 2019
-    end: 2019
+    start: 2019-11
+    end: 2019-12
     grades: []
     honours: []
-    notes: Completed.
+    notes: Taught by the Cátedra Extenda and the Universidad de Almería.
 
   - id: commercial-skills-english
-    institution: Commercial skills certification programme
-    degree: Commercial skills certification, delivered 100% in English
-    location: Spain
-    start: 2019
-    end: 2019
+    institution: Universidad de Almería
+    degree: Commercial skills course
+    location: Almería, Spain
+    start: 2019-03
+    end: 2019-03
     grades: []
     honours: []
-    notes: Completed. Delivered entirely in English.
+    notes: Delivered entirely in English.
 
 # ── Projects ────────────────────────────────────────────────────────────────
 
@@ -299,20 +283,22 @@ projects:
       Reciprocal Rank Fusion was tried first and scored worse on a golden set of
       real questions taken from the site's own logs, because discarding score
       magnitude let a weak keyword match displace a confident semantic one.
-      Generation runs on the OpenAI API. The model is given search tools
-      rather than a fixed context, so it decides what to look up and can search
-      again when the first pass is thin. A groundedness check compares named
-      entities in the answer against the profile vocabulary before the answer is
-      returned, so the assistant cannot attribute a technology he has never used.
-      React, Vite and Tailwind CSS on the frontend with a CRT/retro theme,
-      streaming answers over Server-Sent Events; Python 3.11 with FastAPI,
-      Pydantic and Uvicorn on the backend. Cloudflare Turnstile for CAPTCHA,
-      per-IP rate limiting, a daily token budget, pre-LLM content guardrails,
-      Nginx serving security headers (CSP, HSTS, X-Frame-Options), and
-      SQLite-backed question analytics with protected admin endpoints. Deployed
-      as a Docker container on Azure Container Apps behind a custom domain, with
-      the frontend on Azure Static Web Apps and secrets held as Container Apps
-      secrets rather than plain environment variables.
+      Generation runs on the OpenAI Responses API with light reasoning. The
+      model is given search tools rather than a fixed context, so it can search
+      again when the first pass is thin; the visitor's question is searched
+      before the first model call, which saves a full round trip. Answers stream
+      over Server-Sent Events sentence by sentence, and each sentence passes a
+      groundedness check against the profile vocabulary before it is sent, so
+      the assistant cannot attribute a technology he has never used. It answers
+      in the language the question is asked in. React, Vite and Tailwind CSS on
+      the frontend with a CRT/retro theme; Python 3.11 with FastAPI, Pydantic
+      and Uvicorn on the backend. Cloudflare Turnstile for CAPTCHA, per-IP rate
+      limiting, a daily token budget, pre-LLM content guardrails, Nginx serving
+      security headers (CSP, HSTS, X-Frame-Options), and SQLite-backed question
+      analytics with protected admin endpoints. Deployed as a Docker container
+      on Azure Container Apps behind a custom domain, with the frontend on Azure
+      Static Web Apps and the API keys held as Container Apps secrets rather than
+      plain environment variables.
     outcome: >-
       Live and serving real traffic at domingoberbel.com. It demonstrates the
       whole path from architecture to production rather than a notebook: the
@@ -343,31 +329,39 @@ projects:
     live_url: https://domingoberbel.com
 
   - id: tfm-tourism-recommender
-    name: Neural tourism recommender with generative AI
+    name: Neural-network tourism recommender with RAG support (master's thesis with TUI)
     year: 2025
     summary: >-
-      Master's thesis: a tourism recommendation system built on neural networks
-      with retrieval-augmented generative AI support.
+      Master's thesis at Universidad Complutense de Madrid, built from July to
+      September 2025 by a team of six in collaboration with TUI, which provided
+      the data and the business context: a RAG system that answers tourism
+      queries by combining historical, operational and predictive information,
+      for personalised experiences.
     problem: >-
-      Tourism recommendations need to combine behavioural signal with
-      unstructured destination knowledge, which a collaborative-filtering model
-      alone cannot use.
+      Tourism decisions draw on historical metrics, day-to-day operational data
+      and forecasts, which normally live in separate systems and cannot be asked
+      a question in plain language.
     approach: >-
-      Neural network recommender combined with a RAG layer over destination
-      knowledge, including embedding generation and semantic indexing with FAISS.
-      Built collaboratively with other technical profiles, coordinating the
-      analytical work and the framing of business impact.
+      Embeddings and a vector database for semantic search; queries against
+      structured databases for historical metrics; a multi-output neural network
+      that predicts hotel occupancy, revenue and customer satisfaction; and
+      FastAPI orchestrating the sources, with answers generated in natural
+      language through the OpenAI API.
     outcome: >-
-      Awarded the top possible grade, and took third place in the university's
-      scholarship competition.
+      Top grade for the master's thesis and third place in the scholarship
+      competition of the Master's in Data Science, Big Data & Business
+      Analytics, judged on methodology, results, presentation and innovation.
+      Applicable to strategic decision-making and to improving the customer
+      experience in tourism.
     stack:
       - Python
-      - TensorFlow
-      - deep learning
-      - neural networks
       - RAG
       - embeddings
-      - FAISS
+      - vector databases
+      - neural networks
+      - deep learning
+      - FastAPI
+      - OpenAI API
     repo: null
     live_url: null
 
@@ -507,19 +501,21 @@ projects:
     live_url: null
 
   - id: global-meat-market-analysis
-    name: Global meat market visualisation
+    name: Global meat consumption analysis
     year: 2025
     summary: >-
-      Python and R visualisations used to carry out market research on the global
-      meat market, with a focus on beef.
+      A comprehensive analysis of per capita consumption of different types of
+      meat in countries around the world, with a special focus on beef, built in
+      July 2025 while at Suministros Medina.
     problem: >-
       Commercial decisions on pricing and export targets needed a view of the
       global market that the company did not have.
     approach: >-
-      Data preparation and advanced visualisation in Python and R to compare
-      markets and surface the patterns relevant to export strategy.
+      Data preparation in Python and R, then dashboards and interactive maps that
+      make the comparison between countries easy to read.
     outcome: >-
-      Used as the analytical basis for real market research in the beef sector.
+      Used as the basis of market research for pricing and export targets in the
+      beef sector.
     stack:
       - Python
       - R
@@ -529,19 +525,21 @@ projects:
     live_url: null
 
   - id: export-batch-traceability
-    name: Export batch and traceability data pipeline
+    name: Export data extraction and deduplication
     year: 2025
     summary: >-
-      A Python notebook that extracts and cleans critical export data — freezing
-      dates, batch numbers, slaughter dates — from Excel sources.
+      A Jupyter notebook in Python that extracts, cleans and deduplicates export
+      data — freezing dates, slaughter dates and batch IDs — from several Excel
+      sources, built in July 2025 while at Suministros Medina.
     problem: >-
       Export traceability data was scattered across spreadsheets in inconsistent
-      formats, which put regulatory compliance at risk.
+      formats, which put compliance with health-authority requirements at risk.
     approach: >-
-      Extraction and cleaning in Python, grouping batches and dates into a
-      consistent structure suitable for compliance reporting.
+      Extraction, cleaning and deduplication with pandas, grouping batches and
+      dates into one consistent structure and generating clean reports.
     outcome: >-
-      Improved traceability and regulatory compliance for export documentation.
+      Used to ensure traceability and to produce clean reports for compliance
+      with health-authority requirements.
     stack:
       - Python
       - pandas
@@ -569,7 +567,7 @@ certifications:
     title: Databricks Fundamentals Accreditation
     issuer: Databricks Academy
     date: 2025-11
-    expires: null
+    expires: 2027-11
     image: /certs/databricks-fundamentals.png
     skills:
       - Databricks
@@ -599,12 +597,12 @@ certifications:
       - SQL
       - Window Functions
       - CTEs
-      - Analytics
+      - Google BigQuery
 
   - id: ibm-data-analysis-python
     title: Data Analysis Using Python
     issuer: IBM Skills Network
-    date: 2025
+    date: 2025-08
     expires: null
     image: /certs/ibm-data-analysis-python.png
     skills:
@@ -647,7 +645,6 @@ skills:
     - Data Warehousing
     - Window Functions
     - CTEs
-    - Analytics
     - SQLite
   cloud:
     - Azure
@@ -662,7 +659,6 @@ skills:
     - Nginx
   ml:
     - scikit-learn
-    - TensorFlow
     - XGBoost
     - deep learning
     - neural networks
@@ -672,11 +668,13 @@ skills:
     - GenAI
     - Prompt Engineering
     - embeddings
-    - FAISS
+    - vector databases
     - BM25
     - TF-IDF
     - OCR
     - AI agents
+    - Claude Code
+    - Claude Agent SDK
     - OpenAI API
     - Google Gemini
   bi:
@@ -685,6 +683,7 @@ skills:
     - Data Modeling
     - Dashboards
     - data visualisation
+    - Tableau
   web:
     - FastAPI
     - Pydantic
@@ -705,10 +704,9 @@ languages:
   - language: English
     level: Professional working proficiency
     evidence: >-
-      Reinforced through international experience: an Erasmus year in Bratislava,
-      an internship in Berlin, a commercial skills certification delivered
-      entirely in English, and a year managing international sales and foreign
-      distributors.
+      Used day to day in an Erasmus year in Bratislava, an internship in Berlin,
+      a commercial skills course delivered entirely in English, and international
+      sales with overseas distributors.
 
 # ── Narrative ───────────────────────────────────────────────────────────────
 # Prose, deliberately. These answer the "what is he like to work with" questions
@@ -727,35 +725,47 @@ narrative:
     turning uncertainty into learning.
 
   resilience: >-
-    His trajectory is a deliberate career change, not a drift. After starting out
-    in marketing, international sales and logistics, he moved into data science
-    through sustained effort rather than opportunism: a demanding master's
-    degree, a series of technical certifications, and advanced practical projects
-    in statistics, machine learning and deep learning. He acquired complex
-    competencies from scratch and established himself as a Data Scientist while
-    keeping a pragmatic, results-oriented approach. He changes direction when he
-    identifies a real opportunity for impact and development, not by inertia.
+    His career change into data science was built through sustained effort
+    rather than a lucky break. Coming from marketing, international sales and
+    logistics, he acquired complex technical competencies from scratch — a
+    demanding master's, a run of technical certifications, and practical projects
+    in statistics, machine learning and deep learning — and started his first
+    data projects on his own initiative while still in a sales job. He keeps a
+    pragmatic, results-oriented approach and changes direction when he sees a
+    real opportunity for impact, not out of inertia.
 
   teamwork: >-
-    Teamwork is central to how he operates. The clearest example is the
-    neural-network tourism recommender with generative AI support that he built as
-    his master's thesis, working closely with other technical profiles —
-    coordinating effort, aligning objectives, and contributing to both the
-    analytical work and the framing of business impact. His ability to explain
-    complex ideas, listen, and build consensus was decisive to that project, which
-    earned the top grade and competitive academic recognition. Earlier, at MyES
-    Sevilla, he and his team generated more than half of the school's total revenue
-    since opening.
+    Teamwork is central to how he operates. His master's thesis was built by a
+    team of six in collaboration with TUI, and he contributed both to the
+    analytical work and to framing its business impact — coordinating effort,
+    aligning objectives, explaining complex ideas and building consensus. The
+    result earned the top grade and third place in the scholarship competition.
+    At My English School, the team he was part of generated more than half of
+    the school's revenue in its first 11 months.
 
   career_change: >-
     What makes the profile unusual is that the business years were not wasted
-    time. Having sold, priced, negotiated and reported to stakeholders, he
-    understands what an organisation is actually trying to decide when it asks for
-    a model — and he can present the result to people who will never read the
-    code. He combines statistical rigour with commercial judgement, and works
-    across the full data lifecycle: ingestion, ETL pipeline design, cleaning and
-    transformation, statistical and machine learning modelling, validation,
-    deployment, and the communication of results to non-technical stakeholders.
-    His statistical grounding is what lets him design sound analyses and validate
-    models with judgement, instead of producing exploratory work with no bearing
+    time. Having sold, priced, negotiated and reported to stakeholders, he knows
+    what decision sits behind each request for data and can explain the result
+    to people who will never read the code. That is also why, at Data Equity, he
+    trains company teams in applied AI. He combines statistical rigour with
+    commercial judgement, which lets him design sound analyses and validate
+    models with judgement instead of producing exploratory work with no bearing
     on a decision.
+
+  approach: >-
+    He describes his work as problem, diagnosis, solution. Raw data that arrives
+    from several sources in formats that do not match: first find what is broken
+    — duplicates, gaps, formats — then clean and adapt it and leave a pipeline
+    that does it on its own next time. Manual work nobody thought to automate:
+    if it repeats and follows rules it is a data problem, even if nobody calls it
+    that, so automate it and give the time back to the team. Data that never
+    reaches whoever decides: the chart is rarely what fails, the business
+    question behind it is, so build dashboards for a specific decision and keep
+    them current. "It works on my laptop": a notebook that ran once is not a
+    system until it has scheduled runs, incremental updates and deployment, so
+    he builds pipelines that run themselves and deploys models to the cloud.
+    Models that shine in the demo: with little signal, extrapolating is science
+    fiction and intuition does not replace measuring, so he compares
+    alternatives on real data and keeps the one that wins, even when it is not
+    the flashiest.
