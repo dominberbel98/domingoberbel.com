@@ -10,6 +10,9 @@ class Settings(BaseSettings):
 
     openai_api_key: str | None = None
     openai_model: str = "gpt-5.6-luna"
+    # none | low | medium | high. `low` measured at 0-30 reasoning tokens a turn
+    # with no added latency; `medium` added ~1-2 s to the first token.
+    openai_reasoning_effort: str = "low"
 
     # Google Generative AI for embeddings. gemini-embedding-2's space is NOT
     # compatible with gemini-embedding-001 — changing this requires a full
@@ -22,7 +25,6 @@ class Settings(BaseSettings):
     retrieval_top_k: int = 6
     agent_max_iterations: int = 4
     agent_max_tool_calls: int = 6
-    agent_max_documents: int = 8
 
     # Index locations. The primary path is tried first and the fallback second,
     # so a bad reindex cannot take the service down.

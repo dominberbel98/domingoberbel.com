@@ -12,9 +12,9 @@ Two defects put English speakers into Spanish answers in production:
    Spanish place names, so "Has he worked in Almería?" — English by every other
    measure — was answered in Spanish because of the í in a proper noun.
 
-The real fix is upstream: the frontend knows which language the visitor picked
-and now sends it. These tests pin the fallback used by direct API callers, and
-pin the precedence so an explicit request can never be overridden by a guess.
+The frontend also sends the site's language switch, but that is what the visitor
+reads the site in, not what they ask in, so it only decides questions with no
+language of their own. These tests pin the heuristic and that precedence.
 """
 
 from __future__ import annotations
@@ -34,6 +34,13 @@ ENGLISH_QUESTIONS = [
     "Does he speak English?",
     "What is his notice period?",
     "Show me his RAG project",
+    # One-word questions with no function word: the answer language is an
+    # order to the model, so these must be recognised here.
+    "Salary?",
+    "certs",
+    "Strengths?",
+    "Remote work?",
+    "experience in Almería?",
 ]
 
 SPANISH_QUESTIONS = [
@@ -43,6 +50,9 @@ SPANISH_QUESTIONS = [
     "Dame un resumen de su perfil",
     "Habla ingles?",
     "En qué empresa trabaja actualmente",
+    "¿Salario?",
+    "Conoce Snowflake",
+    "Puede incorporarse ya",
 ]
 
 # The accent belongs to a place name, not to the writer's language.
@@ -98,22 +108,33 @@ def test_marker_sets_share_no_token():
 
 
 class TestResolveLanguage:
-    """Precedence: what the visitor chose beats what we guess."""
+    """Precedence: the language the question is written in beats the site switch.
 
-    def test_an_explicit_language_wins_over_the_heuristic(self):
-        # Text that the heuristic would call Spanish, requested as English.
-        assert resolve_language("¿Qué tal?", [], requested="en") == "en"
+    The reverse was the rule until October 2026, and a visitor on the Spanish
+    site asking in English was answered in Spanish every single time.
+    """
 
-    def test_an_explicit_spanish_wins_too(self):
-        assert resolve_language("Tell me about his work", [], requested="es") == "es"
+    def test_an_english_question_on_the_spanish_site_gets_english(self):
+        assert resolve_language("Tell me about his work", [], requested="es") == "en"
+
+    def test_a_spanish_question_on_the_english_site_gets_spanish(self):
+        assert resolve_language("¿Qué tal?", [], requested="en") == "es"
+
+    def test_the_switch_decides_a_question_with_no_language(self):
+        assert resolve_language("PySpark", [], requested="en") == "en"
+        assert resolve_language("PySpark", [], requested="es") == "es"
+
+    def test_the_conversation_beats_the_switch_for_a_signalless_follow_up(self):
+        history = [{"role": "user", "content": "Tell me about his experience with Azure"}]
+        assert resolve_language("Certifications?", history, requested="es") == "en"
 
     def test_falls_back_to_the_heuristic_when_absent(self):
         assert resolve_language("Tell me about his work", [], requested=None) == "en"
 
     @pytest.mark.parametrize("bogus", ["fr", "EN-GB", "", "  ", "klingon", "es-ES"])
-    def test_an_unsupported_value_falls_back_instead_of_being_trusted(self, bogus):
+    def test_an_unsupported_value_is_not_trusted(self, bogus):
         """The field is client-supplied; it must not be able to inject anything."""
-        assert resolve_language("Tell me about his work", [], requested=bogus) == "en"
+        assert resolve_language("PySpark", [], requested=bogus) == "es"
 
     def test_case_and_padding_are_tolerated(self):
-        assert resolve_language("¿Qué tal?", [], requested=" EN ") == "en"
+        assert resolve_language("PySpark", [], requested=" EN ") == "en"

@@ -22,6 +22,7 @@ import logging
 import re
 from collections.abc import Generator
 from datetime import datetime, timezone
+from functools import lru_cache
 from pathlib import Path
 
 import numpy as np
@@ -29,7 +30,7 @@ from openai import OpenAI
 
 from app.config import settings
 from app.models import ChatResponse, Citation
-from app.services.agent import AgentLimits, ProfileAgent
+from app.services.agent import AgentLimits, AgentResult, ProfileAgent
 from app.services.retrieval import RetrievalIndex
 
 logger = logging.getLogger(__name__)
@@ -44,6 +45,11 @@ class AgenticRAGService:
         self._client = self._build_client()
         self._model = settings.openai_model
         self._embedder_service = None
+        # The suggested prompts are the most asked questions and the prefetch
+        # embeds the question verbatim, so the same text recurs: a hit saves a
+        # 0.4-0.7 s Gemini round trip. lru_cache does not store exceptions, so a
+        # failed call is retried next time instead of pinning the query to BM25.
+        self._embed_cached = lru_cache(maxsize=128)(self._embed_uncached)
 
     # --- startup ------------------------------------------------------------
 
@@ -113,16 +119,21 @@ class AgenticRAGService:
         if not settings.google_api_key:
             return None
         try:
-            if self._embedder_service is None:
-                from app.services.embedding_service import EmbeddingService
-
-                self._embedder_service = EmbeddingService(
-                    settings.google_api_key, settings.embedding_model
-                )
-            return np.asarray(self._embedder_service.embed_query(text), dtype=np.float32)
+            return self._embed_cached(text)
         except Exception as exc:
             logger.warning("Query embedding failed (%s); falling back to keyword search", exc)
             return None
+
+    def _embed_uncached(self, text: str) -> np.ndarray:
+        if self._embedder_service is None:
+            from app.services.embedding_service import EmbeddingService
+
+            self._embedder_service = EmbeddingService(
+                settings.google_api_key, settings.embedding_model
+            )
+        vector = np.asarray(self._embedder_service.embed_query(text), dtype=np.float32)
+        vector.setflags(write=False)  # shared by every hit on the cache
+        return vector
 
     def _build_agent(self) -> ProfileAgent:
         return ProfileAgent(
@@ -133,9 +144,9 @@ class AgenticRAGService:
             limits=AgentLimits(
                 max_iterations=settings.agent_max_iterations,
                 max_tool_calls=settings.agent_max_tool_calls,
-                max_documents=settings.agent_max_documents,
                 search_top_k=settings.retrieval_top_k,
             ),
+            reasoning_effort=settings.openai_reasoning_effort,
         )
 
     # --- public API ---------------------------------------------------------
@@ -163,7 +174,9 @@ class AgenticRAGService:
         result = self._build_agent().answer(question, history, language, now)
         if result.out_of_scope:
             logger.info("[ASK] out_of_scope")
-            return self._response(out_of_scope_message(language), [], needs_contact=True)
+            return self._response(
+                out_of_scope_message(result.language or language), [], needs_contact=True
+            )
 
         logger.info(
             "[ASK] documents=%s regenerated=%s",
@@ -200,26 +213,29 @@ class AgenticRAGService:
             yield _sse_done(False)
             return
 
+        sent = False
+        result = None
         try:
-            result = self._build_agent().answer(question, history, language, now)
+            for item in self._build_agent().answer_stream(question, history, language, now):
+                if isinstance(item, AgentResult):
+                    result = item
+                else:
+                    sent = True
+                    yield _sse_token(item)
         except Exception as exc:
             logger.error("[STREAM] agent failed: %s", exc, exc_info=True)
-            yield _sse_token(self._unavailable_message(language))
+            # Text already on screen stays; only an empty bubble gets the apology.
+            if not sent:
+                yield _sse_token(self._unavailable_message(language))
             yield _sse_done(False)
             return
 
-        if result.out_of_scope:
-            yield _sse_token(out_of_scope_message(language))
+        if result is not None and result.out_of_scope:
+            yield _sse_token(out_of_scope_message(result.language or language))
             yield _sse_done(True)
             return
 
-        logger.info(
-            "[STREAM] documents=%s regenerated=%s",
-            [d.id for d in result.documents],
-            result.regenerated,
-        )
-        for piece in _chunk(result.answer):
-            yield _sse_token(piece)
+        logger.info("[STREAM] documents=%s", [d.id for d in result.documents] if result else [])
         yield _sse_done(False)
 
     # --- fast paths ---------------------------------------------------------
@@ -290,10 +306,6 @@ def _sse_done(needs_contact: bool) -> str:
         "contact_linkedin": settings.professional_linkedin or None,
     }
     return f"data: {json.dumps(payload)}\n\n"
-
-
-def _chunk(text: str, size: int = 24) -> list[str]:
-    return [text[i : i + size] for i in range(0, len(text), size)] or [""]
 
 
 # ── module-level helpers (pure, so they are testable) ───────────────────────
@@ -398,6 +410,15 @@ _EN_RAW = frozenset({
     "many", "best", "also", "please", "not", "no", "yes", "so", "as", "that",
     "this", "these", "those", "over", "under", "between", "during", "before",
     "after", "again", "still", "just", "only", "very", "really",
+    # Recruiter nouns. One-word questions are common ("Salary?", "certs",
+    # "Strengths?") and carry no function word at all; the Spanish list below
+    # has always had its counterparts.
+    "salary", "skills", "strengths", "weaknesses", "certs", "experience",
+    "background", "career", "company", "role", "job", "hire", "hiring", "team",
+    "remote", "available", "availability", "notice", "relocate", "summary",
+    "resume", "degree", "education", "projects", "achievements", "languages",
+    "strong", "weak", "work", "works", "worked", "studied", "speak", "speaks",
+    "know", "knows", "use", "used", "uses", "start", "join",
 })
 _ES_RAW = frozenset({
     "el", "la", "los", "las", "un", "una", "unos", "unas", "lo", "al", "del",
@@ -413,6 +434,11 @@ _ES_RAW = frozenset({
     "experiencia", "proyectos", "formacion", "formación", "trayectoria",
     "actualmente", "idiomas", "empresa", "puesto", "perfil", "titulacion",
     "titulación", "estudios", "conocimientos", "habilidades",
+    "salario", "sueldo", "fortalezas", "debilidades", "fuertes", "débiles",
+    "remoto", "disponibilidad", "contratar", "contratarle", "equipo", "logros",
+    "certificados", "carrera", "idioma", "trabajó", "estudió", "hizo",
+    "conoce", "domina", "maneja", "usa", "utiliza", "puede", "podría", "ya",
+    "incorporarse", "incorporación",
 })
 
 # A token that means something in both languages is evidence for neither.
@@ -465,10 +491,9 @@ def _verdict(text: str) -> str | None:
     return "en" if english > spanish else "es"
 
 
-def detect_language(question: str, history: list[dict] | None = None) -> str:
-    """Infer the answer language from what the visitor wrote.
+def _written_language(question: str, history: list[dict] | None) -> str | None:
+    """The language the visitor is writing in, or None when nothing says.
 
-    Used only when the caller did not state a language — see `resolve_language`.
     The corpus is English; the assistant answers in whatever the visitor used, so
     a Spanish recruiter is not forced into English.
     """
@@ -486,7 +511,12 @@ def detect_language(question: str, history: list[dict] | None = None) -> str:
         if prior is not None:
             return prior
 
-    return DEFAULT_LANGUAGE
+    return None
+
+
+def detect_language(question: str, history: list[dict] | None = None) -> str:
+    """Infer the answer language from what the visitor wrote alone."""
+    return _written_language(question, history) or DEFAULT_LANGUAGE
 
 
 def resolve_language(
@@ -494,15 +524,24 @@ def resolve_language(
     history: list[dict] | None = None,
     requested: str | None = None,
 ) -> str:
-    """What the visitor chose beats what we would guess.
+    """The language the question is written in beats the site's switch.
 
-    The frontend already knows the language — it has a switch and remembers the
-    choice — so for anyone using the site there is nothing to infer. `requested`
-    is client-supplied, so anything that is not a language we actually serve is
-    discarded rather than trusted.
+    It used to be the other way round, and a visitor on the Spanish site who
+    asked in English got a Spanish answer every time. The switch is what the
+    visitor reads the site in; the question is what they want to talk in.
+
+    Order: the question's own verdict, then the conversation so far, then the
+    switch, then the default. The result is given to the model as an order, so
+    one-word recruiter questions ("Salary?", "certs") must be recognised here —
+    hence the recruiter nouns in the marker lists. `requested` is client-supplied,
+    so anything that is not a language we actually serve is discarded rather
+    than trusted.
     """
+    written = _written_language(question, history)
+    if written is not None:
+        return written
     if isinstance(requested, str):
         candidate = requested.strip().lower()
         if candidate in SUPPORTED_LANGUAGES:
             return candidate
-    return detect_language(question, history)
+    return DEFAULT_LANGUAGE

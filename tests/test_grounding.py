@@ -193,3 +193,59 @@ def test_hyphenated_common_words_are_not_entities():
     """'day-to-day' and 'credit-risk' both triggered pointless regenerations."""
     answer = "He works with data day-to-day on credit-risk models."
     assert check_answer(answer, CONTEXT, VOCAB).ok
+
+
+def test_markdown_list_openers_are_not_entities():
+    """'- **Motor de recomendación**' flagged 'Motor' and forced a regeneration
+    of a correct Spanish answer in production."""
+    answer = (
+        "Proyectos destacados:\n\n"
+        "- **Motor de recomendación** de productos.\n"
+        "1. **Scoring** de crédito.\n"
+        "### Certificaciones\n"
+        "Tiene la certificación de Snowflake."
+    )
+    assert check_answer(answer, SPANISH_CONTEXT, VOCAB, language="es").ok
+
+
+def test_a_name_does_not_span_a_line_break():
+    found = extract_candidate_entities("He studied there.\nPython is his main language.")
+    assert all("\n" not in term for term in found)
+
+
+# --- questions, denials and glued openers ------------------------------------
+
+
+def test_denying_a_technology_the_visitor_asked_about_is_grounded():
+    """'Has he used Kubernetes?' must be answerable with 'no'."""
+    answer = "There is no record of Kubernetes in his profile. He deploys on Azure."
+    assert check_answer(answer, CONTEXT, VOCAB, question="Has he used Kubernetes?").ok
+
+
+def test_a_spanish_denial_is_grounded_too():
+    answer = "No consta que haya usado TensorFlow."
+    assert check_answer(answer, CONTEXT, VOCAB, "es", question="¿Ha usado TensorFlow?").ok
+
+
+def test_asserting_a_technology_the_visitor_asked_about_is_still_flagged():
+    """Echoing the question is only safe as a denial: the visitor naming
+    Kubernetes is not evidence that he used it."""
+    answer = "Yes, he has used Kubernetes in production."
+    result = check_answer(answer, CONTEXT, VOCAB, question="Has he used Kubernetes?")
+    assert result.unsupported == ["Kubernetes"]
+
+
+def test_a_term_the_visitor_did_not_ask_about_is_flagged_even_when_denied():
+    answer = "He has not used Kubernetes."
+    assert not check_answer(answer, CONTEXT, VOCAB, question="What does he deploy on?").ok
+
+
+def test_an_acronym_plural_is_supported_by_its_singular():
+    assert check_answer("He builds PySpark and SQL pipelines and APIs.",
+                        CONTEXT + ["He exposes the model through an API."], VOCAB).ok
+
+
+def test_a_sentence_opener_glued_to_a_name_is_judged_on_the_name():
+    """'Creating ETL connections' read as the entity 'Creating ETL'."""
+    answer = "He works at Data Equity. Creating ETL connections is part of it."
+    assert check_answer(answer, CONTEXT + ["ETL connections"], VOCAB).ok

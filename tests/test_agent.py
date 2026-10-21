@@ -43,8 +43,38 @@ def _message(content=None, tool_calls=None):
     return SimpleNamespace(content=content, tool_calls=tool_calls, role="assistant")
 
 
-def _completion(message):
-    return SimpleNamespace(choices=[SimpleNamespace(message=message, finish_reason="stop")])
+def _response(message):
+    """A scripted turn as a Responses API result: function calls, or text."""
+    output = [
+        {
+            "type": "function_call",
+            "call_id": tc.id,
+            "name": tc.function.name,
+            "arguments": tc.function.arguments,
+        }
+        for tc in (message.tool_calls or [])
+    ]
+    if message.content:
+        output.append(
+            {
+                "type": "message",
+                "role": "assistant",
+                "content": [{"type": "output_text", "text": message.content}],
+            }
+        )
+    return SimpleNamespace(output=output, output_text=message.content or "")
+
+
+def _as_events(response, size=7):
+    """A scripted turn as the event stream the real API sends: text a few
+    characters at a time, then the completed response carrying every item."""
+    text = response.output_text
+    events = [
+        SimpleNamespace(type="response.output_text.delta", delta=text[i : i + size])
+        for i in range(0, len(text), size)
+    ]
+    events.append(SimpleNamespace(type="response.completed", response=response))
+    return iter(events)
 
 
 class FakeClient:
@@ -60,34 +90,40 @@ class FakeClient:
     def __init__(self, script):
         self._script = list(script)
         self.calls = []
-        self.chat = SimpleNamespace(completions=SimpleNamespace(create=self._create))
+        self.responses = SimpleNamespace(create=self._create)
 
     def _create(self, **kwargs):
+        response = _response(self._respond(**kwargs))
+        if kwargs.get("stream"):
+            return _as_events(response)
+        return response
+
+    def _respond(self, **kwargs):
         self.calls.append(kwargs)
         if "tools" not in kwargs:
             nxt = self._script.pop(0) if self._script else None
             if nxt is not None and not getattr(nxt, "tool_calls", None):
-                return _completion(nxt)
-            return _completion(_message(content=self.FORCED_TEXT))
+                return nxt
+            return _message(content=self.FORCED_TEXT)
         if not self._script:
-            return _completion(_message(content="(script exhausted)"))
-        return _completion(self._script.pop(0))
+            return _message(content="(script exhausted)")
+        return self._script.pop(0)
 
 
 def executed_tool_call_ids(client):
-    """Unique tool_call_ids that produced real output.
+    """Unique call_ids that produced real output.
 
-    The messages list accumulates and is resent on every call, so summing tool
-    messages across calls counts each one many times over.
+    The input list accumulates and is resent on every call, so summing tool
+    outputs across calls counts each one many times over.
     """
     ids = set()
     for call in client.calls:
-        for message in call["messages"]:
-            if message.get("role") != "tool":
+        for item in call["input"]:
+            if item.get("type") != "function_call_output":
                 continue
-            if "budget exhausted" in (message.get("content") or ""):
+            if "budget exhausted" in item["output"]:
                 continue
-            ids.add(message["tool_call_id"])
+            ids.add(item["call_id"])
     return ids
 
 
@@ -150,8 +186,15 @@ def test_category_filter_is_passed_through(index):
             _message(content="Only the portfolio project matched."),
         ],
     )
-    result = agent.answer("projects?", history=[], language="en")
-    assert all(d.category == "project" for d in result.documents)
+    agent.answer("projects?", history=[], language="en")
+    # The prefetch searched every category, so check the filtered call's output.
+    output = next(
+        item["output"]
+        for item in agent.client.calls[-1]["input"]
+        if item.get("type") == "function_call_output" and item["call_id"] == "c1"
+    )
+    assert "[project:portfolio-chatbot]" in output
+    assert "[role:" not in output
 
 
 def test_multi_hop_issues_a_second_search(index):
@@ -275,21 +318,172 @@ def test_history_is_forwarded_to_the_model(index):
                  {"role": "assistant", "content": "yes"}],
         language="en",
     )
-    roles = [m["role"] for m in agent.client.calls[0]["messages"]]
+    roles = [m.get("role") for m in agent.client.calls[0]["input"]]
     assert roles.count("user") >= 2
 
 
-def test_language_instruction_reaches_the_system_prompt(index):
-    agent = _agent(index, [_message(content="Trabaja en Data Equity.")])
-    agent.answer("¿Dónde trabaja?", history=[], language="es")
-    system = agent.client.calls[0]["messages"][0]["content"]
-    assert "Spanish" in system
+@pytest.mark.parametrize("language,order", [("es", "Answer in Spanish"), ("en", "Answer in English.")])
+def test_the_resolved_language_is_an_order_not_a_hint(index, language, order):
+    """Left to judge the language itself, the model answered 'Power BI' in
+    Spanish on the English site in four runs out of four."""
+    agent = _agent(index, [_message(content="ok")])
+    agent.answer("PySpark", history=[], language=language)
+    system = agent.client.calls[0]["input"][0]["content"]
+    assert order in system
+
+
+def test_reasoning_is_requested_for_reasoning_models(index):
+    agent = ProfileAgent(
+        client=FakeClient([_message(content="ok")]),
+        model="gpt-5.6-luna",
+        index=index,
+        embedder=lambda _text: None,
+        reasoning_effort="low",
+    )
+    agent.answer("anything", history=[], language="en")
+    call = agent.client.calls[0]
+    assert call["reasoning"] == {"effort": "low"}
+    assert "temperature" not in call
+    # Stateless calls must carry reasoning back with the next turn's input.
+    assert call["store"] is False
+    assert call["include"] == ["reasoning.encrypted_content"]
 
 
 def test_the_system_prompt_does_not_hardcode_grades(index):
     """Facts belong in the corpus. The old prompt hardcoded exact scores."""
     agent = _agent(index, [_message(content="ok")])
     agent.answer("grades?", history=[], language="en")
-    system = agent.client.calls[0]["messages"][0]["content"]
+    system = agent.client.calls[0]["input"][0]["content"]
     for leak in ("9.75", "9.20", "Matrícula", "Apache Spark 9"):
         assert leak not in system
+
+
+# --- prefetch ------------------------------------------------------------------
+
+
+def test_the_question_is_searched_before_the_first_call(index):
+    """Deciding to search for the question used to cost a full round trip."""
+    agent = _agent(index, [_message(content="He is a Data Scientist at Data Equity.")])
+    result = agent.answer("Where does he work now?", history=[], language="en")
+    assert len(agent.client.calls) == 1
+    first = agent.client.calls[0]["input"]
+    assert first[-1]["type"] == "function_call_output"
+    assert first[-2]["name"] == "search_profile"
+    assert result.documents
+
+
+def test_the_prefetch_counts_against_the_tool_call_budget(index):
+    forever = [
+        _message(tool_calls=[_tool_call(f"c{i}", "search_profile", {"query": "x"})])
+        for i in range(50)
+    ]
+    agent = _agent(index, forever, max_iterations=20, max_tool_calls=1)
+    agent.answer("anything", history=[], language="en")
+    assert executed_tool_call_ids(agent.client) == {"call_prefetch"}
+
+
+# --- streaming -----------------------------------------------------------------
+
+
+def _stream(agent, question, language="en"):
+    items = list(agent.answer_stream(question, history=[], language=language))
+    *pieces, result = items
+    return pieces, result
+
+
+def test_the_answer_is_streamed_in_pieces(index):
+    answer = "He is a Data Scientist at Data Equity. He works with FastAPI and React."
+    agent = _agent(index, [_message(content=answer)])
+    pieces, result = _stream(agent, "Where does he work?")
+    assert len(pieces) >= 2, "text must leave before the whole answer exists"
+    assert "".join(pieces) == answer
+    assert result.answer == answer
+    assert agent.client.calls[0]["stream"] is True
+
+
+def test_a_streamed_tool_call_is_executed(index):
+    agent = _agent(
+        index,
+        [
+            _message(tool_calls=[_tool_call("c1", "get_entity", {"id": "languages:spoken"})]),
+            _message(content="He is a Spanish native with professional English."),
+        ],
+    )
+    pieces, result = _stream(agent, "Languages?")
+    assert any(d.id == "languages:spoken" for d in result.documents)
+    assert "".join(pieces) == "He is a Spanish native with professional English."
+
+
+def test_a_fabricated_sentence_is_never_streamed(index):
+    agent = _agent(
+        index,
+        [_message(content="He works at Data Equity. He also uses MongoDB daily. He builds with FastAPI.")],
+    )
+    pieces, result = _stream(agent, "What does he use?")
+    streamed = "".join(pieces)
+    assert "MongoDB" not in streamed
+    assert "Data Equity" in streamed and "FastAPI" in streamed
+    assert len(agent.client.calls) == 1, "dropping the sentence needs no second call"
+
+
+def test_a_fully_fabricated_answer_is_regenerated(index):
+    agent = _agent(
+        index,
+        [
+            _message(content="He uses MongoDB."),
+            _message(content="He uses FastAPI and React on Azure."),
+        ],
+    )
+    pieces, result = _stream(agent, "What does he use?")
+    assert "".join(pieces) == "He uses FastAPI and React on Azure."
+    assert result.regenerated
+
+
+def test_out_of_scope_is_never_streamed(index):
+    agent = _agent(index, [_message(content="OUT_OF_SCOPE\n")])
+    pieces, result = _stream(agent, "Hala Madrid")
+    assert pieces == []
+    assert result.out_of_scope
+
+
+def test_the_streamed_loop_respects_the_iteration_cap(index):
+    forever = [
+        _message(tool_calls=[_tool_call(f"c{i}", "search_profile", {"query": "x"})])
+        for i in range(50)
+    ]
+    agent = _agent(index, forever, max_iterations=3)
+    pieces, result = _stream(agent, "anything")
+    assert result.answer
+    assert len(agent.client.calls) <= 4
+
+
+def test_the_refusal_follows_the_language_the_model_read(index):
+    """'Hala Madrid' has no marker the heuristic can use; the model's does."""
+    agent = _agent(index, [_message(content="OUT_OF_SCOPE es")])
+    result = agent.answer("Hala Madrid", history=[], language="en")
+    assert result.out_of_scope and result.language == "es"
+
+    agent = _agent(index, [_message(content="OUT_OF_SCOPE es")])
+    pieces, streamed = _stream(agent, "Hala Madrid")
+    assert pieces == [] and streamed.out_of_scope and streamed.language == "es"
+
+
+def test_every_document_shown_to_the_model_counts_as_support():
+    """Grounding used to stop collecting at eight documents while the model
+    kept reading, so a correct sentence built from the ninth was dropped."""
+    docs = [
+        _doc(f"project:p{i}", "project", f"Project {i}", f"Built with Tool{i} in 2025.")
+        for i in range(12)
+    ]
+    big = RetrievalIndex(docs, vocabulary=frozenset({"Data Equity"}))
+    agent = _agent(
+        big,
+        [
+            _message(tool_calls=[_tool_call("c1", "list_entities", {})]),
+            _message(tool_calls=[_tool_call(f"g{i}", "get_entity", {"id": f"project:p{i}"}) for i in range(12)]),
+            _message(content="He used Tool11 on one project."),
+        ],
+        max_tool_calls=20,
+    )
+    pieces, result = _stream(agent, "What tools?")
+    assert "".join(pieces) == "He used Tool11 on one project."

@@ -42,9 +42,17 @@ __all__ = ["GroundingResult", "check_answer", "extract_candidate_entities"]
 # Capitalised words, optionally joined into a multiword name by connectors.
 # "and" is deliberately not a connector: it merges genuinely separate entities
 # ("MongoDB and Cassandra" as one term) far more often than it joins a real name.
+# Joins are spaces only, never newlines: a heading and the line under it are not
+# one name ("Certificaciones\nTiene la Databricks").
 _PROPER_NOUN = re.compile(
-    r"\b[A-Z][\w&+-]*(?:\s+(?:de|del|la|of|the)\s+[A-Z][\w&+-]*|\s+[A-Z][\w&+-]*)*"
+    r"\b[A-Z][\w&+-]*(?:[ \t]+(?:de|del|la|of|the)[ \t]+[A-Z][\w&+-]*|[ \t]+[A-Z][\w&+-]*)*"
 )
+
+# Markdown the model puts in front of a sentence's first word: list markers,
+# numbering, headings, bold and quotes. Left in place, it hid the opener from the
+# sentence-initial test — "- **Motor de recomendación**" flagged "Motor" and
+# forced a full regeneration of a correct answer.
+_LINE_PREFIX = re.compile(r"^(?:[-*+>#]+\s+|\d+[.)]\s+|[*_`\"'(¿¡]+)+")
 
 # Lowercase product names, but only where the shape is unambiguous: a dot or a
 # digit ("node.js", "log4j", "python3"). A bare hyphen is NOT enough — English and
@@ -86,8 +94,19 @@ _COMMON_WORDS = frozenset(
     master grado licenciatura ingenieria universidad titulacion asignatura asignaturas
     matricula honor calificacion calificaciones nota notas estadistica marketing
     formacion experiencia proyecto proyectos empresa trabajo puesto rol
+    tfm tfg ai ia ml bi etl ux ui kpi kpis crm b2b b2c
     """.split()
 )
+
+# A denial, in either language, on accent-folded text. "Doesn't" is written
+# with a straight or a curly apostrophe, and the model uses both.
+_DENIAL = re.compile(
+    r"\b(?:no|not|never|neither|nor|without|none|nunca|ni|sin|tampoco|ningun|ninguna|ninguno)\b"
+    r"|n['’]t\b"
+)
+
+# "APIs", "KPIs", "LLMs": an acronym's plural is supported when the acronym is.
+_ACRONYM_PLURAL = re.compile(r"^[A-Z0-9]{2,}s$")
 
 
 def _fold(text: str) -> str:
@@ -101,17 +120,32 @@ class GroundingResult:
     unsupported: list[str] = field(default_factory=list)
 
 
+def _sentences(text: str) -> list[str]:
+    """Sentences and list items, with leading markdown removed."""
+    fragments = (_LINE_PREFIX.sub("", f.strip()) for f in re.split(r"(?<=[.!?:;])\s+|\n+", text))
+    return [f for f in fragments if f]
+
+
 def _sentence_initial_terms(text: str) -> set[str]:
     """Words capitalised only because they open a sentence or a list item."""
     initials: set[str] = set()
-    for fragment in re.split(r"(?<=[.!?:;])\s+|\n+|^\s*[-*]\s*", text, flags=re.MULTILINE):
-        fragment = fragment.strip()
-        if not fragment:
-            continue
+    for fragment in _sentences(text):
         match = re.match(r"[A-Z][\w&+-]*", fragment)
         if match:
             initials.add(_fold(match.group(0)))
     return initials
+
+
+def _only_denied(term: str, text: str) -> bool:
+    """True when every sentence that names `term` is a denial.
+
+    Asked "Has he used Kubernetes?", the right answer names Kubernetes to say
+    he has not. Without this, that sentence was dropped as a fabrication and
+    the visitor got the sentence after it with no answer in front.
+    """
+    folded = _fold(term)
+    naming = [s for s in (_fold(s) for s in _sentences(text)) if folded in s]
+    return bool(naming) and all(_DENIAL.search(s) for s in naming)
 
 
 def extract_candidate_entities(text: str) -> list[str]:
@@ -155,8 +189,12 @@ def check_answer(
     retrieved_texts: list[str],
     vocabulary: frozenset[str],
     language: str = "en",
+    question: str = "",
 ) -> GroundingResult:
     """Flag entities in `answer` supported by neither the context nor the profile.
+
+    A term the visitor wrote in `question` is allowed only where the answer
+    denies it ("there is no record of Kubernetes"), never where it asserts it.
 
     Returns ok when the vocabulary is empty: a failed vocabulary load should
     degrade to permissive rather than reject every answer the service produces.
@@ -166,12 +204,31 @@ def check_answer(
 
     haystack = _fold(" ".join(retrieved_texts))
     allowed = {_fold(term) for term in vocabulary}
+    asked = _fold(question)
+    initials = _sentence_initial_terms(answer)
     translated = language != "en"
+
+    def supported(term: str) -> bool:
+        folded = _fold(term)
+        if folded in allowed or folded in haystack:
+            return True
+        return bool(_ACRONYM_PLURAL.match(term)) and supported(term[:-1])
 
     unsupported: list[str] = []
     for term in extract_candidate_entities(answer):
+        if supported(term):
+            continue
+
+        # "Creating ETL": the opener of a sentence was glued to the name after
+        # it. Judge the name alone.
+        first, _, rest = term.partition(" ")
+        if rest and _fold(first) in initials:
+            term = rest
+            if supported(term):
+                continue
+
         folded = _fold(term)
-        if folded in allowed or folded in haystack:
+        if asked and folded in asked and _only_denied(term, answer):
             continue
 
         # In a translated answer, a multiword capitalised phrase is almost always
