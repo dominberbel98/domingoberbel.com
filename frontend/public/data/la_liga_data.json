@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T18:12:14.027259+00:00",
+  "updatedAt": "2026-10-21T19:48:06.080947+00:00",
   "season": "2026",
   "matchday": 9,
   "seasonStart": "2026-08-16",
@@ -446,9 +446,9 @@
       "awayId": 77,
       "awayName": "Athletic",
       "awayCrest": "https://sportsrc.org/img/score/77.png",
-      "homeGoals": 0,
-      "awayGoals": 0,
-      "winner": "DRAW",
+      "homeGoals": 2,
+      "awayGoals": 1,
+      "winner": "HOME_TEAM",
       "live": true
     },
     {
