@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T13:06:48.466263+00:00",
+  "updatedAt": "2026-10-21T18:12:14.027259+00:00",
   "season": "2026",
   "matchday": 9,
   "seasonStart": "2026-08-16",
@@ -435,6 +435,22 @@
     }
   ],
   "results": [
+    {
+      "id": 564685,
+      "utcDate": "2026-10-21T18:00:00Z",
+      "status": "IN_PLAY",
+      "matchday": 6,
+      "homeId": 88,
+      "homeName": "Levante",
+      "homeCrest": "https://sportsrc.org/img/score/88.png",
+      "awayId": 77,
+      "awayName": "Athletic",
+      "awayCrest": "https://sportsrc.org/img/score/77.png",
+      "homeGoals": 0,
+      "awayGoals": 0,
+      "winner": "DRAW",
+      "live": true
+    },
     {
       "id": 564717,
       "utcDate": "2026-10-19T19:00:00Z",
@@ -930,22 +946,6 @@
       "awayGoals": 0,
       "winner": "HOME_TEAM",
       "live": false
-    },
-    {
-      "id": 564685,
-      "utcDate": "2026-09-16T19:30:00Z",
-      "status": "IN_PLAY",
-      "matchday": 6,
-      "homeId": 88,
-      "homeName": "Levante",
-      "homeCrest": "https://sportsrc.org/img/score/88.png",
-      "awayId": 77,
-      "awayName": "Athletic",
-      "awayCrest": "https://sportsrc.org/img/score/77.png",
-      "homeGoals": 0,
-      "awayGoals": 0,
-      "winner": "DRAW",
-      "live": true
     },
     {
       "id": 564687,
