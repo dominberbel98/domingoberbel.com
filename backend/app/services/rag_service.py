@@ -419,6 +419,9 @@ _EN_RAW = frozenset({
     "resume", "degree", "education", "projects", "achievements", "languages",
     "strong", "weak", "work", "works", "worked", "studied", "speak", "speaks",
     "know", "knows", "use", "used", "uses", "start", "join",
+    # Greetings and courtesies: "hola" on the English site got the English
+    # greeting, because the greeting fast path answers before any model call.
+    "hello", "hi", "hey", "good", "morning", "afternoon", "evening", "thanks", "thank",
 })
 _ES_RAW = frozenset({
     "el", "la", "los", "las", "un", "una", "unos", "unas", "lo", "al", "del",
@@ -439,6 +442,7 @@ _ES_RAW = frozenset({
     "certificados", "carrera", "idioma", "trabajó", "estudió", "hizo",
     "conoce", "domina", "maneja", "usa", "utiliza", "puede", "podría", "ya",
     "incorporarse", "incorporación",
+    "hola", "buenas", "buenos", "dias", "días", "tardes", "noches", "gracias", "saludos",
 })
 
 # A token that means something in both languages is evidence for neither.

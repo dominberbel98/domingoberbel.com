@@ -107,6 +107,17 @@ def test_marker_sets_share_no_token():
     assert not (_ENGLISH_MARKERS & _SPANISH_MARKERS)
 
 
+@pytest.mark.parametrize("greeting,expected", [
+    ("hola", "es"), ("Hola!", "es"), ("buenas", "es"), ("buenas tardes", "es"), ("buenos dias", "es"),
+    ("hello", "en"), ("hi", "en"), ("Hey!", "en"), ("good afternoon", "en"),
+])
+@pytest.mark.parametrize("site", ["es", "en"])
+def test_a_greeting_is_answered_in_its_own_language(greeting, expected, site):
+    """The greeting fast path answers before any model call, so the heuristic is
+    the only judge: 'hola' on the English site got the English greeting."""
+    assert resolve_language(greeting, [], requested=site) == expected
+
+
 class TestResolveLanguage:
     """Precedence: the language the question is written in beats the site switch.
 
