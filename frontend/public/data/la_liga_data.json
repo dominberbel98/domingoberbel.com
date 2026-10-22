@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T21:55:11.046335+00:00",
+  "updatedAt": "2026-10-22T00:30:38.758696+00:00",
   "season": "2026",
   "matchday": 9,
   "seasonStart": "2026-08-16",
@@ -226,7 +226,7 @@
     {
       "position": 11,
       "playedGames": 9,
-      "form": "DDLLD",
+      "form": "WDDLL",
       "won": 2,
       "draw": 4,
       "lost": 3,
@@ -268,7 +268,7 @@
     {
       "position": 13,
       "playedGames": 8,
-      "form": "DDDWW",
+      "form": "LDDDW",
       "won": 2,
       "draw": 3,
       "lost": 3,
@@ -438,7 +438,7 @@
     {
       "id": 564685,
       "utcDate": "2026-10-21T18:00:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": 6,
       "homeId": 88,
       "homeName": "Levante",
@@ -446,10 +446,10 @@
       "awayId": 77,
       "awayName": "Athletic",
       "awayCrest": "https://sportsrc.org/img/score/77.png",
-      "homeGoals": 2,
+      "homeGoals": 3,
       "awayGoals": 1,
       "winner": "HOME_TEAM",
-      "live": true
+      "live": false
     },
     {
       "id": 564717,
@@ -1862,11 +1862,11 @@
   ],
   "fixtures": [
     {
-      "id": "ppv-alav-s-vs-m-laga",
+      "id": "deportivo-alav-s-vs-m-laga-2506265",
       "homeName": "Alavés",
       "awayName": "Málaga",
       "kickoff": 1792782000000,
-      "title": "Alavés vs. Málaga"
+      "title": "Deportivo Alavés vs Málaga"
     },
     {
       "id": "ppv-rayo-vallecano-vs-elche",
