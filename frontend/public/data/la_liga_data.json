@@ -1,12 +1,12 @@
 {
-  "updatedAt": "2026-10-22T05:18:08.907502+00:00",
+  "updatedAt": "2026-10-22T10:29:58.953009+00:00",
   "season": "2026",
-  "matchday": 9,
+  "matchday": 10,
   "seasonStart": "2026-08-16",
   "seasonEnd": "2027-05-30",
   "state": {
     "phase": "in_progress",
-    "matchday": 9,
+    "matchday": 10,
     "matchesPlayed": 89,
     "maxGamesPlayed": 9,
     "totalMatchdays": 38,
