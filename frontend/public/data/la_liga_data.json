@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-22T23:05:32.194570+00:00",
+  "updatedAt": "2026-10-23T01:47:39.539098+00:00",
   "season": "2026",
   "matchday": 10,
   "seasonStart": "2026-08-16",
@@ -1869,32 +1869,32 @@
       "title": "Deportivo Alavés vs Málaga"
     },
     {
-      "id": "ppv-rayo-vallecano-vs-elche",
+      "id": "rayo-vallecano-vs-elche-2506267",
       "homeName": "Rayo Vallecano",
       "awayName": "Elche",
       "kickoff": 1792843200000,
-      "title": "Rayo Vallecano vs. Elche"
+      "title": "Rayo Vallecano vs Elche"
     },
     {
-      "id": "ppv-racing-santander-vs-espanyol",
+      "id": "racing-de-santander-vs-espanyol-2506268",
       "homeName": "Santander",
       "awayName": "Espanyol",
       "kickoff": 1792851300000,
-      "title": "Racing Santander vs. Espanyol"
+      "title": "Racing de Santander vs Espanyol"
     },
     {
-      "id": "ppv-valencia-vs-villarreal",
+      "id": "valencia-vs-villarreal-2506262",
       "homeName": "Valencia",
       "awayName": "Villarreal",
       "kickoff": 1792859400000,
-      "title": "Valencia vs. Villarreal"
+      "title": "Valencia vs Villarreal"
     },
     {
-      "id": "ppv-atl-tico-madrid-vs-deportivo",
+      "id": "atl-tico-madrid-vs-deportivo-de-a-coru-a-2506260",
       "homeName": "Atleti",
       "awayName": "Deportivo",
       "kickoff": 1792868400000,
-      "title": "Atlético Madrid vs. Deportivo"
+      "title": "Atlético Madrid vs Deportivo de A Coruña"
     },
     {
       "id": "ppv-athletic-club-vs-getafe",
