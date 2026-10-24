@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-24T19:20:11.653007+00:00",
+  "updatedAt": "2026-10-24T21:47:42.465490+00:00",
   "season": "2026",
   "matchday": 10,
   "seasonStart": "2026-08-16",
@@ -7,7 +7,7 @@
   "state": {
     "phase": "in_progress",
     "matchday": 10,
-    "matchesPlayed": 93,
+    "matchesPlayed": 94,
     "maxGamesPlayed": 10,
     "totalMatchdays": 38,
     "lowConfidence": false
@@ -36,24 +36,24 @@
     },
     {
       "position": 2,
-      "playedGames": 9,
+      "playedGames": 10,
       "form": "WWWWW",
-      "won": 7,
+      "won": 8,
       "draw": 1,
       "lost": 1,
-      "points": 22,
-      "goalsFor": 19,
+      "points": 25,
+      "goalsFor": 20,
       "goalsAgainst": 8,
-      "goalDifference": 11,
+      "goalDifference": 12,
       "teamId": 78,
       "teamName": "Club Atlético de Madrid",
       "teamShortName": "Atleti",
       "teamCrest": "https://sportsrc.org/img/score/78.png",
       "apiPosition": 2,
       "zone": "champions",
-      "winRate": 77.8,
-      "drawRate": 11.1,
-      "lossRate": 11.1
+      "winRate": 80.0,
+      "drawRate": 10.0,
+      "lossRate": 10.0
     },
     {
       "position": 3,
@@ -204,24 +204,24 @@
     },
     {
       "position": 10,
-      "playedGames": 9,
+      "playedGames": 10,
       "form": "DLDLD",
       "won": 2,
       "draw": 5,
-      "lost": 2,
+      "lost": 3,
       "points": 11,
       "goalsFor": 13,
-      "goalsAgainst": 12,
-      "goalDifference": 1,
+      "goalsAgainst": 13,
+      "goalDifference": 0,
       "teamId": 560,
       "teamName": "RC Deportivo La Coruña",
       "teamShortName": "Deportivo",
       "teamCrest": "https://sportsrc.org/img/score/560.png",
       "apiPosition": 10,
       "zone": "mid",
-      "winRate": 22.2,
-      "drawRate": 55.6,
-      "lossRate": 22.2
+      "winRate": 20.0,
+      "drawRate": 50.0,
+      "lossRate": 30.0
     },
     {
       "position": 11,
@@ -1893,13 +1893,6 @@
     }
   ],
   "fixtures": [
-    {
-      "id": "atl-tico-madrid-vs-deportivo-de-a-coru-a-2506260",
-      "homeName": "Atleti",
-      "awayName": "Deportivo",
-      "kickoff": 1792868400000,
-      "title": "Atlético Madrid vs Deportivo de A Coruña"
-    },
     {
       "id": "athletic-bilbao-vs-getafe-2506261",
       "homeName": "Athletic",
