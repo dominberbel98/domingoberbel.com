@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-24T21:47:42.465490+00:00",
+  "updatedAt": "2026-10-25T00:07:19.966259+00:00",
   "season": "2026",
   "matchday": 10,
   "seasonStart": "2026-08-16",
@@ -1922,11 +1922,11 @@
       "title": "Barcelona vs Real Madrid"
     },
     {
-      "id": "ppv-sevilla-vs-osasuna",
+      "id": "sevilla-vs-osasuna-2506263",
       "homeName": "Sevilla FC",
       "awayName": "Osasuna",
       "kickoff": 1793044800000,
-      "title": "Sevilla vs. Osasuna"
+      "title": "Sevilla vs Osasuna"
     }
   ]
 }
