@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-25T18:15:52.653679+00:00",
+  "updatedAt": "2026-10-25T21:08:09.089108+00:00",
   "season": "2026",
   "matchday": 10,
   "seasonStart": "2026-08-16",
@@ -7,7 +7,7 @@
   "state": {
     "phase": "in_progress",
     "matchday": 10,
-    "matchesPlayed": 97,
+    "matchesPlayed": 98,
     "maxGamesPlayed": 10,
     "totalMatchdays": 38,
     "lowConfidence": false
@@ -15,24 +15,24 @@
   "standings": [
     {
       "position": 1,
-      "playedGames": 9,
+      "playedGames": 10,
       "form": "WWWWW",
       "won": 9,
       "draw": 0,
-      "lost": 0,
+      "lost": 1,
       "points": 27,
       "goalsFor": 39,
-      "goalsAgainst": 9,
-      "goalDifference": 30,
+      "goalsAgainst": 10,
+      "goalDifference": 29,
       "teamId": 81,
       "teamName": "FC Barcelona",
       "teamShortName": "Barça",
       "teamCrest": "https://sportsrc.org/img/score/81.png",
       "apiPosition": 1,
       "zone": "champions",
-      "winRate": 100.0,
+      "winRate": 90.0,
       "drawRate": 0.0,
-      "lossRate": 0.0
+      "lossRate": 10.0
     },
     {
       "position": 2,
@@ -57,24 +57,24 @@
     },
     {
       "position": 3,
-      "playedGames": 9,
+      "playedGames": 10,
       "form": "WWLWW",
-      "won": 7,
+      "won": 8,
       "draw": 0,
       "lost": 2,
-      "points": 21,
-      "goalsFor": 23,
+      "points": 24,
+      "goalsFor": 24,
       "goalsAgainst": 9,
-      "goalDifference": 14,
+      "goalDifference": 15,
       "teamId": 86,
       "teamName": "Real Madrid CF",
       "teamShortName": "Real Madrid",
       "teamCrest": "https://sportsrc.org/img/score/86.png",
       "apiPosition": 3,
       "zone": "champions",
-      "winRate": 77.8,
+      "winRate": 80.0,
       "drawRate": 0.0,
-      "lossRate": 22.2
+      "lossRate": 20.0
     },
     {
       "position": 4,
@@ -105,8 +105,8 @@
       "draw": 1,
       "lost": 3,
       "points": 19,
-      "goalsFor": 18,
-      "goalsAgainst": 17,
+      "goalsFor": 19,
+      "goalsAgainst": 18,
       "goalDifference": 1,
       "teamId": 92,
       "teamName": "Real Sociedad de Fútbol",
@@ -294,8 +294,8 @@
       "draw": 4,
       "lost": 4,
       "points": 10,
-      "goalsFor": 15,
-      "goalsAgainst": 18,
+      "goalsFor": 16,
+      "goalsAgainst": 19,
       "goalDifference": -3,
       "teamId": 88,
       "teamName": "Levante UD",
@@ -435,6 +435,22 @@
     }
   ],
   "results": [
+    {
+      "id": 564723,
+      "utcDate": "2026-10-25T20:00:00Z",
+      "status": "IN_PLAY",
+      "matchday": 10,
+      "homeId": 81,
+      "homeName": "Barça",
+      "homeCrest": "https://sportsrc.org/img/score/81.png",
+      "awayId": 86,
+      "awayName": "Real Madrid",
+      "awayCrest": "https://sportsrc.org/img/score/86.png",
+      "homeGoals": 0,
+      "awayGoals": 1,
+      "winner": "AWAY_TEAM",
+      "live": true
+    },
     {
       "id": 564726,
       "utcDate": "2026-10-25T17:30:00Z",
@@ -1973,13 +1989,6 @@
     }
   ],
   "fixtures": [
-    {
-      "id": "real-sociedad-vs-levante-2506266",
-      "homeName": "Real Sociedad",
-      "awayName": "Levante",
-      "kickoff": 1792949400000,
-      "title": "Real Sociedad vs Levante"
-    },
     {
       "id": "barcelona-vs-real-madrid-2506259",
       "homeName": "Barça",
