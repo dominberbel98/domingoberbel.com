@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-26T14:59:08.612670+00:00",
+  "updatedAt": "2026-10-26T20:26:00.976109+00:00",
   "season": "2026",
   "matchday": 10,
   "seasonStart": "2026-08-16",
@@ -435,6 +435,22 @@
     }
   ],
   "results": [
+    {
+      "id": 564721,
+      "utcDate": "2026-10-26T20:00:00Z",
+      "status": "IN_PLAY",
+      "matchday": 10,
+      "homeId": 559,
+      "homeName": "Sevilla FC",
+      "homeCrest": "https://sportsrc.org/img/score/559.png",
+      "awayId": 79,
+      "awayName": "Osasuna",
+      "awayCrest": "https://sportsrc.org/img/score/79.png",
+      "homeGoals": 0,
+      "awayGoals": 0,
+      "winner": "DRAW",
+      "live": true
+    },
     {
       "id": 564723,
       "utcDate": "2026-10-25T20:00:00Z",
