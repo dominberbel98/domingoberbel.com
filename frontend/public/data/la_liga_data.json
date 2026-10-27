@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-26T20:26:00.976109+00:00",
+  "updatedAt": "2026-10-27T00:01:53.061403+00:00",
   "season": "2026",
   "matchday": 10,
   "seasonStart": "2026-08-16",
@@ -7,7 +7,7 @@
   "state": {
     "phase": "in_progress",
     "matchday": 10,
-    "matchesPlayed": 98,
+    "matchesPlayed": 99,
     "maxGamesPlayed": 10,
     "totalMatchdays": 38,
     "lowConfidence": false
@@ -120,24 +120,24 @@
     },
     {
       "position": 6,
-      "playedGames": 9,
+      "playedGames": 10,
       "form": "LDLWW",
-      "won": 4,
+      "won": 5,
       "draw": 2,
       "lost": 3,
-      "points": 14,
-      "goalsFor": 14,
+      "points": 17,
+      "goalsFor": 16,
       "goalsAgainst": 16,
-      "goalDifference": -2,
+      "goalDifference": 0,
       "teamId": 559,
       "teamName": "Sevilla FC",
       "teamShortName": "Sevilla FC",
       "teamCrest": "https://sportsrc.org/img/score/559.png",
       "apiPosition": 6,
       "zone": "europa",
-      "winRate": 44.4,
-      "drawRate": 22.2,
-      "lossRate": 33.3
+      "winRate": 50.0,
+      "drawRate": 20.0,
+      "lossRate": 30.0
     },
     {
       "position": 7,
@@ -246,24 +246,24 @@
     },
     {
       "position": 12,
-      "playedGames": 9,
+      "playedGames": 10,
       "form": "WLDLL",
       "won": 3,
       "draw": 2,
-      "lost": 4,
+      "lost": 5,
       "points": 11,
       "goalsFor": 10,
-      "goalsAgainst": 18,
-      "goalDifference": -8,
+      "goalsAgainst": 20,
+      "goalDifference": -10,
       "teamId": 79,
       "teamName": "CA Osasuna",
       "teamShortName": "Osasuna",
       "teamCrest": "https://sportsrc.org/img/score/79.png",
       "apiPosition": 12,
       "zone": "mid",
-      "winRate": 33.3,
-      "drawRate": 22.2,
-      "lossRate": 44.4
+      "winRate": 30.0,
+      "drawRate": 20.0,
+      "lossRate": 50.0
     },
     {
       "position": 13,
@@ -2021,13 +2021,6 @@
     }
   ],
   "fixtures": [
-    {
-      "id": "sevilla-vs-osasuna-2506263",
-      "homeName": "Sevilla FC",
-      "awayName": "Osasuna",
-      "kickoff": 1793044800000,
-      "title": "Sevilla vs Osasuna"
-    },
     {
       "id": "ppv-villarreal-vs-espanyol",
       "homeName": "Villarreal",
