@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-27T00:01:53.061403+00:00",
+  "updatedAt": "2026-10-27T05:26:33.111533+00:00",
   "season": "2026",
   "matchday": 10,
   "seasonStart": "2026-08-16",
@@ -121,7 +121,7 @@
     {
       "position": 6,
       "playedGames": 10,
-      "form": "LDLWW",
+      "form": "WLDLW",
       "won": 5,
       "draw": 2,
       "lost": 3,
@@ -247,7 +247,7 @@
     {
       "position": 12,
       "playedGames": 10,
-      "form": "WLDLL",
+      "form": "LWLDL",
       "won": 3,
       "draw": 2,
       "lost": 5,
@@ -438,7 +438,7 @@
     {
       "id": 564721,
       "utcDate": "2026-10-26T20:00:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": 10,
       "homeId": 559,
       "homeName": "Sevilla FC",
@@ -446,10 +446,10 @@
       "awayId": 79,
       "awayName": "Osasuna",
       "awayCrest": "https://sportsrc.org/img/score/79.png",
-      "homeGoals": 0,
+      "homeGoals": 2,
       "awayGoals": 0,
-      "winner": "DRAW",
-      "live": true
+      "winner": "HOME_TEAM",
+      "live": false
     },
     {
       "id": 564723,
