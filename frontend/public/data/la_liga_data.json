@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-30T23:58:43.183934+00:00",
+  "updatedAt": "2026-10-31T05:20:19.696266+00:00",
   "season": "2026",
   "matchday": 11,
   "seasonStart": "2026-08-16",
@@ -205,7 +205,7 @@
     {
       "position": 10,
       "playedGames": 11,
-      "form": "WDLWW",
+      "form": "LWDLW",
       "won": 3,
       "draw": 3,
       "lost": 5,
@@ -247,7 +247,7 @@
     {
       "position": 12,
       "playedGames": 11,
-      "form": "LLDLL",
+      "form": "WLLDL",
       "won": 3,
       "draw": 2,
       "lost": 6,
@@ -435,6 +435,22 @@
     }
   ],
   "results": [
+    {
+      "id": 564737,
+      "utcDate": "2026-10-30T20:00:00Z",
+      "status": "FINISHED",
+      "matchday": 11,
+      "homeId": 94,
+      "homeName": "Villarreal",
+      "homeCrest": "https://sportsrc.org/img/score/94.png",
+      "awayId": 80,
+      "awayName": "Espanyol",
+      "awayCrest": "https://sportsrc.org/img/score/80.png",
+      "homeGoals": 0,
+      "awayGoals": 1,
+      "winner": "AWAY_TEAM",
+      "live": false
+    },
     {
       "id": 564721,
       "utcDate": "2026-10-26T20:00:00Z",
