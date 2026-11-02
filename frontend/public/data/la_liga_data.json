@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-01T21:51:53.178971+00:00",
+  "updatedAt": "2026-11-02T01:22:54.058103+00:00",
   "season": "2026",
   "matchday": 11,
   "seasonStart": "2026-08-16",
@@ -58,7 +58,7 @@
     {
       "position": 3,
       "playedGames": 11,
-      "form": "WWWLW",
+      "form": "WWWWL",
       "won": 9,
       "draw": 0,
       "lost": 2,
@@ -100,7 +100,7 @@
     {
       "position": 5,
       "playedGames": 11,
-      "form": "WWWWL",
+      "form": "LWWWW",
       "won": 6,
       "draw": 1,
       "lost": 4,
@@ -121,7 +121,7 @@
     {
       "position": 6,
       "playedGames": 11,
-      "form": "WLDLW",
+      "form": "LWLDL",
       "won": 5,
       "draw": 2,
       "lost": 4,
@@ -142,7 +142,7 @@
     {
       "position": 7,
       "playedGames": 10,
-      "form": "WLDDD",
+      "form": "WWLDD",
       "won": 4,
       "draw": 3,
       "lost": 3,
@@ -247,7 +247,7 @@
     {
       "position": 12,
       "playedGames": 11,
-      "form": "LDLWL",
+      "form": "WLDLW",
       "won": 3,
       "draw": 3,
       "lost": 5,
@@ -331,7 +331,7 @@
     {
       "position": 16,
       "playedGames": 11,
-      "form": "WLDLL",
+      "form": "LWLDL",
       "won": 3,
       "draw": 2,
       "lost": 6,
@@ -352,7 +352,7 @@
     {
       "position": 17,
       "playedGames": 11,
-      "form": "WDDWL",
+      "form": "LWDDW",
       "won": 2,
       "draw": 4,
       "lost": 5,
@@ -394,7 +394,7 @@
     {
       "position": 19,
       "playedGames": 11,
-      "form": "LDDLW",
+      "form": "WLDDL",
       "won": 2,
       "draw": 3,
       "lost": 6,
@@ -436,9 +436,25 @@
   ],
   "results": [
     {
+      "id": 564729,
+      "utcDate": "2026-11-01T20:00:00Z",
+      "status": "FINISHED",
+      "matchday": 11,
+      "homeId": 77,
+      "homeName": "Athletic",
+      "homeCrest": "https://sportsrc.org/img/score/77.png",
+      "awayId": 92,
+      "awayName": "Real Sociedad",
+      "awayCrest": "https://sportsrc.org/img/score/92.png",
+      "homeGoals": 2,
+      "awayGoals": 1,
+      "winner": "HOME_TEAM",
+      "live": false
+    },
+    {
       "id": 564728,
       "utcDate": "2026-11-01T17:30:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "matchday": 11,
       "homeId": 285,
       "homeName": "Elche",
@@ -447,9 +463,41 @@
       "awayName": "Valencia",
       "awayCrest": "https://sportsrc.org/img/score/95.png",
       "homeGoals": 0,
-      "awayGoals": 0,
-      "winner": "DRAW",
-      "live": true
+      "awayGoals": 1,
+      "winner": "AWAY_TEAM",
+      "live": false
+    },
+    {
+      "id": 564734,
+      "utcDate": "2026-11-01T15:15:00Z",
+      "status": "FINISHED",
+      "matchday": 11,
+      "homeId": 5335,
+      "homeName": "Santander",
+      "homeCrest": "https://sportsrc.org/img/score/5335.png",
+      "awayId": 86,
+      "awayName": "Real Madrid",
+      "awayCrest": "https://sportsrc.org/img/score/86.png",
+      "homeGoals": 0,
+      "awayGoals": 3,
+      "winner": "AWAY_TEAM",
+      "live": false
+    },
+    {
+      "id": 564733,
+      "utcDate": "2026-11-01T13:00:00Z",
+      "status": "FINISHED",
+      "matchday": 11,
+      "homeId": 82,
+      "homeName": "Getafe",
+      "homeCrest": "https://sportsrc.org/img/score/82.png",
+      "awayId": 559,
+      "awayName": "Sevilla FC",
+      "awayCrest": "https://sportsrc.org/img/score/559.png",
+      "homeGoals": 3,
+      "awayGoals": 1,
+      "winner": "HOME_TEAM",
+      "live": false
     },
     {
       "id": 564732,
