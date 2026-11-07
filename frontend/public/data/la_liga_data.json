@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-07T06:55:05.878345+00:00",
+  "updatedAt": "2026-11-07T13:49:40.561000+00:00",
   "season": "2026",
   "matchday": 12,
   "seasonStart": "2026-08-16",
@@ -7,7 +7,7 @@
   "state": {
     "phase": "in_progress",
     "matchday": 12,
-    "matchesPlayed": 110,
+    "matchesPlayed": 111,
     "maxGamesPlayed": 12,
     "totalMatchdays": 38,
     "lowConfidence": false
@@ -330,24 +330,24 @@
     },
     {
       "position": 16,
-      "playedGames": 11,
+      "playedGames": 12,
       "form": "LWLDL",
       "won": 3,
       "draw": 2,
-      "lost": 6,
+      "lost": 7,
       "points": 11,
       "goalsFor": 15,
-      "goalsAgainst": 29,
-      "goalDifference": -14,
+      "goalsAgainst": 30,
+      "goalDifference": -15,
       "teamId": 5335,
       "teamName": "Real Racing Club de Santander",
       "teamShortName": "Santander",
       "teamCrest": "https://sportsrc.org/img/score/5335.png",
       "apiPosition": 16,
       "zone": "mid",
-      "winRate": 27.3,
-      "drawRate": 18.2,
-      "lossRate": 54.5
+      "winRate": 25.0,
+      "drawRate": 16.7,
+      "lossRate": 58.3
     },
     {
       "position": 17,
@@ -414,24 +414,24 @@
     },
     {
       "position": 20,
-      "playedGames": 11,
+      "playedGames": 12,
       "form": "LDLDL",
-      "won": 0,
+      "won": 1,
       "draw": 5,
       "lost": 6,
-      "points": 5,
-      "goalsFor": 8,
+      "points": 8,
+      "goalsFor": 9,
       "goalsAgainst": 21,
-      "goalDifference": -13,
+      "goalDifference": -12,
       "teamId": 84,
       "teamName": "Málaga CF",
       "teamShortName": "Málaga",
       "teamCrest": "https://sportsrc.org/img/score/84.png",
       "apiPosition": 20,
       "zone": "relegation",
-      "winRate": 0.0,
-      "drawRate": 45.5,
-      "lossRate": 54.5
+      "winRate": 8.3,
+      "drawRate": 41.7,
+      "lossRate": 50.0
     }
   ],
   "results": [
