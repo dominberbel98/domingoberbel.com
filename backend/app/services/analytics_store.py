@@ -1,11 +1,50 @@
 from __future__ import annotations
 
 import json
+import logging
 import sqlite3
+import sys
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
 from threading import Lock
+
+logger = logging.getLogger(__name__)
+
+# ── Durable question log ────────────────────────────────────────────────────
+# The SQLite and JSON files below live under /tmp, which belongs to the
+# container: every deploy, restart or scale event starts from an empty log. The
+# admin endpoints kept answering 200 with zero items and whatever was asked
+# between two runs of `descargar_preguntas` was lost.
+#
+# Each question is therefore also written to stdout as one `QA_LOG {json}`
+# line. Azure Container Apps already ships the container's console output to
+# the environment's Log Analytics workspace, so the line outlives the
+# container at no extra cost and with no new resource (the workspace keeps it
+# for its retention period, 30 days by default). `scripts/sync_preguntas.py`
+# reads those lines back and merges them into preguntas.json.
+#
+# Written with print rather than through `logging`, so the line has a fixed
+# shape and reaches stdout whatever the root logger's level or format is.
+QA_LOG_PREFIX = "QA_LOG "
+
+# The container runtime splits console lines longer than 16 KB, which would
+# break the JSON. An answer is a few hundred words; this cap is only a guard.
+_QA_LOG_MAX_ANSWER_CHARS = 6000
+
+
+def emit_qa_log(entry: dict[str, str | bool]) -> None:
+    """Write one question/answer pair to stdout. Never raises."""
+    try:
+        record = dict(entry)
+        answer = str(record.get("answer") or "")
+        if len(answer) > _QA_LOG_MAX_ANSWER_CHARS:
+            record["answer"] = answer[:_QA_LOG_MAX_ANSWER_CHARS] + "…"
+        # One physical line: json.dumps escapes the newlines inside the answer.
+        print(QA_LOG_PREFIX + json.dumps(record, ensure_ascii=False),
+              file=sys.stdout, flush=True)
+    except Exception as exc:  # a logging problem must never break a chat answer
+        logger.error("Failed to emit QA_LOG line: %s", exc)
 
 
 @dataclass
@@ -78,6 +117,9 @@ class AnalyticsStore:
             "answer": answer_preview,
             "out_of_scope": bool(out_of_scope),
         }
+        # First, and outside the lock: this is the copy that survives.
+        emit_qa_log(log_entry)
+
         with self._lock:
             with self._connect() as conn:
                 conn.execute(
@@ -120,8 +162,7 @@ class AnalyticsStore:
                 encoding="utf-8",
             )
         except Exception as e:
-            import logging
-            logging.getLogger(__name__).error("Failed to append analytics entry: %s", e)
+            logger.error("Failed to append analytics entry: %s", e)
 
     def get_json_logs(self, limit: int = 200) -> list[dict[str, str | bool]]:
         with self._lock:
