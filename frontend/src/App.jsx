@@ -1,13 +1,16 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { Suspense, lazy, useEffect, useMemo, useState } from "react";
 import Chat from "./components/Chat";
 import { useLanguage, useT } from "./i18n";
 import { getTelemetry, loadBackendMeta, subscribeTelemetry } from "./lib/telemetry";
-import Visualizaciones from "./components/Visualizaciones";
-import ModelosPredictivos from "./components/ModelosPredictivos";
-import ModelosScoring from "./components/ModelosScoring";
-import ModelosRecomendacion from "./components/ModelosRecomendacion";
-import Certificaciones from "./components/Certificaciones";
-import Futboard from "./components/futboard/Futboard";
+
+// Only the chat is in the first download. Every other section — and the
+// charting library three of them pull in — loads when it is first opened.
+const Visualizaciones = lazy(() => import("./components/Visualizaciones"));
+const ModelosPredictivos = lazy(() => import("./components/ModelosPredictivos"));
+const ModelosScoring = lazy(() => import("./components/ModelosScoring"));
+const ModelosRecomendacion = lazy(() => import("./components/ModelosRecomendacion"));
+const Certificaciones = lazy(() => import("./components/Certificaciones"));
+const Futboard = lazy(() => import("./components/futboard/Futboard"));
 
 const MODEL_IDS = ["prediccion_la_liga", "modelo_scoring", "modelo_recomendation"];
 
@@ -113,7 +116,7 @@ function LanguageSwitch({ language, onChange, label, compact = false }) {
           onClick={() => onChange(code)}
           aria-pressed={language === code}
           className={`font-headline uppercase tracking-widest transition-colors ${
-            compact ? "min-h-[36px] px-2.5 text-[0.82rem]" : "min-h-[38px] px-3 text-[0.88rem]"
+            compact ? "min-h-[44px] min-w-[44px] px-2.5 text-[0.82rem]" : "min-h-[44px] min-w-[44px] px-3 text-[0.88rem]"
           } ${
             language === code
               ? "bg-[#00FF41]/20 text-[#00FF41] font-bold drop-shadow-[0_0_6px_rgba(0,255,65,0.4)]"
@@ -167,20 +170,23 @@ export default function App() {
   const [telemetry, setTelemetryState] = useState(getTelemetry);
   const [mascotVisible, setMascotVisible] = useState(true);
 
-  // On a phone there is no sidebar, so the explainer opens over the page on a
-  // first visit — the one moment a visitor has no idea what they are looking at.
-  // After that it is behind a header button, because being shown it twice is an
-  // obstacle rather than an introduction.
-  const [mascotSheetOpen, setMascotSheetOpen] = useState(() => {
+  // On a phone there is no sidebar, so the explainer lives behind a header
+  // button. It used to open by itself over the whole page on a first visit,
+  // which meant the first thing a visitor saw was a wall of text with the chat
+  // hidden behind it. Now the page is the first thing, and the button carries
+  // a pulsing dot until the explainer has been opened once.
+  const [mascotSheetOpen, setMascotSheetOpen] = useState(false);
+  const [mascotSeen, setMascotSeen] = useState(() => {
     try {
-      return !window.localStorage.getItem(MASCOT_SEEN_KEY);
+      return Boolean(window.localStorage.getItem(MASCOT_SEEN_KEY));
     } catch {
-      return true;
+      return false;
     }
   });
 
   const closeMascotSheet = () => {
     setMascotSheetOpen(false);
+    setMascotSeen(true);
     try {
       window.localStorage.setItem(MASCOT_SEEN_KEY, "1");
     } catch {
@@ -227,21 +233,30 @@ H₀: μ₁=μ₂  α=0.05  tanh(x)  ReLU(x)  softmax(zᵢ)=e^ᶻⁱ/∑e^ᶻʲ 
       </div>
 
       {/* Top App Bar */}
-      <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center gap-2 px-3 sm:px-6 h-14 sm:h-16 bg-[#0e0e0e]/80 backdrop-blur-xl border-b border-[#00FF41]/15 shadow-[0_0_15px_0_rgba(0,255,65,0.15)]">
-        <div className="min-w-0 truncate text-sm sm:text-xl font-bold text-[#00FF41] drop-shadow-[0_0_8px_rgba(0,255,65,0.4)] font-headline tracking-tighter">
-          {tr.app.brand}
+      <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center gap-1.5 sm:gap-2 px-3 sm:px-6 h-14 sm:h-16 bg-[#0e0e0e]/80 backdrop-blur-xl border-b border-[#00FF41]/15 shadow-[0_0_15px_0_rgba(0,255,65,0.15)]">
+        {/* On a phone the owner's name takes the brand's place: the name is on
+            the right of the bar on desktop, and there is no room for both here. */}
+        <div className="min-w-0 truncate text-[0.95rem] sm:text-xl font-bold text-[#00FF41] drop-shadow-[0_0_8px_rgba(0,255,65,0.4)] font-headline tracking-tight md:tracking-tighter">
+          <span className="md:hidden">{tr.app.owner}</span>
+          <span className="hidden md:inline">{tr.app.brand}</span>
         </div>
 
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           {/* Explainer, mobile only — the desktop sidebar has it docked. */}
           <button
             type="button"
             onClick={() => setMascotSheetOpen(true)}
             aria-label={tr.app.mascotOpen}
             title={tr.app.mascotOpen}
-            className="md:hidden w-10 h-10 flex items-center justify-center rounded border border-[#00FF41]/30 text-[#00FF41] hover:bg-[#00FF41]/10 active:scale-95"
+            className="md:hidden relative w-11 h-11 flex items-center justify-center rounded border border-[#00FF41]/30 text-[#00FF41] hover:bg-[#00FF41]/10 active:scale-95"
           >
             <span className="material-symbols-outlined text-[1.3rem]">smart_toy</span>
+            {!mascotSeen && (
+              <span className="absolute -top-1 -right-1 flex h-3 w-3" aria-hidden="true">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-[#00FF41] opacity-70 motion-safe:animate-ping" />
+                <span className="relative inline-flex h-3 w-3 rounded-full bg-[#00FF41]" />
+              </span>
+            )}
           </button>
 
           <LanguageSwitch
@@ -253,7 +268,7 @@ H₀: μ₁=μ₂  α=0.05  tanh(x)  ReLU(x)  softmax(zᵢ)=e^ᶻⁱ/∑e^ᶻʲ 
 
           {/* Hamburger — mobile only */}
           <button
-            className="md:hidden flex flex-col gap-[5px] p-2 pointer-events-auto"
+            className="md:hidden w-11 h-11 flex flex-col items-center justify-center gap-[5px] pointer-events-auto"
             onClick={() => setMenuOpen((o) => !o)}
             aria-label={tr.app.menuLabel}
           >
@@ -398,13 +413,24 @@ H₀: μ₁=μ₂  α=0.05  tanh(x)  ReLU(x)  softmax(zᵢ)=e^ᶻⁱ/∑e^ᶻʲ 
 
       {/* Main Content */}
       <main className="fixed left-0 md:left-72 top-14 sm:top-16 right-0 bottom-8 overflow-hidden flex flex-col items-center justify-center p-2 sm:p-6 md:p-8 bg-surface">
+        {/* The page's one heading. The visible title of each section is an
+            h2, and the name in the header is decoration inside a banner. */}
+        <h1 className="sr-only">{tr.app.pageHeading}</h1>
         {activeSection === "chat_cv" && <Chat />}
-        {activeSection === "visualizaciones" && <Visualizaciones />}
-        {activeSection === "prediccion_la_liga" && <ModelosPredictivos />}
-        {activeSection === "modelo_scoring" && <ModelosScoring />}
-        {activeSection === "modelo_recomendation" && <ModelosRecomendacion />}
-        {activeSection === "certificaciones" && <Certificaciones />}
-        {activeSection === "futboard" && <Futboard />}
+        <Suspense
+          fallback={
+            <div role="status" className="font-headline uppercase tracking-widest text-[0.85rem] text-[#00FF41]/70 flicker">
+              {tr.app.loadingSection}
+            </div>
+          }
+        >
+          {activeSection === "visualizaciones" && <Visualizaciones />}
+          {activeSection === "prediccion_la_liga" && <ModelosPredictivos />}
+          {activeSection === "modelo_scoring" && <ModelosScoring />}
+          {activeSection === "modelo_recomendation" && <ModelosRecomendacion />}
+          {activeSection === "certificaciones" && <Certificaciones />}
+          {activeSection === "futboard" && <Futboard />}
+        </Suspense>
         {/* Radial glow behind chat */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] z-[-2] pointer-events-none opacity-20">
           <div className="w-full h-full bg-[radial-gradient(circle_at_center,_#00FF4133_0%,_transparent_70%)]" />

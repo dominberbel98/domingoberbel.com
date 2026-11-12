@@ -12,8 +12,15 @@
 
 export const t = {
   // ── Shell ────────────────────────────────────────────────────────────────
+  meta: {
+    title: "Domingo Berbel — Data Scientist | Interactive CV",
+    description:
+      "Interactive professional profile of Domingo Berbel, Data Scientist. Applied and generative AI, retrieval-augmented systems, and data solutions shipped to production.",
+  },
   app: {
     brand: "NEURAL_LINK_DS_V1.0",
+    loadingSection: "Loading…",
+    pageHeading: "Domingo Berbel — Data Scientist",
     owner: "DOMINGO BERBEL",
     workspace: "DS_WORKSPACE",
     session: "SESSION: DATA_EXPLORER",
@@ -92,6 +99,7 @@ export const t = {
     userInput: "USER_INPUT",
     processing: "PROCESSING...",
     placeholder: "ASK ABOUT MODELS, TOOLS, OR EXPERIENCE...",
+    placeholderShort: "Ask about my experience…",
     send: "Send",
     connectionError: "Could not reach the backend.",
 

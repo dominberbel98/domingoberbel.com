@@ -4,10 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>DOMINGO BERBEL | Data Science OS</title>
+    <title>Domingo Berbel — Data Scientist | Interactive CV</title>
     <meta name="description" content="Interactive professional profile of Domingo Berbel, Data Scientist. Applied and generative AI, retrieval-augmented systems, and data solutions shipped to production." />
     <meta name="author" content="Domingo Berbel" />
     <link rel="canonical" href="https://www.domingoberbel.com/" />
+    <!-- One page, two languages. ?lang= is read by src/i18n/index.jsx, so each
+         alternate is a real URL that renders in that language. -->
+    <link rel="alternate" hreflang="en" href="https://www.domingoberbel.com/" />
+    <link rel="alternate" hreflang="es" href="https://www.domingoberbel.com/?lang=es" />
+    <link rel="alternate" hreflang="x-default" href="https://www.domingoberbel.com/" />
+
+    <!-- The apex and www both serve this page. Static Web Apps cannot redirect
+         by host from staticwebapp.config.json, so the apex is sent to the
+         canonical host here, before anything else loads. -->
+    <script>
+      if (location.hostname === "domingoberbel.com") {
+        location.replace("https://www.domingoberbel.com" + location.pathname + location.search + location.hash);
+      }
+    </script>
 
     <!-- Favicons. Generated from the GitHub avatar by scripts/build_social_assets.py. -->
     <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -26,6 +40,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Domingo Berbel" />
     <meta property="og:locale" content="en_GB" />
+    <meta property="og:locale:alternate" content="es_ES" />
     <meta property="og:url" content="https://www.domingoberbel.com/" />
     <meta property="og:title" content="Domingo Berbel — Data Scientist" />
     <meta property="og:description" content="An interactive portfolio you can question directly. Ask the assistant about my experience, or explore live La Liga analytics, a credit scoring model and a product recommender." />
@@ -43,10 +58,65 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <!--
+      Material Symbols, subset to the icons the site uses. The full variable
+      font is several hundred KB for ~80 glyphs. icon_names must stay sorted
+      alphabetically, and an icon missing from it renders as its own name in
+      text: tests/test_frontend_consistency.py checks every icon the code
+      references is listed here.
+    -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=account_tree,add,air,arrow_back,arrow_downward,arrow_upward,backpack,bar_chart,battery_charging_full,blender,chat,check_circle,checklist,close,coffee_maker,credit_score,dashboard,delete,desk,directions_run,done_all,emoji_events,error,event,exercise,expand_more,fitness_center,functions,grid_on,grid_view,groups,headphones,help,history,humidity_indoor,inbox,insights,inventory_2,keyboard,laptop_mac,leaderboard,lightbulb,menu_book,model_training,monitor,monitoring,nutrition,pause,pending,person,person_off,photo_camera,play_arrow,psychology,query_stats,radar,radio_button_unchecked,recommend,refresh,save,scatter_plot,self_improvement,shield,smart_outlet,smart_toy,speaker,sports_soccer,stacked_line_chart,stop,swap_horiz,table_chart,tablet_mac,timer,touch_app,trending_up,trophy,tune,undo,volume_off,volume_up,watch,watch_check,water_drop,workspace_premium&display=block" rel="stylesheet"/>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Domingo Berbel",
+      "jobTitle": "Data Scientist",
+      "url": "https://www.domingoberbel.com/",
+      "image": "https://www.domingoberbel.com/og-card.png",
+      "email": "mailto:info@domingoberbel.com",
+      "worksFor": { "@type": "Organization", "name": "Data Equity" },
+      "alumniOf": { "@type": "CollegeOrUniversity", "name": "Universidad Complutense de Madrid" },
+      "address": { "@type": "PostalAddress", "addressLocality": "Madrid", "addressCountry": "ES" },
+      "knowsAbout": ["Data Science", "Machine Learning", "Retrieval-Augmented Generation", "LLM agents", "Python", "SQL", "PySpark", "Azure", "Power BI"],
+      "knowsLanguage": ["es", "en"],
+      "sameAs": [
+        "https://www.linkedin.com/in/domingo-berbel",
+        "https://github.com/dominberbel98"
+      ]
+    }
+    </script>
   </head>
-  <body>
-    <div id="root"></div>
+  <body style="background:#0e0e0e;margin:0">
+    <!--
+      Real content in the initial HTML. React replaces everything inside #root
+      when it mounts, so a visitor sees this for a moment at most; a crawler or
+      a link-preview bot that does not run JavaScript sees who this is and what
+      the site holds instead of an empty page.
+    -->
+    <div id="root">
+      <main style="max-width:40rem;margin:0 auto;padding:4.5rem 1.25rem;font-family:'Space Grotesk',system-ui,sans-serif;color:#00ec3b;background:#0e0e0e;line-height:1.6">
+        <h1 style="font-size:1.6rem;margin:0 0 .75rem;color:#00ff41">Domingo Berbel — Data Scientist</h1>
+        <p>Data Scientist at Data Equity in Madrid. I ship machine learning, retrieval-augmented generation and LLM agents to production with Python, SQL, PySpark and Azure.</p>
+        <p>This site is a CV you can question. An assistant searches my real career documents and answers from them.</p>
+        <h2 style="font-size:1.1rem;margin:1.5rem 0 .5rem;color:#00ff41">What is here</h2>
+        <ul style="padding-left:1.2rem;margin:0">
+          <li>Chat: ask about my experience, education and projects.</li>
+          <li>Visualisations: the live La Liga table, rebuilt every 30 minutes by a PySpark job.</li>
+          <li>Models: a season forecast, a credit scorecard and a product recommender that run in your browser.</li>
+          <li>Certifications: the verified ones, with what each covers.</li>
+          <li>Futboard: a scoreboard for our Sunday football, on serverless Postgres.</li>
+        </ul>
+        <p style="margin-top:1.5rem">
+          <a style="color:#81ecff" href="https://www.linkedin.com/in/domingo-berbel">LinkedIn</a> ·
+          <a style="color:#81ecff" href="https://github.com/dominberbel98">GitHub</a> ·
+          <a style="color:#81ecff" href="mailto:info@domingoberbel.com">info@domingoberbel.com</a>
+        </p>
+        <noscript><p>The interactive assistant and the models need JavaScript.</p></noscript>
+      </main>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

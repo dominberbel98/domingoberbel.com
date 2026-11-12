@@ -30,8 +30,23 @@ function renderGreeting(tr) {
   });
 }
 
+/** True on a phone-width viewport, and kept in step if it is resized. */
+function useNarrowViewport() {
+  const query = "(max-width: 639px)";
+  const [narrow, setNarrow] = useState(() => window.matchMedia(query).matches);
+  useEffect(() => {
+    const mql = window.matchMedia(query);
+    const update = () => setNarrow(mql.matches);
+    mql.addEventListener("change", update);
+    return () => mql.removeEventListener("change", update);
+  }, []);
+  return narrow;
+}
+
 export default function Chat() {
   const tr = useT();
+  // The full placeholder is 40 characters and was cut off mid-word on a phone.
+  const narrow = useNarrowViewport();
   // The visitor already chose a language with the switch; send it instead of
   // making the backend infer it from the wording of each question.
   const { language } = useLanguage();
@@ -254,7 +269,7 @@ export default function Chat() {
                     type="button"
                     disabled={loading}
                     onClick={() => send(null, suggestion)}
-                    className="group flex items-start gap-2 text-left px-3 py-2 border border-[#00FF41]/20 bg-[#00FF41]/[0.03] text-[0.82rem] font-headline text-[#00FF41]/75 hover:bg-[#00FF41]/10 hover:border-[#00FF41]/40 hover:text-[#00FF41] focus-visible:outline focus-visible:outline-1 focus-visible:outline-[#00FF41] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                    className="group flex items-center min-h-[44px] gap-2 text-left px-3 py-2 border border-[#00FF41]/20 bg-[#00FF41]/[0.03] text-[0.82rem] font-headline text-[#00FF41]/75 hover:bg-[#00FF41]/10 hover:border-[#00FF41]/40 hover:text-[#00FF41] focus-visible:outline focus-visible:outline-1 focus-visible:outline-[#00FF41] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                   >
                     <span className="text-[#00FF41]/60 group-hover:text-[#00FF41] shrink-0">&gt;</span>
                     <span>{suggestion}</span>
@@ -321,14 +336,15 @@ export default function Chat() {
             onChange={(e) => setQuestion(e.target.value)}
             onKeyDown={handleComposerKeyDown}
             disabled={loading}
-            className="flex-1 bg-transparent border-none focus:ring-0 text-primary-dim font-headline text-base sm:text-lg placeholder:text-primary-dim/20 outline-none disabled:opacity-50"
-            placeholder={tr.chat.placeholder}
+            className="flex-1 min-w-0 min-h-[44px] bg-transparent border-none focus:ring-0 text-primary-dim font-headline text-base sm:text-lg placeholder:text-primary-dim/60 placeholder:normal-case sm:placeholder:uppercase outline-none disabled:opacity-50"
+            placeholder={narrow ? tr.chat.placeholderShort : tr.chat.placeholder}
+            aria-label={tr.chat.placeholderShort}
             type="text"
           />
           <button
             type="submit"
             disabled={loading || !question.trim()}
-            className="px-3 py-2 text-[0.78rem] sm:text-xs font-headline uppercase tracking-widest border border-[#00FF41]/35 text-primary bg-[#00FF41]/5 hover:bg-[#00FF41]/10 disabled:opacity-40 disabled:cursor-not-allowed"
+            className="min-h-[44px] min-w-[64px] px-3 py-2 text-[0.78rem] sm:text-xs font-headline uppercase tracking-widest border border-[#00FF41]/35 text-primary bg-[#00FF41]/5 hover:bg-[#00FF41]/10 disabled:opacity-40 disabled:cursor-not-allowed"
           >
             {tr.chat.send}
           </button>

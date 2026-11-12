@@ -72,7 +72,7 @@ function StandingsTable({ data }) {
               <th className="hidden sm:table-cell py-2 px-1 text-center">{S.goalsAgainst}</th>
               <th className="py-2 px-1 text-center">{S.goalDifference}</th>
               <th className="py-2 px-1 text-center font-bold">{S.points}</th>
-              <th className="py-2 px-2 text-center" title={S.formTooltip}>{S.form}</th>
+              <th className="py-2 pl-1 pr-0 sm:px-2 text-center" title={S.formTooltip}>{S.form}</th>
             </tr>
           </thead>
           <tbody>
@@ -87,7 +87,7 @@ function StandingsTable({ data }) {
                 </td>
                 <td className="py-1.5 px-2 flex items-center gap-2">
                   <img src={team.teamCrest} alt="" className="w-5 h-5 object-contain" loading="lazy" />
-                  <span className="truncate max-w-[120px] sm:max-w-none text-[#00FF41]/90">
+                  <span className="truncate max-w-[76px] min-[400px]:max-w-[96px] sm:max-w-none text-[#00FF41]/90">
                     {team.teamShortName || team.teamName}
                   </span>
                 </td>
@@ -104,9 +104,9 @@ function StandingsTable({ data }) {
                   {formatGoalDifference(team.goalDifference)}
                 </td>
                 <td className="py-1.5 px-1 text-center font-bold text-[#00FF41]">{team.points}</td>
-                <td className="py-1.5 px-2 text-center">
+                <td className="py-1.5 pl-1 pr-0 sm:px-2 text-center">
                   {team.form ? (
-                    <span className="inline-flex gap-[3px]">
+                    <span className="inline-flex gap-[2px] sm:gap-[3px]">
                       {team.form.split("").map((result, i) => (
                         <span
                           key={i}
@@ -155,11 +155,11 @@ function PointsDistribution({ data }) {
       </h3>
       <ResponsiveContainer width="100%" height={420}>
         <BarChart data={sorted} layout="vertical" margin={{ left: 60, right: 20, top: 5, bottom: 5 }}>
-          <XAxis type="number" tick={{ fill: DIM, fontSize: 10 }} axisLine={{ stroke: DIM }} />
+          <XAxis type="number" tick={{ fill: DIM, fontSize: 11 }} axisLine={{ stroke: DIM }} />
           <YAxis
             type="category"
             dataKey="teamShortName"
-            tick={{ fill: GREEN, fontSize: 9, fontFamily: "Space Grotesk" }}
+            tick={{ fill: GREEN, fontSize: 11, fontFamily: "Space Grotesk" }}
             width={55}
             axisLine={false}
             tickLine={false}
@@ -190,13 +190,13 @@ function AttackVsDefence({ data }) {
         <ScatterChart margin={{ left: 10, right: 20, top: 20, bottom: 20 }}>
           <XAxis
             type="number" dataKey="goalsFor" name={A.goalsFor}
-            tick={{ fill: DIM, fontSize: 10 }} axisLine={{ stroke: DIM }}
-            label={{ value: A.xLabel, position: "insideBottomRight", fill: DIM, fontSize: 10, offset: -5 }}
+            tick={{ fill: DIM, fontSize: 11 }} axisLine={{ stroke: DIM }}
+            label={{ value: A.xLabel, position: "insideBottomRight", fill: DIM, fontSize: 11, offset: -5 }}
           />
           <YAxis
             type="number" dataKey="goalsAgainst" name={A.goalsAgainst}
-            tick={{ fill: DIM, fontSize: 10 }} axisLine={{ stroke: DIM }}
-            label={{ value: A.yLabel, position: "insideTopLeft", fill: DIM, fontSize: 10, offset: -5 }}
+            tick={{ fill: DIM, fontSize: 11 }} axisLine={{ stroke: DIM }}
+            label={{ value: A.yLabel, position: "insideTopLeft", fill: DIM, fontSize: 11, offset: -5 }}
           />
           <ZAxis type="number" dataKey="points" range={[60, 400]} name={A.points} />
           <Tooltip
@@ -242,10 +242,10 @@ function GoalDiffSpectrum({ data }) {
       </h3>
       <ResponsiveContainer width="100%" height={420}>
         <BarChart data={sorted} layout="vertical" margin={{ left: 60, right: 20, top: 5, bottom: 5 }}>
-          <XAxis type="number" tick={{ fill: DIM, fontSize: 10 }} axisLine={{ stroke: DIM }} />
+          <XAxis type="number" tick={{ fill: DIM, fontSize: 11 }} axisLine={{ stroke: DIM }} />
           <YAxis
             type="category" dataKey="teamShortName"
-            tick={{ fill: GREEN, fontSize: 9, fontFamily: "Space Grotesk" }}
+            tick={{ fill: GREEN, fontSize: 11, fontFamily: "Space Grotesk" }}
             width={55} axisLine={false} tickLine={false}
           />
           <Tooltip content={<CrtTooltip />} cursor={{ fill: "rgba(0,255,65,0.05)" }} />
@@ -285,11 +285,11 @@ function ResultRateMatrix({ data }) {
           <XAxis
             type="number" domain={[0, 100]}
             tickFormatter={(v) => `${Math.round(v)}%`}
-            tick={{ fill: DIM, fontSize: 10 }} axisLine={{ stroke: DIM }}
+            tick={{ fill: DIM, fontSize: 11 }} axisLine={{ stroke: DIM }}
           />
           <YAxis
             type="category" dataKey="teamShortName"
-            tick={{ fill: GREEN, fontSize: 9, fontFamily: "Space Grotesk" }}
+            tick={{ fill: GREEN, fontSize: 11, fontFamily: "Space Grotesk" }}
             width={55} axisLine={false} tickLine={false}
           />
           <Tooltip content={<CrtTooltip />} cursor={{ fill: "rgba(0,255,65,0.05)" }} />
@@ -360,7 +360,7 @@ function Top5Radar({ data }) {
       <ResponsiveContainer width="100%" height={380}>
         <RadarChart data={radarData} outerRadius="70%">
           <PolarGrid stroke="rgba(0,255,65,0.15)" />
-          <PolarAngleAxis dataKey="metric" tick={{ fill: GREEN, fontSize: 10, fontFamily: "Space Grotesk" }} />
+          <PolarAngleAxis dataKey="metric" tick={{ fill: GREEN, fontSize: 11, fontFamily: "Space Grotesk" }} />
           <PolarRadiusAxis tick={false} axisLine={false} />
           {top5.map((team, i) => (
             <Radar

@@ -21,8 +21,15 @@
 
 export const t = {
   // ── Shell ────────────────────────────────────────────────────────────────
+  meta: {
+    title: "Domingo Berbel — Data Scientist | CV interactivo",
+    description:
+      "Perfil profesional interactivo de Domingo Berbel, Data Scientist. IA aplicada y generativa, sistemas RAG y soluciones de datos llevadas a producción.",
+  },
   app: {
     brand: "NEURAL_LINK_DS_V1.0",
+    loadingSection: "Cargando…",
+    pageHeading: "Domingo Berbel — Data Scientist",
     owner: "DOMINGO BERBEL",
     workspace: "DS_WORKSPACE",
     session: "SESIÓN: DATA_EXPLORER",
@@ -86,6 +93,7 @@ export const t = {
     userInput: "ENTRADA_USUARIO",
     processing: "PROCESANDO...",
     placeholder: "PREGUNTA POR MODELOS, HERRAMIENTAS O EXPERIENCIA...",
+    placeholderShort: "Pregunta por mi experiencia…",
     send: "Enviar",
     connectionError: "No se ha podido contactar con el servidor.",
 

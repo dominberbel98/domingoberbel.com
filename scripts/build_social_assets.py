@@ -178,7 +178,10 @@ def build_og_card(avatar: Image.Image) -> Path:
     draw.text((tx, y), "> domingoberbel.com", font=prompt_font, fill=PHOSPHOR)
 
     path = PUBLIC / "og-card.png"
-    card.convert("RGB").save(path, "PNG", optimize=True)
+    # 256 colours is plenty for a flat dark card with text, and takes the file
+    # from ~200 KB to a fraction of that. Link-preview bots fetch this on every
+    # share and some give up on slow images.
+    card.convert("RGB").quantize(colors=256).save(path, "PNG", optimize=True)
     return path
 
 

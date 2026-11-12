@@ -29,6 +29,14 @@ const LanguageContext = createContext(null);
 
 function initialLanguage() {
   if (typeof window === "undefined") return "en";
+  // ?lang=es wins over the remembered choice: it is the URL the hreflang
+  // alternates point at, so it has to render in the language it promises.
+  try {
+    const requested = new URLSearchParams(window.location.search).get("lang");
+    if (LANGUAGES.includes(requested)) return requested;
+  } catch {
+    /* malformed query string */
+  }
   try {
     const stored = window.localStorage.getItem(STORAGE_KEY);
     if (LANGUAGES.includes(stored)) return stored;
@@ -50,6 +58,10 @@ export function LanguageProvider({ children }) {
     // Assistive technology and the browser both care; the page is one document
     // whose language genuinely changes.
     document.documentElement.lang = language;
+    // The tab title and the description follow the language too.
+    const meta = DICTIONARIES[language].meta;
+    document.title = meta.title;
+    document.querySelector('meta[name="description"]')?.setAttribute("content", meta.description);
   }, [language]);
 
   const value = useMemo(

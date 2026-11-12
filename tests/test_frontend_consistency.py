@@ -331,3 +331,38 @@ def test_full_strength_palette_colours_are_all_usable_as_text():
     for hex_colour in ("#00FF41", "#FFD700", "#FF4136", "#00BFFF"):
         rgb = tuple(int(hex_colour[i : i + 2], 16) for i in (1, 3, 5))
         assert contrast_ratio(rgb) >= MIN_RATIO, f"{hex_colour} fails even at full opacity"
+
+
+# ── Icon font subset ────────────────────────────────────────────────────────
+
+def test_every_icon_the_site_uses_is_in_the_font_subset(repo_root):
+    """index.html asks Google Fonts for only the Material Symbols it names.
+
+    An icon missing from `icon_names` does not fail: it renders as its own
+    ligature text ("sports_soccer") in the middle of the interface. This walks
+    the same places an icon name can come from — literal spans, `icon:` /
+    `icon=` values in components, and the product data — and requires each one
+    to be listed. The list must also be sorted, which the API requires.
+    """
+    import re
+
+    frontend = repo_root / "frontend"
+    html = (frontend / "index.html").read_text(encoding="utf-8")
+    match = re.search(r"icon_names=([a-z0-9_,]+)", html)
+    assert match, "index.html no longer subsets Material Symbols with icon_names"
+    listed = match.group(1).split(",")
+    assert listed == sorted(set(listed)), "icon_names must be sorted and unique"
+
+    used: set[str] = set()
+    sources = list((frontend / "src").rglob("*.jsx")) + list((frontend / "src").rglob("*.js"))
+    sources += list((frontend / "public" / "data").rglob("*.json"))
+    for path in sources:
+        text = path.read_text(encoding="utf-8")
+        used.update(re.findall(r'"?icon"?\s*[:=]\s*"([a-z0-9_]+)"', text))
+        used.update(re.findall(r"material-symbols-outlined[^>]*>\s*([a-z0-9_]+)\s*<", text))
+        # Icons chosen by a ternary or a fallback inside a symbols span.
+        for block in re.findall(r"material-symbols-outlined[^>]*>\s*\{([^}]*)\}", text):
+            used.update(re.findall(r'"([a-z0-9_]+)"', block))
+
+    missing = sorted(used - set(listed))
+    assert not missing, f"icons used but not in the font subset: {missing}"
