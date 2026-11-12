@@ -17,9 +17,12 @@ English corpus.
 
 from __future__ import annotations
 
+from collections.abc import Callable
+
 import json
 import logging
 import re
+import unicodedata
 from collections.abc import Generator
 from datetime import datetime, timezone
 from functools import lru_cache
@@ -158,7 +161,10 @@ class AgenticRAGService:
         history: list[dict] | None = None,
         current_time: datetime | None = None,
         language: str | None = None,
+        on_usage: "Callable[[int], None] | None" = None,
     ) -> ChatResponse:
+        """`on_usage` is called once with the tokens the model billed, when it
+        was called at all: the canned fast-path answers cost nothing."""
         history = history or []
         now = current_time or datetime.now(timezone.utc)
         language = resolve_language(question, history, language)
@@ -171,7 +177,13 @@ class AgenticRAGService:
         if self._client is None:
             return self._response(self._unavailable_message(language), [], needs_contact=False)
 
-        result = self._build_agent().answer(question, history, language, now)
+        agent = self._build_agent()
+        try:
+            result = agent.answer(question, history, language, now)
+        finally:
+            # In `finally`: a question that failed half way was still billed.
+            if on_usage is not None:
+                on_usage(agent.tokens_used)
         if result.out_of_scope:
             logger.info("[ASK] out_of_scope")
             return self._response(
@@ -192,6 +204,7 @@ class AgenticRAGService:
         history: list[dict] | None = None,
         current_time: datetime | None = None,
         language: str | None = None,
+        on_usage: "Callable[[int], None] | None" = None,
     ) -> Generator[str, None, None]:
         """Yield SSE frames. The wire format is what Chat.jsx parses; do not change it."""
         history = history or []
@@ -215,8 +228,9 @@ class AgenticRAGService:
 
         sent = False
         result = None
+        agent = self._build_agent()
         try:
-            for item in self._build_agent().answer_stream(question, history, language, now):
+            for item in agent.answer_stream(question, history, language, now):
                 if isinstance(item, AgentResult):
                     result = item
                 else:
@@ -229,6 +243,11 @@ class AgenticRAGService:
                 yield _sse_token(self._unavailable_message(language))
             yield _sse_done(False)
             return
+        finally:
+            # Also runs when the visitor closes the tab mid-answer: what was
+            # generated up to then was billed.
+            if on_usage is not None:
+                on_usage(agent.tokens_used)
 
         if result is not None and result.out_of_scope:
             yield _sse_token(out_of_scope_message(result.language or language))
@@ -375,20 +394,49 @@ def is_contact_request(question: str) -> bool:
 
 # The one keyword list that survives, because it is a safety filter that must run
 # before any model call rather than a routing heuristic.
-_INAPPROPRIATE = (
+#
+# It matches whole words. It used to test substrings, which refused ordinary
+# professional questions with the canned out-of-scope answer and never let the
+# model see them: "artículo" and "cálculo" contain "culo", "reputación" and
+# "computational" contain "puta", "orientación a resultados" matched
+# "orientaci". Three terms were dropped for the same reason at word level —
+# "pareja" (pair programming), "atractivo" ("what makes him attractive to a data
+# team") and bare "orientación" — and what they were there to catch is still
+# caught by "sexual" and the phrases below. Anything subtler than this list is
+# the model's job: its prompt refuses personal questions.
+_INAPPROPRIATE_WORDS = (
+    "gay", "homosexual", "hetero", "heterosexual", "novia", "novio", "casado", "casada",
+    "soltero", "soltera", "sexo", "follar", "polla", "culo", "tetas", "pene", "vagina",
+    "mierda", "puta", "puto", "hijoputa", "gilipollas", "subnormal", "idiota",
+    "imbecil", "bollera", "travesti", "transexual", "gordo", "gorda", "feo", "fea",
+    "guapo", "guapa", "droga", "borracho", "borracha", "xxx",
+)
+# Stems: any word starting with one of these.
+_INAPPROPRIATE_STEMS = ("sexual", "maric", "racis", "suicid")
+_INAPPROPRIATE_PHRASES = (
     "gustan los hombre", "gustan los mujer", "gustan las mujer", "gustan las chica",
-    "gustan los chico", "es gay", "es homosexual", "es hetero", "orientaci",
-    "novia", "novio", "pareja", "casado", "soltero", "sexual", "follar", "sexo",
-    "polla", "culo", "tetas", "pene", "vagina", "mierda", "puta", "hijo de",
-    "gilipollas", "subnormal", "idiota", "imbecil", "imbécil", "maric", "bollera",
-    "travesti", "transexual", "gordo", "feo", "guapo", "atractivo", "droga",
-    "borracho", "racis", "suicid",
+    "gustan los chico", "tiene pareja", "su pareja", "es atractivo", "es atractiva",
+)
+
+_INAPPROPRIATE_PATTERN = re.compile(
+    r"\b(?:"
+    + "|".join(
+        [re.escape(w) + r"(?:s|es)?" for w in _INAPPROPRIATE_WORDS]
+        + [re.escape(stem) + r"\w*" for stem in _INAPPROPRIATE_STEMS]
+        + [re.escape(p).replace(r"\ ", r"\s+") + r"\w*" for p in _INAPPROPRIATE_PHRASES]
+    )
+    + r")\b"
 )
 
 
+def _fold_accents(text: str) -> str:
+    return "".join(
+        c for c in unicodedata.normalize("NFD", text) if unicodedata.category(c) != "Mn"
+    )
+
+
 def is_inappropriate(question: str) -> bool:
-    q = question.lower().strip()
-    return any(p in q for p in _INAPPROPRIATE)
+    return _INAPPROPRIATE_PATTERN.search(_fold_accents(question.lower())) is not None
 
 
 # Function words, not topic words. A closed list of topic words ("experience",

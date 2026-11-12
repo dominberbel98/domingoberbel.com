@@ -104,6 +104,7 @@ class AnalyticsStore:
         question: str,
         answer_preview: str,
         out_of_scope: bool,
+        tokens: int = 0,
     ) -> None:
         now = datetime.now(UTC).isoformat()
         dt = datetime.now(UTC)
@@ -116,6 +117,9 @@ class AnalyticsStore:
             "question": question,
             "answer": answer_preview,
             "out_of_scope": bool(out_of_scope),
+            # Real tokens billed for this question; 0 for the canned answers
+            # that never reach the model.
+            "tokens": int(tokens),
         }
         # First, and outside the lock: this is the copy that survives.
         emit_qa_log(log_entry)
@@ -222,13 +226,22 @@ class AnalyticsStore:
         return UsageSnapshot(day=today, tokens_used=int(row[0]))
 
     def increment_today_usage(self, tokens: int) -> UsageSnapshot:
-        snapshot = self.get_today_usage()
-        updated = snapshot.tokens_used + max(tokens, 0)
+        """Add to today's spend in one statement.
+
+        This was a read followed by a write under separate locks, so two
+        answers finishing together could both read the same total and one
+        increment was lost.
+        """
+        today = datetime.now(UTC).strftime("%Y-%m-%d")
         with self._lock:
             with self._connect() as conn:
-                conn.execute(
-                    "UPDATE daily_usage SET tokens_used = ? WHERE day = ?",
-                    (updated, snapshot.day),
-                )
+                row = conn.execute(
+                    """
+                    INSERT INTO daily_usage (day, tokens_used) VALUES (?, ?)
+                    ON CONFLICT(day) DO UPDATE SET tokens_used = tokens_used + excluded.tokens_used
+                    RETURNING tokens_used
+                    """,
+                    (today, max(tokens, 0)),
+                ).fetchone()
                 conn.commit()
-        return UsageSnapshot(day=snapshot.day, tokens_used=updated)
+        return UsageSnapshot(day=today, tokens_used=int(row[0]))

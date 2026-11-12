@@ -37,8 +37,14 @@ class RequestGuards:
         bucket.append(now)
         return GuardDecision(allowed=True)
 
-    def enforce_token_budget(self, used_today: int, estimated_new_tokens: int) -> GuardDecision:
-        if used_today + estimated_new_tokens > self._daily_token_limit:
+    def enforce_token_budget(self, used_today: int) -> GuardDecision:
+        """Refuse once today's real spend has reached the limit.
+
+        The cost of a question is only known after it is answered, so the
+        check is on what has already been spent: the request that crosses the
+        limit is served, the next one is not.
+        """
+        if used_today >= self._daily_token_limit:
             return GuardDecision(
                 allowed=False,
                 message="Limite diario de tokens alcanzado. Intenta mas tarde.",

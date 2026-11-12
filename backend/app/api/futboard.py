@@ -16,6 +16,7 @@ import logging
 
 from fastapi import APIRouter, HTTPException, Request
 
+from app.services.client_ip import client_ip
 from app.config import settings
 from app.futboard_models import (
     Match,
@@ -50,7 +51,7 @@ write_guard = RequestGuards(
 
 
 def _client_ip(request: Request) -> str:
-    return request.client.host if request.client else "unknown"
+    return client_ip(request)
 
 
 def _require_available() -> None:

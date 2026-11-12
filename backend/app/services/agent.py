@@ -74,6 +74,15 @@ class AgentResult:
     # Set with out_of_scope: the language the model read the message in, for the
     # canned refusal. "Hala Madrid" carries no marker the heuristic can use.
     language: str | None = None
+    # Tokens the model billed for this question, summed over every completion
+    # of the loop (prompt + output + reasoning). The daily budget counts this.
+    tokens: int = 0
+
+
+def _usage_tokens(response: Any) -> int:
+    """Total tokens of one Responses API result, 0 if it carries no usage."""
+    usage = getattr(response, "usage", None)
+    return int(getattr(usage, "total_tokens", 0) or 0)
 
 
 def _sentinel_language(text: str) -> str | None:
@@ -316,6 +325,9 @@ class ProfileAgent:
         # are the other way round.
         self._reasoning = family.startswith(("gpt-5", "o1", "o3", "o4"))
         self.reasoning_effort = reasoning_effort
+        # Tokens billed so far for the question in progress. An agent is built
+        # per request, so this is never shared between two visitors.
+        self._tokens = 0
 
     # --- tool execution -----------------------------------------------------
 
@@ -479,7 +491,10 @@ class ProfileAgent:
             kwargs["tools"] = TOOLS
         if stream:
             kwargs["stream"] = True
-        return self.client.responses.create(**kwargs)
+            return self.client.responses.create(**kwargs)
+        response = self.client.responses.create(**kwargs)
+        self._tokens += _usage_tokens(response)
+        return response
 
     def _run_loop(
         self, question: str, history: list[dict], language: str, now: datetime
@@ -532,6 +547,11 @@ class ProfileAgent:
 
     # --- public API ---------------------------------------------------------
 
+    @property
+    def tokens_used(self) -> int:
+        """Tokens billed for the current question, including a failed attempt."""
+        return self._tokens
+
     def answer(
         self,
         question: str,
@@ -540,6 +560,7 @@ class ProfileAgent:
         now: datetime | None = None,
     ) -> AgentResult:
         now = now or datetime.now(timezone.utc)
+        self._tokens = 0
         text, items, documents = self._run_loop(question, history or [], language, now)
 
         if text.strip().startswith(OUT_OF_SCOPE):
@@ -548,13 +569,14 @@ class ProfileAgent:
                 documents=documents,
                 out_of_scope=True,
                 language=_sentinel_language(text),
+                tokens=self._tokens,
             )
 
         grounding = check_answer(
             text, [d.text for d in documents], self.index.vocabulary, language, question
         )
         if grounding.ok:
-            return AgentResult(answer=text, documents=documents)
+            return AgentResult(answer=text, documents=documents, tokens=self._tokens)
 
         logger.warning("[AGENT] ungrounded terms=%s — regenerating once", grounding.unsupported)
         retried = self._rewrite_without(items, text, grounding.unsupported)
@@ -563,6 +585,7 @@ class ProfileAgent:
             documents=documents,
             out_of_scope=False,
             regenerated=True,
+            tokens=self._tokens,
         )
 
     def answer_stream(
@@ -580,6 +603,7 @@ class ProfileAgent:
         than a regeneration.
         """
         now = now or datetime.now(timezone.utc)
+        self._tokens = 0
         items, collected, used = self._start(question, history or [], language, now)
         gate = GroundedStream(collected, self.index.vocabulary, language, question)
 
@@ -597,6 +621,7 @@ class ProfileAgent:
                     raise RuntimeError(f"model stream failed: {event.type}")
             if response is None:
                 raise RuntimeError("model stream ended without a final response")
+            self._tokens += _usage_tokens(response)
 
             output = _output_items(response)
             calls = [item for item in output if item.get("type") == "function_call"]
@@ -620,6 +645,7 @@ class ProfileAgent:
                 documents=collected,
                 out_of_scope=True,
                 language=_sentinel_language(gate.pending),
+                tokens=self._tokens,
             )
             return
         yield from gate.finish()
@@ -629,9 +655,11 @@ class ProfileAgent:
             retried = self._rewrite_without(items, response.output_text or "", gate.dropped)
             if retried:
                 yield retried
-            yield AgentResult(answer=retried, documents=collected, regenerated=True)
+            yield AgentResult(
+                answer=retried, documents=collected, regenerated=True, tokens=self._tokens
+            )
             return
-        yield AgentResult(answer=gate.emitted.strip(), documents=collected)
+        yield AgentResult(answer=gate.emitted.strip(), documents=collected, tokens=self._tokens)
 
 
 def _output_items(response: Any) -> list[dict[str, Any]]:

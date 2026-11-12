@@ -41,7 +41,17 @@ class Settings(BaseSettings):
     admin_read_key: str = ""
     show_citations: bool = False
     max_requests_per_minute_per_ip: int = 20
-    max_tokens_per_day: int = 50000
+    # Real tokens, as billed: what the model reports for every completion of a
+    # question (prompt + output + reasoning, across the tool-calling turns). It
+    # used to be compared against `len(question) // 3`, about 100 per question
+    # whatever the answer cost, so 50000 meant ~500 questions a day while the
+    # true spend was unbounded. Size this from the `tokens` field in the
+    # question log.
+    max_tokens_per_day: int = 2_000_000
+    # Reverse proxies between the internet and this process that append to
+    # X-Forwarded-For. 1 in Azure Container Apps (its ingress). 0 trusts the
+    # socket address and ignores the header. See services/client_ip.py.
+    trusted_proxy_hops: int = 1
 
     # Captcha (Cloudflare Turnstile)
     turnstile_secret_key: str | None = None

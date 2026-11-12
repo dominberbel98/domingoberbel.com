@@ -11,6 +11,7 @@ from app.models import ChatRequest, ChatResponse
 from app.config import settings
 from app.services.analytics_store import AnalyticsStore
 from app.services.captcha_service import CaptchaService
+from app.services.client_ip import client_ip as resolve_client_ip
 from app.services.guards import RequestGuards
 from app.services.rag_service import AgenticRAGService
 
@@ -26,7 +27,7 @@ captcha_service = CaptchaService(secret_key=settings.turnstile_secret_key)
 
 @router.post("/chat", response_model=ChatResponse)
 def chat(payload: ChatRequest, request: Request) -> ChatResponse:
-    client_ip = request.client.host if request.client else "unknown"
+    client_ip = resolve_client_ip(request)
     user_agent = request.headers.get("user-agent")
 
     rate_decision = guards.enforce_rate_limit(client_ip)
@@ -36,24 +37,34 @@ def chat(payload: ChatRequest, request: Request) -> ChatResponse:
     if not captcha_service.validate(payload.captcha_token, client_ip):
         raise HTTPException(status_code=400, detail="Captcha invalido")
 
-    estimated_tokens = max(100, len(payload.question) // 3)
     today_usage = analytics_store.get_today_usage()
-    budget_decision = guards.enforce_token_budget(today_usage.tokens_used, estimated_tokens)
+    budget_decision = guards.enforce_token_budget(today_usage.tokens_used)
     if not budget_decision.allowed:
         raise HTTPException(status_code=429, detail=budget_decision.message)
+
+    # Filled in by the service with what the model actually billed.
+    spent = {"tokens": 0}
+
+    def record_usage(tokens: int) -> None:
+        spent["tokens"] = tokens
+        analytics_store.increment_today_usage(tokens)
 
     try:
         history = [{"role": m.role, "content": m.content} for m in payload.history]
         response = rag_service.ask(
-            payload.question, payload.top_k, history=history, language=payload.language
+            payload.question,
+            payload.top_k,
+            history=history,
+            language=payload.language,
+            on_usage=record_usage,
         )
-        analytics_store.increment_today_usage(estimated_tokens)
         analytics_store.log_question(
             client_ip=client_ip,
             user_agent=user_agent,
             question=payload.question,
             answer_preview=response.answer,
             out_of_scope=response.needs_contact_form,
+            tokens=spent["tokens"],
         )
         return response
     except Exception as exc:  # pragma: no cover
@@ -63,7 +74,7 @@ def chat(payload: ChatRequest, request: Request) -> ChatResponse:
 
 @router.post("/chat/stream")
 def chat_stream(payload: ChatRequest, request: Request):
-    client_ip = request.client.host if request.client else "unknown"
+    client_ip = resolve_client_ip(request)
     user_agent = request.headers.get("user-agent")
 
     rate_decision = guards.enforce_rate_limit(client_ip)
@@ -73,13 +84,17 @@ def chat_stream(payload: ChatRequest, request: Request):
     if not captcha_service.validate(payload.captcha_token, client_ip):
         raise HTTPException(status_code=400, detail="Captcha invalido")
 
-    estimated_tokens = max(100, len(payload.question) // 3)
     today_usage = analytics_store.get_today_usage()
-    budget_decision = guards.enforce_token_budget(today_usage.tokens_used, estimated_tokens)
+    budget_decision = guards.enforce_token_budget(today_usage.tokens_used)
     if not budget_decision.allowed:
         raise HTTPException(status_code=429, detail=budget_decision.message)
 
-    analytics_store.increment_today_usage(estimated_tokens)
+    # Filled in by the service with what the model actually billed.
+    spent = {"tokens": 0}
+
+    def record_usage(tokens: int) -> None:
+        spent["tokens"] = tokens
+        analytics_store.increment_today_usage(tokens)
 
     history = [{"role": m.role, "content": m.content} for m in payload.history]
 
@@ -88,7 +103,11 @@ def chat_stream(payload: ChatRequest, request: Request):
         out_of_scope = False
         try:
             for chunk in rag_service.ask_stream(
-                payload.question, payload.top_k, history=history, language=payload.language
+                payload.question,
+                payload.top_k,
+                history=history,
+                language=payload.language,
+                on_usage=record_usage,
             ):
                 yield chunk
                 # Parse SSE data lines to capture answer text
@@ -110,6 +129,7 @@ def chat_stream(payload: ChatRequest, request: Request):
                 question=payload.question,
                 answer_preview=full_answer or "(empty)",
                 out_of_scope=out_of_scope,
+                tokens=spent["tokens"],
             )
 
     return StreamingResponse(
