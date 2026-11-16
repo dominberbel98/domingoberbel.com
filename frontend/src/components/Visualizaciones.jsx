@@ -5,6 +5,8 @@ import {
   RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
 } from "recharts";
 import { useT } from "../i18n";
+import { DecodeText } from "./Motion";
+import PipelineStrip from "./PipelineStrip";
 import {
   FORM_COLORS,
   LEGEND_ZONES,
@@ -499,7 +501,7 @@ export default function Visualizaciones() {
       {/* Header */}
       <div className="mb-6">
         <h2 className="text-lg sm:text-xl font-bold text-[#00FF41] font-headline uppercase tracking-tight drop-shadow-[0_0_10px_rgba(0,255,65,0.4)]">
-          {L.title}
+          <DecodeText text={L.title} />
         </h2>
         <p className="text-[0.78rem] text-[#00FF41]/65 font-headline uppercase mt-1">
           {tr.common.season} {data.season} · {tr.common.matchday} {data.matchday}
@@ -510,6 +512,8 @@ export default function Visualizaciones() {
           {L.pipeline}
         </p>
       </div>
+
+      <PipelineStrip />
 
       {/* Season-state notices. The site showed a finished season's table as the
           current one for days, so an empty or barely-started season says so. */}

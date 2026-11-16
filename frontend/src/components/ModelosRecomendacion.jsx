@@ -1,4 +1,5 @@
 import { useT } from "../i18n";
+import { DecodeText } from "./Motion";
 import React, { useEffect, useMemo, useState } from "react";
 import { MetricStrip, ModelTabs } from "./ModelTabs";
 import {
@@ -325,7 +326,7 @@ export default function ModelosRecomendacion() {
     <div className="w-full h-full overflow-y-auto scrollbar-hide p-3 sm:p-6">
       <div className="mb-3">
         <h2 className="text-lg sm:text-xl font-bold text-[#00FF41] font-headline uppercase tracking-tight drop-shadow-[0_0_10px_rgba(0,255,65,0.4)]">
-          {tr.recommender.title}
+          <DecodeText text={tr.recommender.title} />
         </h2>
         <p className="text-[0.82rem] text-[#00FF41]/70 font-headline mt-1 leading-relaxed max-w-3xl normal-case">
           {tr.recommender.explainer.problem}

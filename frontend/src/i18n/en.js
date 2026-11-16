@@ -178,6 +178,15 @@ export const t = {
     pipeline: "Pipeline: PySpark → GitHub Actions (30 min) → SportsRC API",
     loading: "LOADING_LA_LIGA_DATA",
     error: "ERROR_LOADING_DATA",
+    flow: {
+      label: "BATCH_PIPELINE",
+      schedule: "Cron */30 · GitHub Actions",
+      next: "Next run ≈",
+      api: "SportsRC, LaLiga",
+      spark: "Zones, rates, tiebreak",
+      json: "GitHub Actions commit",
+      web: "Frontend redeploy",
+    },
     preseasonNotice:
       "The season has not started. Standings, form and rates populate once matches are played.",
     lowConfidenceNotice: (played) =>

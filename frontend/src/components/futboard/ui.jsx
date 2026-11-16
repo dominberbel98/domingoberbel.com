@@ -1,4 +1,5 @@
 import React from "react";
+import { DecodeText } from "../Motion";
 
 /**
  * Shared FUTBOARD primitives.
@@ -32,7 +33,7 @@ export function ScreenHeader({ title, subtitle, onBack, backLabel, right }) {
       )}
       <div className="flex-1 min-w-0">
         <h2 className="text-lg sm:text-xl font-bold text-[#00FF41] font-headline uppercase tracking-tight drop-shadow-[0_0_10px_rgba(0,255,65,0.4)] truncate">
-          {title}
+          <DecodeText text={title} />
         </h2>
         {subtitle && (
           <p className="text-[0.82rem] text-[#00FF41]/70 font-headline mt-0.5 normal-case">

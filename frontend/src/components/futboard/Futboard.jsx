@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useT } from "../../i18n";
+import { DecodeText } from "../Motion";
 import { futboardApi } from "../../lib/futboardApi";
 import LiveMatch, { clearStoredMatch, createMatch, loadStoredMatch } from "./LiveMatch";
 import MatchSetup from "./MatchSetup";
@@ -180,7 +181,7 @@ export default function Futboard() {
       <div className="flex items-start justify-between gap-3 mb-5">
         <div className="min-w-0">
           <h2 className="text-xl sm:text-2xl font-bold text-[#00FF41] font-headline uppercase tracking-tight drop-shadow-[0_0_12px_rgba(0,255,65,0.45)]">
-            {f.title}
+            <DecodeText text={f.title} />
           </h2>
           <p className="text-[0.84rem] text-[#00FF41]/70 font-headline mt-1 normal-case">
             {f.tagline}

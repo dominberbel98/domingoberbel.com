@@ -205,3 +205,173 @@ body {
     box-shadow: 0 0 6px 1px rgba(0, 255, 65, 0.8);
   }
 }
+
+/* ── Motion layer ───────────────────────────────────────────────────────────
+ *
+ * Everything below is additive: with motion switched off in the system, the
+ * site renders exactly as it did before this block existed. Static shapes are
+ * declared first; every animation and transition sits inside the
+ * `prefers-reduced-motion: no-preference` query at the end.
+ */
+
+/* Dot grid lit around the pointer. App.jsx writes --mx / --my on <main>. */
+.dots-lit {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  background-image: radial-gradient(circle at 1px 1px, #00FF41 1.3px, transparent 1.9px);
+  background-size: 32px 32px;
+  -webkit-mask-image: radial-gradient(circle 170px at var(--mx, -400px) var(--my, -400px), #000 0%, transparent 100%);
+  mask-image: radial-gradient(circle 170px at var(--mx, -400px) var(--my, -400px), #000 0%, transparent 100%);
+}
+
+/* Phosphor band that sweeps down the content area. Hidden unless animated. */
+.crt-beam {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -120px;
+  height: 120px;
+  z-index: -1;
+  pointer-events: none;
+  display: none;
+  background: linear-gradient(to bottom, transparent, rgba(0, 255, 65, 0.05), transparent);
+}
+
+/* Sliding highlight behind the active sidebar entry. App.jsx sets its
+ * position; the row it sits on stops drawing its own highlight. */
+.nav-indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  pointer-events: none;
+  background: rgba(0, 255, 65, 0.1);
+  border-left: 4px solid #00FF41;
+}
+
+/* Pipeline strip */
+.pipe {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding-top: 4px;
+}
+.pipe-track {
+  position: absolute;
+  top: 13px;
+  left: 12.5%;
+  right: 12.5%;
+  height: 2px;
+  background: rgba(0, 255, 65, 0.18);
+}
+.pipe-pulse {
+  display: none;
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 26px;
+  height: 8px;
+  margin-left: -13px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, transparent, #00FF41);
+  box-shadow: 0 0 10px #00FF41;
+}
+.pipe-node {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  text-align: center;
+  min-width: 0;
+}
+.pipe-node i {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #0e0e0e;
+  border: 2px solid rgba(0, 255, 65, 0.45);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Pointer: only where there is a real pointer to follow. */
+  @media (hover: hover) and (pointer: fine) {
+    .dots-lit { opacity: 0.6; }
+    .viz-panel { transition: border-color 0.25s; }
+    .viz-panel:hover { border-color: rgba(0, 255, 65, 0.3); }
+    .viz-panel:hover::before {
+      left: calc(var(--px, 50%) - 110px);
+      right: auto;
+      width: 220px;
+      opacity: 0.9;
+    }
+  }
+
+  /* Ambient: the glow behind the content drifts, the beam sweeps. */
+  .glow-drift { animation: glow-drift 16s ease-in-out infinite alternate; }
+  .crt-beam { display: block; animation: crt-beam 8s linear infinite; }
+
+  /* Panels rise one after another when a section (or a tab) mounts.
+   * `backwards`, not `both`: once it has played, the panel carries no transform
+   * at all, so it cannot become the containing block of anything fixed. */
+  main .viz-panel { animation: panel-rise 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
+  main .viz-panel:nth-child(2) { animation-delay: 70ms; }
+  main .viz-panel:nth-child(3) { animation-delay: 140ms; }
+  main .viz-panel:nth-child(4) { animation-delay: 210ms; }
+  main .viz-panel:nth-child(5) { animation-delay: 280ms; }
+  main .viz-panel:nth-child(6) { animation-delay: 350ms; }
+  main .viz-panel:nth-child(n + 7) { animation-delay: 420ms; }
+
+  /* Section change: the old one leaves to the left, the new one enters from
+   * the right. The background layers (.main-fx) stay put. */
+  main.section-leave > :not(.main-fx) { animation: section-leave 0.15s ease-in forwards; }
+  main.section-enter > :not(.main-fx) { animation: section-enter 0.26s ease-out backwards; }
+
+  .nav-indicator--glide {
+    transition: transform 0.32s cubic-bezier(0.3, 1.3, 0.5, 1), height 0.32s ease;
+  }
+
+  /* A footer figure blooms once when its value changes (it is re-keyed). */
+  .value-flash { animation: value-flash 0.7s ease-out; }
+
+  .pipe-pulse { display: block; animation: pipe-travel 4s linear infinite; }
+  .pipe-pulse--late { animation-delay: -2s; }
+  /* Two pulses 2 s apart on a 4 s trip: one passes each node every 2 s. */
+  .pipe-node i { animation: pipe-ping 2s linear infinite; animation-delay: calc(var(--n) * 1.333s - 4s); }
+}
+
+@keyframes glow-drift {
+  from { transform: translate(-6%, 4%) scale(1); }
+  to   { transform: translate(6%, -5%) scale(1.12); }
+}
+@keyframes crt-beam {
+  from { transform: translateY(0); }
+  to   { transform: translateY(calc(100vh + 120px)); }
+}
+@keyframes panel-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes section-leave {
+  to { opacity: 0; transform: translateX(-28px); }
+}
+@keyframes section-enter {
+  from { opacity: 0; transform: translateX(28px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes value-flash {
+  from { color: #ffffff; text-shadow: 0 0 12px #00FF41; }
+  to   { text-shadow: none; }
+}
+@keyframes pipe-travel {
+  0%   { left: 0; opacity: 0; }
+  6%   { opacity: 1; }
+  94%  { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+@keyframes pipe-ping {
+  0%        { background: #00FF41; border-color: #00FF41; box-shadow: 0 0 14px #00FF41; }
+  30%, 100% { background: #0e0e0e; border-color: rgba(0, 255, 65, 0.45); box-shadow: none; }
+}

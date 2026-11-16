@@ -164,6 +164,15 @@ export const t = {
     pipeline: "Pipeline: PySpark → GitHub Actions (30 min) → SportsRC API",
     loading: "CARGANDO_DATOS_DE_LA_LIGA",
     error: "ERROR_AL_CARGAR_DATOS",
+    flow: {
+      label: "PIPELINE_BATCH",
+      schedule: "Cron */30 · GitHub Actions",
+      next: "Próxima ejecución ≈",
+      api: "SportsRC, LaLiga",
+      spark: "Zonas, ratios, desempate",
+      json: "Commit de GitHub Actions",
+      web: "Redespliegue del frontend",
+    },
     preseasonNotice:
       "La temporada no ha empezado. La clasificación, la forma y los ratios se rellenan cuando se juegan partidos.",
     lowConfidenceNotice: (played) =>

@@ -1,4 +1,5 @@
 import React from "react";
+import { CountUp } from "./Motion";
 
 /**
  * Tab bar and headline-metric strip, shared by the scoring and recommender sections.
@@ -56,7 +57,7 @@ export function MetricStrip({ items }) {
             className="text-[0.95rem] font-headline font-bold tabular-nums"
             style={{ color: item.color || "#00FF41" }}
           >
-            {item.value}
+            <CountUp value={item.value} />
           </span>
         </div>
       ))}

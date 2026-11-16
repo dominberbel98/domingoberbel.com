@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useT } from "../i18n";
+import { DecodeText } from "./Motion";
 import { ZONE_COLORS, zoneForPosition } from "../lib/laliga";
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell,
@@ -278,7 +279,7 @@ export default function ModelosPredictivos() {
       {/* Header */}
       <div className="mb-6">
         <h2 className="text-lg sm:text-xl font-bold text-[#00FF41] font-headline uppercase tracking-tight drop-shadow-[0_0_10px_rgba(0,255,65,0.4)]">
-          {tr.predictions.title}
+          <DecodeText text={tr.predictions.title} />
         </h2>
         <p className="text-[0.78rem] text-[#00FF41]/65 font-headline uppercase mt-1">
           {tr.predictions.subtitle(data.season, data.matchday, data.totalMatches, data.nSimulations.toLocaleString())}

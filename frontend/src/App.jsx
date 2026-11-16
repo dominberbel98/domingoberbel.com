@@ -1,5 +1,6 @@
-import React, { Suspense, lazy, useEffect, useMemo, useState } from "react";
+import React, { Suspense, lazy, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import Chat from "./components/Chat";
+import { motionAllowed } from "./components/Motion";
 import { useLanguage, useT } from "./i18n";
 import { getTelemetry, loadBackendMeta, subscribeTelemetry } from "./lib/telemetry";
 
@@ -43,7 +44,7 @@ function useNavItems(tr) {
   );
 }
 
-function NavList({ items, activeSection, modelsOpen, onToggleModels, onSelect, hover }) {
+function NavList({ items, activeSection, modelsOpen, onToggleModels, onSelect, hover, indicator = false }) {
   const baseRow = "flex items-center gap-3 px-6 py-4 cursor-pointer active:scale-95";
   const subRow  = "flex items-center gap-3 pl-12 pr-6 py-3 cursor-pointer active:scale-95 text-[0.86rem]";
   const transition = hover ? " transition-colors" : "";
@@ -52,15 +53,26 @@ function NavList({ items, activeSection, modelsOpen, onToggleModels, onSelect, h
     `${sub ? "text-[#00FF41]/60" : "text-[#00FF41]/65"} ${
       hover ? "hover:bg-[#00FF41]/5 hover:text-[#00FF41]" : ""
     } border-l-4 border-transparent`;
+  // With the sliding indicator, the row it rests on keeps the active text
+  // colour but leaves the highlight to the indicator, or there would be two.
+  const targetCls = "text-[#00FF41] border-l-4 border-transparent";
+  const currentCls = indicator ? targetCls : activeCls;
+  const target = indicator ? { "data-nav-target": "" } : {};
 
   return items.map((item) => {
     if (item.children) {
       const isActive = MODEL_IDS.includes(activeSection);
+      // Collapsed with a model open: the group row is where the indicator
+      // rests. Expanded, it rests on the child and the group stays lit.
+      const groupIsTarget = isActive && !modelsOpen;
       return (
         <div key={item.id}>
           <div
             onClick={onToggleModels}
-            className={`${baseRow}${transition} ${isActive ? activeCls : inactiveCls(false)}`}
+            {...(groupIsTarget ? target : {})}
+            className={`${baseRow}${transition} ${
+              isActive ? (groupIsTarget ? currentCls : activeCls) : inactiveCls(false)
+            }`}
           >
             <span className="material-symbols-outlined text-[1.2rem]">{item.icon}</span>
             <span className="flex-1">{item.label}</span>
@@ -72,7 +84,8 @@ function NavList({ items, activeSection, modelsOpen, onToggleModels, onSelect, h
             <div
               key={c.id}
               onClick={() => onSelect(c.id)}
-              className={`${subRow}${transition} ${activeSection === c.id ? activeCls : inactiveCls(true)}`}
+              {...(activeSection === c.id ? target : {})}
+              className={`${subRow}${transition} ${activeSection === c.id ? currentCls : inactiveCls(true)}`}
             >
               <span className="material-symbols-outlined text-[1rem]">{c.icon}</span>
               <span>{c.label}</span>
@@ -85,7 +98,8 @@ function NavList({ items, activeSection, modelsOpen, onToggleModels, onSelect, h
       <div
         key={item.id}
         onClick={() => onSelect(item.id)}
-        className={`${baseRow}${transition} ${activeSection === item.id ? activeCls : inactiveCls(false)}`}
+        {...(activeSection === item.id ? target : {})}
+        className={`${baseRow}${transition} ${activeSection === item.id ? currentCls : inactiveCls(false)}`}
       >
         <span className="material-symbols-outlined text-[1.2rem]">{item.icon}</span>
         <span>{item.label}</span>
@@ -169,6 +183,94 @@ export default function App() {
   const [modelsOpen, setModelsOpen] = useState(false);
   const [telemetry, setTelemetryState] = useState(getTelemetry);
   const [mascotVisible, setMascotVisible] = useState(true);
+
+  // ── Motion ────────────────────────────────────────────────────────────────
+  const mainRef = useRef(null);
+  const navRef = useRef(null);
+  const slideTimers = useRef([]);
+  const lastIndicated = useRef("chat_cv");
+  // "" | "leave" | "enter": drives the slide between sections (styles.css).
+  const [sectionPhase, setSectionPhase] = useState("");
+  const [navBox, setNavBox] = useState(null);
+
+  /**
+   * Change section. With motion allowed the current one slides out first and
+   * the new one slides in; otherwise it is the plain cut it always was. A
+   * second click mid-slide cancels the first and goes straight to the new one.
+   */
+  const selectSection = (id) => {
+    slideTimers.current.forEach(clearTimeout);
+    slideTimers.current = [];
+    if (id === activeSection) {
+      setSectionPhase("");
+      return;
+    }
+    if (!motionAllowed()) {
+      setActiveSection(id);
+      return;
+    }
+    setSectionPhase("leave");
+    slideTimers.current = [
+      setTimeout(() => {
+        setActiveSection(id);
+        setSectionPhase("enter");
+      }, 150),
+      setTimeout(() => setSectionPhase(""), 150 + 280),
+    ];
+  };
+
+  useEffect(() => () => slideTimers.current.forEach(clearTimeout), []);
+
+  // The sidebar highlight glides to the active entry. It only animates when
+  // the section changed: when the models group merely opens or closes, the
+  // rows jump, so the highlight jumps with them.
+  useLayoutEffect(() => {
+    const measure = (animate) => {
+      const row = navRef.current?.querySelector("[data-nav-target]");
+      setNavBox(row ? { top: row.offsetTop, height: row.offsetHeight, animate } : null);
+    };
+    measure(lastIndicated.current !== activeSection);
+    lastIndicated.current = activeSection;
+    const remeasure = () => measure(false);
+    window.addEventListener("resize", remeasure);
+    document.fonts?.ready.then(remeasure).catch(() => {});
+    return () => window.removeEventListener("resize", remeasure);
+  }, [activeSection, modelsOpen, language]);
+
+  // The dot grid lights up around the pointer, and the top edge of the panel
+  // under it follows along. One listener, one write per frame.
+  useEffect(() => {
+    if (!motionAllowed() || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      return undefined;
+    }
+    let frame = 0;
+    let x = 0;
+    let y = 0;
+    let panel = null;
+    const onMove = (event) => {
+      x = event.clientX;
+      y = event.clientY;
+      panel = event.target instanceof Element ? event.target.closest(".viz-panel") : null;
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        const main = mainRef.current;
+        if (main) {
+          const box = main.getBoundingClientRect();
+          main.style.setProperty("--mx", `${x - box.left}px`);
+          main.style.setProperty("--my", `${y - box.top}px`);
+        }
+        if (panel) {
+          panel.style.setProperty("--px", `${x - panel.getBoundingClientRect().left}px`);
+        }
+      });
+    };
+    window.addEventListener("pointermove", onMove, { passive: true });
+    return () => {
+      window.removeEventListener("pointermove", onMove);
+      cancelAnimationFrame(frame);
+    };
+  }, []);
 
   // On a phone there is no sidebar, so the explainer lives behind a header
   // button. It used to open by itself over the whole page on a first visit,
@@ -297,7 +399,7 @@ H₀: μ₁=μ₂  α=0.05  tanh(x)  ReLU(x)  softmax(zᵢ)=e^ᶻⁱ/∑e^ᶻʲ 
             activeSection={activeSection}
             modelsOpen={modelsOpen}
             onToggleModels={() => setModelsOpen((o) => !o)}
-            onSelect={(id) => { setActiveSection(id); setMenuOpen(false); }}
+            onSelect={(id) => { selectSection(id); setMenuOpen(false); }}
             hover={false}
           />
         </div>
@@ -355,14 +457,22 @@ H₀: μ₁=μ₂  α=0.05  tanh(x)  ReLU(x)  softmax(zᵢ)=e^ᶻⁱ/∑e^ᶻʲ 
           <div className="text-[#00FF41] font-bold text-lg">{tr.app.workspace}</div>
           <div className="text-[#00FF41]/65 tracking-widest mt-1">{tr.app.session}</div>
         </div>
-        <div className="py-4 shrink-0">
+        <div ref={navRef} className="relative py-4 shrink-0">
+          {navBox && (
+            <span
+              aria-hidden="true"
+              className={`nav-indicator${navBox.animate ? " nav-indicator--glide" : ""}`}
+              style={{ transform: `translateY(${navBox.top}px)`, height: navBox.height }}
+            />
+          )}
           <NavList
             items={navItems}
             activeSection={activeSection}
             modelsOpen={modelsOpen}
             onToggleModels={() => setModelsOpen((o) => !o)}
-            onSelect={setActiveSection}
+            onSelect={selectSection}
             hover
+            indicator
           />
         </div>
 
@@ -412,7 +522,12 @@ H₀: μ₁=μ₂  α=0.05  tanh(x)  ReLU(x)  softmax(zᵢ)=e^ᶻⁱ/∑e^ᶻʲ 
       </aside>
 
       {/* Main Content */}
-      <main className="fixed left-0 md:left-72 top-14 sm:top-16 right-0 bottom-8 overflow-hidden flex flex-col items-center justify-center p-2 sm:p-6 md:p-8 bg-surface">
+      <main
+        ref={mainRef}
+        className={`fixed left-0 md:left-72 top-14 sm:top-16 right-0 bottom-8 overflow-hidden flex flex-col items-center justify-center p-2 sm:p-6 md:p-8 bg-surface${
+          sectionPhase ? ` section-${sectionPhase}` : ""
+        }`}
+      >
         {/* The page's one heading. The visible title of each section is an
             h2, and the name in the header is decoration inside a banner. */}
         <h1 className="sr-only">{tr.app.pageHeading}</h1>
@@ -431,10 +546,13 @@ H₀: μ₁=μ₂  α=0.05  tanh(x)  ReLU(x)  softmax(zᵢ)=e^ᶻⁱ/∑e^ᶻʲ 
           {activeSection === "certificaciones" && <Certificaciones />}
           {activeSection === "futboard" && <Futboard />}
         </Suspense>
-        {/* Radial glow behind chat */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] z-[-2] pointer-events-none opacity-20">
-          <div className="w-full h-full bg-[radial-gradient(circle_at_center,_#00FF4133_0%,_transparent_70%)]" />
+        {/* Radial glow behind chat. `main-fx` layers stay still while the
+            section itself slides. */}
+        <div className="main-fx absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] z-[-2] pointer-events-none opacity-20">
+          <div className="glow-drift w-full h-full bg-[radial-gradient(circle_at_center,_#00FF4133_0%,_transparent_70%)]" />
         </div>
+        <div className="main-fx dots-lit" />
+        <div className="main-fx crt-beam" />
       </main>
 
       {/* Footer Stats */}
@@ -456,10 +574,14 @@ H₀: μ₁=μ₂  α=0.05  tanh(x)  ReLU(x)  softmax(zᵢ)=e^ᶻⁱ/∑e^ᶻʲ 
         </div>
         <div className="flex gap-2 sm:gap-4 items-center">
           {telemetry.firstTokenMs != null && (
-            <span className="hidden lg:inline">{tr.footer.firstToken(telemetry.firstTokenMs)}</span>
+            <span key={telemetry.firstTokenMs} className="value-flash hidden lg:inline">
+              {tr.footer.firstToken(telemetry.firstTokenMs)}
+            </span>
           )}
           {telemetry.lastLatencyMs != null && (
-            <span className="hidden sm:inline">{tr.footer.latency(telemetry.lastLatencyMs)}</span>
+            <span key={telemetry.lastLatencyMs} className="value-flash hidden sm:inline">
+              {tr.footer.latency(telemetry.lastLatencyMs)}
+            </span>
           )}
           <span className="flex items-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-primary flicker" />
