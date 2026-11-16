@@ -375,3 +375,104 @@ body {
   0%        { background: #00FF41; border-color: #00FF41; box-shadow: 0 0 14px #00FF41; }
   30%, 100% { background: #0e0e0e; border-color: rgba(0, 255, 65, 0.45); box-shadow: none; }
 }
+
+/* ── Thumbs-up ──────────────────────────────────────────────────────────────
+ *
+ * The stage for components/ThumbsUp.jsx: a box standing on the footer bar in
+ * the bottom-right corner of the content area. It clips at its bottom edge,
+ * which is the top of the bar, so the figure comes out of the bar.
+ *
+ * One 4.9 s timeline:
+ *
+ *   0.00 – 0.55 s  rises on the first frame (fists on hips), with an overshoot
+ *   0.80 – 2.15 s  the 16 drawn frames, 90 ms each, as in the source animation
+ *   2.15 – 4.40 s  holds the last frame, breathing
+ *   4.40 – 4.90 s  a small hop, then down behind the bar
+ *
+ * Two sizes. From 1680px there is an empty gap beside the chat window (which
+ * is at most 896px wide), and the figure stands in it at full size: about
+ * 200 px tall on a 2000 px wide window. Below that, down to a phone, there is
+ * no gap, so it is small enough to sit in the corner of the chat for the five
+ * time it is there; it ignores the pointer, so the send button under it still
+ * works, and it holds its pose for 0.75 s instead of 2.25 s (thumbs-rise-short,
+ * 3.4 s in all) so that button is not hidden for long. Never shown with reduced motion: it is decoration, so the
+ * alternative to animating it is not showing it.
+ */
+.thumbs-up {
+  --thumbs-height: 104px;
+  display: none;
+  position: fixed;
+  right: 4px;
+  bottom: 2rem;                                    /* the top edge of the footer bar */
+  height: calc(var(--thumbs-height) * 1.08);       /* headroom for the overshoot */
+  width: calc(var(--thumbs-height) * 268 / 252 + 28px); /* a frame, plus room for the glow */
+  overflow: hidden;                                /* this is what makes it come out of the bar */
+  z-index: 45;                                     /* above the content, below the footer */
+  pointer-events: none;
+}
+.thumbs-figure {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 0;
+  height: var(--thumbs-height);
+  transform: translateY(104%);
+  transform-origin: 50% 100%;
+  filter: drop-shadow(0 0 10px rgba(0, 255, 65, 0.22));
+}
+/* One frame wide; the strip of 16 slides behind it a frame at a time. */
+.thumbs-window {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.thumbs-strip {
+  display: block;
+  height: 100%;
+  width: 1600%;
+  max-width: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .thumbs-up { --thumbs-height: 128px; right: 12px; }
+}
+@media (min-width: 1680px) {
+  .thumbs-up { --thumbs-height: clamp(150px, 10.6vw, 215px); right: 2.6vw; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .thumbs-up { display: block; }
+  .thumbs-up.is-playing .thumbs-figure { animation: thumbs-rise-short 3.4s linear both; }
+  .thumbs-up.is-playing .thumbs-strip { animation: thumbs-frames 1.35s steps(15) 0.8s both; }
+}
+@media (prefers-reduced-motion: no-preference) and (min-width: 1680px) {
+  .thumbs-up.is-playing .thumbs-figure { animation: thumbs-rise 4.9s linear both; }
+}
+
+@keyframes thumbs-rise {
+  0%    { transform: translateY(104%) scale(0.96, 1.06); animation-timing-function: cubic-bezier(0.2, 0.8, 0.3, 1); }
+  11.3% { transform: translateY(-3.2%) scale(0.985, 1.03); animation-timing-function: ease-in-out; }
+  14.8% { transform: translateY(0.7%) scale(1.012, 0.985); animation-timing-function: ease-in-out; }
+  18.2% { transform: translateY(0) scale(1, 1); }
+  48%   { transform: translateY(0) scale(1, 1); animation-timing-function: ease-in-out; }
+  62%   { transform: translateY(0) scale(1, 1.013); animation-timing-function: ease-in-out; }
+  76%   { transform: translateY(0) scale(1, 1); animation-timing-function: ease-in-out; }
+  89.8% { transform: translateY(0) scale(1, 1); animation-timing-function: ease-out; }
+  92.6% { transform: translateY(-3%) scale(0.99, 1.025); animation-timing-function: cubic-bezier(0.6, 0, 0.9, 0.4); }
+  100%  { transform: translateY(104%) scale(1, 1); }
+}
+/* The same rise and exit with a shorter hold, for where it overlaps the chat. */
+@keyframes thumbs-rise-short {
+  0%    { transform: translateY(104%) scale(0.96, 1.06); animation-timing-function: cubic-bezier(0.2, 0.8, 0.3, 1); }
+  16.2% { transform: translateY(-3.2%) scale(0.985, 1.03); animation-timing-function: ease-in-out; }
+  21.2% { transform: translateY(0.7%) scale(1.012, 0.985); animation-timing-function: ease-in-out; }
+  26%   { transform: translateY(0) scale(1, 1); }
+  85.3% { transform: translateY(0) scale(1, 1); animation-timing-function: ease-out; }
+  89.4% { transform: translateY(-3%) scale(0.99, 1.025); animation-timing-function: cubic-bezier(0.6, 0, 0.9, 0.4); }
+  100%  { transform: translateY(104%) scale(1, 1); }
+}
+/* 15 steps across 15/16 of the strip: frame 0 before, frame 15 held after. */
+@keyframes thumbs-frames {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-93.75%); }
+}

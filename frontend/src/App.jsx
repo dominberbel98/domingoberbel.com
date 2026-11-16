@@ -1,6 +1,7 @@
 import React, { Suspense, lazy, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import Chat from "./components/Chat";
 import { motionAllowed } from "./components/Motion";
+import ThumbsUp from "./components/ThumbsUp";
 import { useLanguage, useT } from "./i18n";
 import { getTelemetry, loadBackendMeta, subscribeTelemetry } from "./lib/telemetry";
 
@@ -192,6 +193,19 @@ export default function App() {
   // "" | "leave" | "enter": drives the slide between sections (styles.css).
   const [sectionPhase, setSectionPhase] = useState("");
   const [navBox, setNavBox] = useState(null);
+  // Each increment plays the thumbs-up once; 0 means it is not on screen.
+  const [thumbsRun, setThumbsRun] = useState(0);
+
+  // The avatar pops out of the footer bar shortly after the page loads, and
+  // again whenever the assistant finishes an answer.
+  useEffect(() => {
+    if (!motionAllowed()) return undefined;
+    const id = setTimeout(() => setThumbsRun((n) => n + 1), 1400);
+    return () => clearTimeout(id);
+  }, []);
+  useEffect(() => {
+    if (telemetry.lastLatencyMs != null && motionAllowed()) setThumbsRun((n) => n + 1);
+  }, [telemetry.lastLatencyMs]);
 
   /**
    * Change section. With motion allowed the current one slides out first and
@@ -554,6 +568,11 @@ H₀: μ₁=μ₂  α=0.05  tanh(x)  ReLU(x)  softmax(zᵢ)=e^ᶻⁱ/∑e^ᶻʲ 
         <div className="main-fx dots-lit" />
         <div className="main-fx crt-beam" />
       </main>
+
+      {/* Thumbs-up: only beside the chat, where the corner is empty. */}
+      {thumbsRun > 0 && activeSection === "chat_cv" && (
+        <ThumbsUp key={thumbsRun} onDone={() => setThumbsRun(0)} />
+      )}
 
       {/* Footer Stats */}
       <footer className="fixed bottom-0 left-0 w-full h-8 bg-surface-container border-t border-[#00FF41]/10 px-3 sm:px-6 flex items-center justify-between z-50 text-[0.72rem] sm:text-[0.74rem] font-headline uppercase text-[#00FF41]/65">
