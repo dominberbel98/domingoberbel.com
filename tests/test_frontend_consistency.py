@@ -366,3 +366,23 @@ def test_every_icon_the_site_uses_is_in_the_font_subset(repo_root):
 
     missing = sorted(used - set(listed))
     assert not missing, f"icons used but not in the font subset: {missing}"
+
+
+# ── Umami analytics vs the Content-Security-Policy ──────────────────────────
+
+_UMAMI_HOSTS = {
+    "script-src": ["https://cloud.umami.is"],  # the tracker script
+    "connect-src": ["https://gateway.umami.is"],  # where it posts each visit
+}
+
+
+@pytest.mark.parametrize("config", ["frontend/public/staticwebapp.config.json", "frontend/nginx.conf"])
+def test_the_csp_lets_umami_through(repo_root, config):
+    """lib/analytics.js loads the tracker at runtime, so a CSP that blocks it
+    fails silently: the site works and no visit is ever counted."""
+    text = (repo_root / config).read_text(encoding="utf-8")
+    missing = []
+    for directive, hosts in _UMAMI_HOSTS.items():
+        sources = " ".join(re.findall(rf"{directive} ([^;\"]+)", text))
+        missing += [f"{directive} {host}" for host in hosts if host not in sources]
+    assert not missing, f"{config} blocks Umami:\n" + "\n".join(missing)

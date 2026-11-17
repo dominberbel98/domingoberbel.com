@@ -3,6 +3,7 @@ import Chat from "./components/Chat";
 import { motionAllowed } from "./components/Motion";
 import ThumbsUp from "./components/ThumbsUp";
 import { useLanguage, useT } from "./i18n";
+import { initAnalytics, trackSection } from "./lib/analytics";
 import { getTelemetry, loadBackendMeta, subscribeTelemetry } from "./lib/telemetry";
 
 // Only the chat is in the first download. Every other section — and the
@@ -184,6 +185,16 @@ export default function App() {
   const [modelsOpen, setModelsOpen] = useState(false);
   const [telemetry, setTelemetryState] = useState(getTelemetry);
   const [mascotVisible, setMascotVisible] = useState(true);
+
+  // ── Analytics ─────────────────────────────────────────────────────────────
+  // Order matters: the tracker has to be started before the first section is
+  // reported, or that section is dropped instead of queued.
+  useEffect(() => {
+    initAnalytics();
+  }, []);
+  useEffect(() => {
+    trackSection(activeSection);
+  }, [activeSection]);
 
   // ── Motion ────────────────────────────────────────────────────────────────
   const mainRef = useRef(null);
