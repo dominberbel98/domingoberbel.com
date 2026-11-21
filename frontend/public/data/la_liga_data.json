@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-20T23:49:08.211182+00:00",
+  "updatedAt": "2026-11-21T06:20:38.687288+00:00",
   "season": "2026",
   "matchday": 13,
   "seasonStart": "2026-08-16",
@@ -142,7 +142,7 @@
     {
       "position": 7,
       "playedGames": 12,
-      "form": "DWWLD",
+      "form": "LDWWL",
       "won": 4,
       "draw": 4,
       "lost": 4,
@@ -205,7 +205,7 @@
     {
       "position": 10,
       "playedGames": 13,
-      "form": "DWLLD",
+      "form": "WDWLL",
       "won": 4,
       "draw": 3,
       "lost": 6,
@@ -435,6 +435,22 @@
     }
   ],
   "results": [
+    {
+      "id": 564748,
+      "utcDate": "2026-11-20T20:00:00Z",
+      "status": "FINISHED",
+      "matchday": 13,
+      "homeId": 77,
+      "homeName": "Athletic",
+      "homeCrest": "https://sportsrc.org/img/score/77.png",
+      "awayId": 80,
+      "awayName": "Espanyol",
+      "awayCrest": "https://sportsrc.org/img/score/80.png",
+      "homeGoals": 0,
+      "awayGoals": 1,
+      "winner": "AWAY_TEAM",
+      "live": false
+    },
     {
       "id": 564746,
       "utcDate": "2026-11-08T20:00:00Z",
